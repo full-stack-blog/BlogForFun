@@ -1,4 +1,4 @@
-USE blogpost_db;
+USE BlogForFun_db;
 
 
 
