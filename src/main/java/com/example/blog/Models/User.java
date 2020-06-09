@@ -34,6 +34,14 @@ public class User {
         posts = copy.posts;
     }
 
+    public User(long id, String username, String password, String email, List<Post> posts) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.posts = posts;
+    }
+
     public long getId() {
         return id;
     }

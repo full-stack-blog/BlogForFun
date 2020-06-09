@@ -24,6 +24,15 @@ public class Post {
 
     public Post() {}
 
+    public Post(Post copy) {
+        this.id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        this.title = copy.title;
+        this.body = copy.body;
+        this.user = copy.user;
+    }
+
+
+
     public Post(long id, String title, String body, User user) {
         this.id = id;
         this.title = title;
@@ -31,11 +40,6 @@ public class Post {
         this.user = user;
     }
 
-    public Post(String title, String body, User user) {
-        this.title = title;
-        this.body = body;
-        this.user = user;
-    }
 
     public long getId() {
         return this.id;
