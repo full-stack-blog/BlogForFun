@@ -4,12 +4,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, name = "user_role")
+    private String userRole;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -28,14 +31,16 @@ public class User {
 
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        userRole = copy.userRole;
         email = copy.email;
         username = copy.username;
         password = copy.password;
         posts = copy.posts;
     }
 
-    public User(long id, String username, String password, String email, List<Post> posts) {
+    public User(long id,String userRole, String username, String password, String email, List<Post> posts) {
         this.id = id;
+        this.userRole = userRole;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -48,6 +53,14 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public String getUserRole() {
+        return userRole;
     }
 
     public String getUsername() {
