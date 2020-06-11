@@ -52,7 +52,7 @@ public class UserController {
     public String goToAdmin(Model model) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userRoleAdmin", loggedIn);
-        model.addAttribute("allPosts",postDao.findAll());
+        model.addAttribute("posts",postDao.findAll());
         if(loggedIn.getUserRole().equals("admin"))
             return "users/admin-profile";
         else

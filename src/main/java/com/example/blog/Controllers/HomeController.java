@@ -12,12 +12,7 @@ public class HomeController {
     public String landingPage(Model model) {
         return "landing";
     }
-    @GetMapping("/index")
-    public String welcome(Model model) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("showUserRoles", loggedIn);
-        return "index";
-    }
+
     @GetMapping("/home")
     public String homePage(Model model){
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

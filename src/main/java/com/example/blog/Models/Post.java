@@ -18,6 +18,9 @@ public class Post {
     @Column(nullable = false, length = 1000)
     private String body;
 
+    @Column(nullable = false)
+    private String postImageUrl;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -40,6 +43,13 @@ public class Post {
         this.user = user;
     }
 
+    public String getPostImageUrl() {
+        return postImageUrl;
+    }
+
+    public void setPostImageUrl(String postImageUrl) {
+        this.postImageUrl = postImageUrl;
+    }
 
     public long getId() {
         return this.id;
