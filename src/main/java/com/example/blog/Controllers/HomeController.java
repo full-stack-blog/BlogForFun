@@ -17,7 +17,7 @@ public class HomeController {
     public String homePage(Model model){
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("showUserRoles", loggedIn);
-        return "blogger-posts/home";
+        return "users/home";
     }
     @GetMapping("/about-BlogForFun")
     public String aboutPage(Model model){
@@ -25,8 +25,8 @@ public class HomeController {
         model.addAttribute("showUserRoles", loggedIn);
         return "about-BlogForFun";
     }
-    @GetMapping("/about")
-    public String visitorAboutPage(){
-        return "about";
-    }
+//    @GetMapping("/about")
+//    public String visitorAboutPage(){
+//        return "about";
+//    }
 }
