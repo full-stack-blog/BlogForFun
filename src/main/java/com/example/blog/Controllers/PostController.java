@@ -61,4 +61,52 @@ public class PostController {
         postDao.save(post);
         return "redirect:/index";
     }
+
+    @GetMapping("posts/edit")
+    public String EditPost(@PathVariable long id, Model model){
+        model.addAttribute("posts", postDao.getOne(id));
+        return "post/edit";
+    }
+
+    @PostMapping("posts/{id}/edit}")
+    public String editPostFrom(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
+        Post editPost = postDao.getOne(id);
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        editPost.setBody(body);
+        editPost.setPostImageUrl(postImageUrl);
+        editPost.setUser(u);
+        editPost.setTitle(title);
+        postDao.save(editPost);
+        return "redirect:/individualPost";
+    }
+
+    @PostMapping("/post/{id}/delete")
+    public String deletePost(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/individualPost";
+    }
+
+//    @PostMapping("/admin-profile/{id}/delete")
+//    public String deletePostAdmin(@PathVariable long id){
+//        postDao.deleteById(id);
+//        return "redirect:/admin-profile";
+//    }
+//
+//    @GetMapping("/admin-profile/{id}/update2")
+//    public String updateDogPostFormAdmin(@PathVariable long id, Model model) {
+//        model.addAttribute("allPosts", postDao.getOne(id));
+//        return "breeder-posts/update2";
+//    }
+//
+//    @PostMapping("/admin-profile/{id}/update2")
+//    public String updateBreederPostAdmin(@PathVariable long id, @RequestParam String dogBreed, @RequestParam String dogGroup, @RequestParam String dogDescription, @RequestParam String dogPrice, @RequestParam String images) {
+//        postDao Post = PostDao.getOne(id);
+//        Post.set;
+//        Post.set;
+//        Post.set;
+//        Post.set;
+//        Post.set;
+//        postDao.save(Post);
+//        return "redirect:/admin-profile";
+//    }
 }
