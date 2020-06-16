@@ -15,14 +15,14 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homePage(Model model){
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("showUserRoles", loggedIn);
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("user", loggedIn);
         return "users/home";
     }
     @GetMapping("/about-BlogForFun")
     public String aboutPage(Model model){
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("showUserRoles", loggedIn);
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("showUserRoles", loggedIn);
         return "about-BlogForFun";
     }
 //    @GetMapping("/about")
