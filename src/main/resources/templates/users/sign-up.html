@@ -14,8 +14,18 @@
     <input th:field="*{email}" />
 
     <label for="password">Password</label>
-    <input type="password" th:field="*{password}" />
+    <input type="password" th:field="*{password}"/>
 
+<!--    <input th:field="*{userRole}" th:value="blogger" th:type="hidden"/>-->
+
+<!--    <div class="col-xl-12">-->
+<!--        <label for="userRole">Select User Role</label>-->
+<!--        <select th:field="*{userRole}">-->
+<!--            <option value="blogger">Breeder</option>-->
+<!--            <option value="admin">Buyer</option>-->
+<!--            &lt;!&ndash;                            <option value="admin">Admin</option>&ndash;&gt;-->
+<!--        </select>-->
+<!--    </div>-->
     <input value="Sign me up!" type="submit" />
 </form>
 </body>

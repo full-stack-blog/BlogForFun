@@ -31,7 +31,7 @@ public class PostController {
         model.addAttribute("blogger", loggedIn);
         List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
-        return "index";
+        return "posts/index";
     }
 
     @GetMapping("/blogger-posts/{id}")

@@ -34,16 +34,17 @@ public class UserController {
     public String saveUser(@ModelAttribute User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
+        user.setUserRole("blogger");
         userDoa.save(user);
         return "redirect:/login";
     }
 
-    @GetMapping("/blogger-profile")
+    @GetMapping("/profile")
     public String gotToBlogger(Model model) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("userRoleBlogger", loggedIn);
         if(loggedIn.getUserRole().equals("blogger"))
-            return "users/blogger-profile";
+            return "users/profile";
         else
             return "redirect:/login";
     }
