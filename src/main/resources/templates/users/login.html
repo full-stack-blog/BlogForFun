@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head th:replace="fragments/header.html :: header">
     <meta charset="UTF-8" />
     <title>Login</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 <h1>Login</h1>
 <form th:action="@{/login}" method="post">
     <label class="font-weight-bold" for="username">Username</label><br>

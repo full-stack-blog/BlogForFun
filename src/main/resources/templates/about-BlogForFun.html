@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header.html :: header"></head>
+<body class="about">
+<nav th:replace="fragments/navbar.html :: visitor-navbar"></nav>
 
+
+<!--<header class="container my-5"></header>-->
+<div class="jumbotron-about ">
+    <h1 class="text-center text-dark display-1" id="h1-about">About My Pup</h1>
+</div>
+
+<div class=" container about-container">
+    <div class="row">
+        <!-- Team Member 1 -->
+<!--        <div class="col-xl-3 col-md-6 mb-4">-->
+<!--            <div class=" card border-1 shadow about-card">-->
+<!--                <h5 class="card-title text-center">Dalvin Cash</h5>-->
+<!--                <img class="card-img-top" src="images/Dalvin-Cash.jpg" alt="...">-->
+<!--                <div class=" card-body text-center">-->
+<!--                    <a href="https://alumni.codeup.com/students/789">-->
+<!--                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">-->
+<!--                    </a>-->
+<!--                    <a href="https://github.com/DCash0000">-->
+<!--                        <img src="images/github-logo.png" style="width:50px;height:50px;" alt="">-->
+<!--                    </a>-->
+<!--                    <a href="https://www.linkedin.com/in/dalvin-cash/">-->
+<!--                        <img src="images/linkedin_tag.png" style="width:50px;height:50px;" alt="">-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!-- Team Member 2 -->
+        <div class="col-xl-3 col-md-6 mb-4 ">
+            <div class="card border-1 shadow about-card">
+                <h5 class="card-title text-center">John Santos</h5>
+                <img class="card-img-top" src="images/Thibs.png" alt="..."/>
+                <div class="card-body text-center">
+                    <a href="https://alumni.codeup.com/students/777">
+                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
+                    </a>
+                    <a href="https://github.com/crystalthibodeau">
+                        <img src="images/github-logo.png" style="width:50px;height:50px;" alt="">
+                    </a>
+                    <a href="https://www.linkedin.com/in/crystal-thibodeau">
+                        <img src="images/linkedin_tag.png" style="width:50px;height:50px;" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-1 shadow">
+                <h5 class="card-title text-center ">Paris Tyus</h5>
+                <img class="card-img-top" src="images/Paris-Tyus.jpg" alt="..."/>
+                <div class="card-body text-center ">
+                    <a href="https://alumni.codeup.com/students/779">
+                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
+                    </a>
+                    <a href="https://github.com/ParisTyus1">
+                        <img src="images/github-logo.png" style="width:50px;height:50px;" alt="">
+                    </a>
+                    <a href="https://www.linkedin.com/in/paris-tyus/">
+                        <img src="images/linkedin_tag.png" style="width:50px;height:50px;" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+</div>
 </body>
 </html>
