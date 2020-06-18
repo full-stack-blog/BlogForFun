@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Navbar</title>
@@ -8,30 +8,61 @@
 <div>
     <nav th:fragment="user-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/}">Blog For Fun</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="breeder-navbar">
+
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/posts}">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/posts/create}">Create Post</a>
-                </li>
-                <li class="nav-item ml-auto">
-                    <a class="nav-link" th:href="@{/profile}">Profile</a>
-                </li>
-                <li>
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="btn-link btn" style="margin-top: 1px">Logout</button>
-                    </form>
-                </li>
+
+                <th:block sec:authorize="isAnonymous()">
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/posts}">Posts</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" th:href="@{/sign-up}">Sign Up!</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/about-BlogForFun}">About</a>
+                    </li>
+
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/posts}">Posts</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/posts/create}">Create Post</a>
+                    </li>
+
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" th:href="@{/profile}">Profile</a>
+                    </li>
+
+                    <li>
+                        <form th:action="@{/logout}" th:method="post">
+                            <button class="btn-link btn" style="margin-top: 1px">Logout</button>
+                        </form>
+                    </li>
+
+                </th:block>
+
             </ul>
-<!--            <form class="form-inline my-2 my-lg-0">-->
-<!--                <input onkeyup="searchFunction()" id="search_bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                <button class="btn btn-light my-2 my-sm-0"><a id="search_execute" href="/search/">Search</a></button>-->
-<!--            </form>-->
+            <!--            <form class="form-inline my-2 my-lg-0">-->
+            <!--                <input onkeyup="searchFunction()" id="search_bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <!--                <button class="btn btn-light my-2 my-sm-0"><a id="search_execute" href="/search/">Search</a></button>-->
+            <!--            </form>-->
         </div>
     </nav>
 </div>

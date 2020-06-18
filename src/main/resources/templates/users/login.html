@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header">
-    <meta charset="UTF-8" />
-    <title>Login</title>
-</head>
+<head th:replace="fragments/header :: head('Login')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 <header class="container my-5"></header>
