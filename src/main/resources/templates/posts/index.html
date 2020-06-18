@@ -9,18 +9,24 @@
     <h1 class="text-center text-dark display-1" id="h1-show">Posts</h1>
 </div>
 
-<div class="main-container">
-    <div class="row">
-        <div class="card vh card-body text-center ml-3 mr-3 mb-4" style="width: 18rem;" th:each="post : ${posts}">
-            <img class="card-img-top" th:src="${post.postImageUrl}" alt="Card image cap">
-            <h1 th:text="${post.title}"></h1>
-            <p th:text="${post.body}"></p>
-<!--            <div th:if="${showUserRoles.getUserRole().equals('admin')}">-->
-<!--                <form th:action="@{|/blogger-contact/${post.id}|}">-->
-<!--                    <button type="submit" class="btn">More info</button>-->
-<!--                </form>-->
-<!--            </div>-->
-            <br>
+<div class="container">
+    <div class="card-columns">
+
+        <div th:each="post : ${posts}">
+
+            <div class="card shadow bg-white rounded">
+                <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
+                <div class="card-body">
+                    <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                </div>
+                <div class="card-footer">
+                    <p class="text-muted d-flex justify-content-center align-items-center"
+                       th:text="${post.getUser().username}"></p>
+
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

@@ -43,6 +43,7 @@ public class UserController {
     public String gotToBlogger(Model model) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("blogger", loggedIn);
+        model.addAttribute("posts", postDao.findAll());
         if(loggedIn.getUserRole().equals("blogger"))
             return "users/profile";
         else

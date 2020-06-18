@@ -38,26 +38,29 @@ public class PostController {
     }
 
     @GetMapping("/blogger-posts/{id}")
-    public String getIndividualPost(Model model, @PathVariable long id){
-//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getIndividualPost(Model model, @PathVariable long id) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+        }
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
         return "individualPost";
     }
 
     @GetMapping("/posts/create")
-    public String createPostForm(Model model){
+    public String createPostForm(Model model) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("blogger", loggedIn);
         model.addAttribute("post", new Post());
-        if(loggedIn.getUserRole().equals("blogger") || loggedIn.getUserRole().equals("admin"))
+        if (loggedIn.getUserRole().equals("blogger") || loggedIn.getUserRole().equals("admin"))
             return "posts/create";
         else
             return "redirect:/home";
     }
 
     @PostMapping("/posts/create")
-    public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl){
+    public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
         Post post = new Post();
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setTitle(title);
@@ -69,7 +72,7 @@ public class PostController {
     }
 
     @GetMapping("/posts/edit")
-    public String EditPost(@PathVariable long id, Model model){
+    public String EditPost(@PathVariable long id, Model model) {
         model.addAttribute("posts", postDao.getOne(id));
         return "post/edit";
     }
@@ -87,13 +90,13 @@ public class PostController {
     }
 
     @PostMapping("/post/{id}/delete")
-    public String deletePost(@PathVariable long id){
+    public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
         return "redirect:/individualPost";
     }
 
     @PostMapping("/post/{id}")
-    public String viewIndividualPost(@PathVariable long id, Model model){
+    public String viewIndividualPost(@PathVariable long id, Model model) {
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
         return "individualPost";

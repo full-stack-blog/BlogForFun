@@ -14,19 +14,20 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String homePage(Model model){
-//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", loggedIn);
+    public String homePage(Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+        }
         return "users/home";
     }
+
     @GetMapping("/about-BlogForFun")
-    public String aboutPage(Model model){
-//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("showUserRoles", loggedIn);
+    public String aboutPage(Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+        }
         return "about-BlogForFun";
     }
-//    @GetMapping("/about")
-//    public String visitorAboutPage(){
-//        return "about";
-//    }
 }

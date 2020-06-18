@@ -7,5 +7,28 @@
 <header class="container my-5"></header>
 <div class="jumbotron-show">
     <h1 class="text-center text-dark display-1" id="h1-profile">Profile</h1>
-</div></body>
+</div>
+
+<div class="container">
+    <div class="card-columns">
+
+        <div th:each="post : ${posts}" th:if="${blogger.id} == ${post.getUser().id}">
+
+            <div class="card shadow bg-white rounded">
+                <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
+                <div class="card-body">
+                    <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                </div>
+                <div class="card-footer">
+                    <p class="text-muted d-flex justify-content-center align-items-center"
+                       th:text="${post.getUser().username}"></p>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
 </html>
