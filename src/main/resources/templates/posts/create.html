@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: header">
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<body class="create">
+<div class="main-container">
+<!--    <div th:if="${showUserRoles.getUserRole().equals('blogger')}">-->
+<!--        <nav th:replace="fragments/navbar.html :: user-navbar"></nav>-->
+<!--    </div>-->
+<!--    <div th:if="${showUserRoles.getUserRole().equals('admin')}">-->
+<!--        <nav th:replace="fragments/navbar.html :: user-navbar"></nav>-->
+<!--    </div>-->
+
+    <header class="container my-5"></header>
+    <div class="jumbotron-create">
+        <h1 class="text-left text-light mx-5 display-1" id="h1-create"> Create a Post</h1>
+    </div>
+
+    <div class="card-container mx-5">
+        <div class="card bg-light text-dark col-xl-4">
+            <div class="card-body post-Create">
+                <h5 class="card-title post-Create-Form user-Form-Text">Create a Post</h5>
+                <hr>
+
+                <!--  FORM -->
+
+                <form th:action="@{|/posts/create|}" th:method="POST" th:object="${post}">
+                    <div class="col-xl-12">
+                        <label for="title"> Title</label>
+                        <input type="text" th:field="*{title}" placeholder="Enter tile"/>
+                    </div>
+                    <div class="col-xl-12">
+                        <label for="body">body</label>
+                        <input type="text" th:field="*{body}" placeholder="Enter text"/>
+                    </div>
+
+<!--                    <div class="col-xl-12 create-photo-upload">-->
+<!--                        <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">-->
+<!--                            Upload Image-->
+<!--                        </button>-->
+<!--                        <input name="fileupload" id="fileupload" th:field="*{postImageUrl}">-->
+<!--                    </div>-->
+                    <div class="col-xl-12">
+                        <!--                            <button class="loginSign-btn" id="save">Save Post</button>-->
+                        <input id="save" class="loginSign-btn sign-create-btn" value="Create Post" type="submit"/>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="fixed-bottom">
+    <div th:replace="fragments/scripts.html :: scripts"></div>
+    <footer th:replace="fragments/footer.html :: footer"></footer>
+</div>
+</body>
+</html>

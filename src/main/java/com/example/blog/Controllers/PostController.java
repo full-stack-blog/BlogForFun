@@ -50,17 +50,20 @@ public class PostController {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("blogger", loggedIn);
         model.addAttribute("post", new Post());
-        return "createPost";
+        if(loggedIn.getUserRole().equals("blogger") || loggedIn.getUserRole().equals("admin"))
+            return "posts/create";
+        else
+            return "redirect:/home";
     }
 
     @PostMapping("/posts/create")
     public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl){
         Post post = new Post();
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setTitle(title);
         post.setBody(body);
         post.setPostImageUrl(postImageUrl);
         post.setUser(u);
-        post.setTitle(title);
         postDao.save(post);
         return "redirect:/index";
     }

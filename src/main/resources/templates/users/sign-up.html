@@ -7,8 +7,10 @@
 <body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
+<header class="container my-5"></header>
+<div class="jumbotron-show">
+    <h1 class="text-center text-dark display-1" id="h1-signup">Create Account</h1>
+</div><form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="username">Username</label>
     <input th:field="*{username}" />
 
