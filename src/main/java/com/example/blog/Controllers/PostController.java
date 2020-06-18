@@ -30,6 +30,7 @@ public class PostController {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("blogger", loggedIn);
         List<Post> posts = postDao.findAll();
+        System.out.println(posts);
         model.addAttribute("posts", posts);
         return "posts/index";
     }

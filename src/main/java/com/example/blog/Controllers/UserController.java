@@ -42,7 +42,7 @@ public class UserController {
     @GetMapping("/profile")
     public String gotToBlogger(Model model) {
         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("userRoleBlogger", loggedIn);
+        model.addAttribute("blogger", loggedIn);
         if(loggedIn.getUserRole().equals("blogger"))
             return "users/profile";
         else
