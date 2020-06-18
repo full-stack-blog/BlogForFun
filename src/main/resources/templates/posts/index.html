@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header.html :: header">
-    <meta charset="UTF-8">
-    <title>Viewing Post</title>
+    <meta charset="UTF-8" />
+    <title>Posts</title>
 </head>
-<body class="index">
-
+<body>
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 <header class="container my-5"></header>
-<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 <div class="jumbotron-show">
     <h1 class="text-center text-dark display-1" id="h1-show">Posts</h1>
 </div>

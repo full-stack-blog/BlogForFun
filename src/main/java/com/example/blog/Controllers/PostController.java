@@ -27,8 +27,10 @@ public class PostController {
 
     @GetMapping("/posts")
     public String welcome(Model model) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("blogger", loggedIn);
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+        }
         List<Post> posts = postDao.findAll();
         System.out.println(posts);
         model.addAttribute("posts", posts);

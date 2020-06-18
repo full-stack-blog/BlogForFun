@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace="fragments/header.html :: header"></head>
-<body class="about">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header.html :: header">
+    <meta charset="UTF-8" />
+    <title>About</title>
+</head>
+<body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 
