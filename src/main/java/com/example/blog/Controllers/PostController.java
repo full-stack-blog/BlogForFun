@@ -53,7 +53,7 @@ public class PostController {
         if(loggedIn.getUserRole().equals("blogger") || loggedIn.getUserRole().equals("admin"))
             return "posts/create";
         else
-            return "redirect:/home";
+            return "redirect:/login";
     }
 
     @PostMapping("/posts/create")
