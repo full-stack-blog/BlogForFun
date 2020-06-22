@@ -35,6 +35,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         user.setUserRole("blogger");
+        user.setProfileImage("https://picsum.photos/seed/picsum/200/300");
         userDoa.save(user);
         return "redirect:/login";
     }

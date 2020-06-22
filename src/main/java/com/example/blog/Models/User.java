@@ -18,10 +18,19 @@ public class User {
     private String username;
 
     @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private String profileImage;
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
@@ -36,15 +45,21 @@ public class User {
         username = copy.username;
         password = copy.password;
         posts = copy.posts;
+        lastName = copy.lastName;
+        firstName = copy.firstName;
+        profileImage = copy.profileImage;
     }
 
-    public User(long id,String userRole, String username, String password, String email, List<Post> posts) {
+    public User(long id,String userRole, String username, String password, String email, List<Post> posts, String firstName, String lastName, String profileImage) {
         this.id = id;
         this.userRole = userRole;
         this.username = username;
         this.password = password;
         this.email = email;
         this.posts = posts;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profileImage = profileImage;
     }
 
     public long getId() {
@@ -95,4 +110,27 @@ public class User {
         this.posts = posts;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
 }
