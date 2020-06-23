@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header">
-    <meta charset="UTF-8">
-    <title>Create Post</title>
-</head>
+<head th:replace="fragments/header :: head('Create View')"></head>
+
 <body class="create">
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 <div class="main-container">
 <!--    <div th:if="${showUserRoles.getUserRole().equals('blogger')}">-->
 <!--        <nav th:replace="fragments/navbar.html :: user-navbar"></nav>-->
@@ -36,12 +35,12 @@
                         <input type="text" th:field="*{body}" placeholder="Enter text"/>
                     </div>
 
-<!--                    <div class="col-xl-12 create-photo-upload">-->
+                    <div class="col-xl-12 create-photo-upload">
 <!--                        <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">-->
 <!--                            Upload Image-->
 <!--                        </button>-->
-<!--                        <input name="fileupload" id="fileupload" th:field="*{postImageUrl}">-->
-<!--                    </div>-->
+                        <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden">
+                    </div>
                     <div class="col-xl-12">
                         <!--                            <button class="loginSign-btn" id="save">Save Post</button>-->
                         <input id="save" class="loginSign-btn sign-create-btn" value="Create Post" type="submit"/>

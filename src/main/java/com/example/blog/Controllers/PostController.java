@@ -7,10 +7,7 @@ import com.example.blog.Repositories.UserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,13 +47,13 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String createPostForm(Model model) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("blogger", loggedIn);
-        model.addAttribute("post", new Post());
-        if (loggedIn.getUserRole().equals("blogger") || loggedIn.getUserRole().equals("admin"))
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+        }
+            model.addAttribute("post", new Post());
             return "posts/create";
-        else
-            return "redirect:/home";
+
     }
 
     @PostMapping("/posts/create")
@@ -65,16 +62,41 @@ public class PostController {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setTitle(title);
         post.setBody(body);
-        post.setPostImageUrl(postImageUrl);
+        post.setPostImageUrl("https://picsum.photos/seed/picsum/200/300");
         post.setUser(u);
         postDao.save(post);
-        return "redirect:/index";
+        return "redirect:index";
     }
+
+//    @GetMapping("/breeder-posts/create")
+//    public String getCreatedBreederPostForm(Model model){
+//        model.addAttribute("newDogPost", new DogPost());
+//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("showUserRoles", loggedIn);
+//        if(loggedIn.getUserRole().equals("breeder")  || loggedIn.getUserRole().equals("admin"))
+//            return "breeder-posts/create";
+//        else
+//            return "redirect:/home";
+//    }
+//
+//    @PostMapping("/breeder-posts/create")
+//    public String createBreederPost(@ModelAttribute DogPost newDogPost, @RequestParam String dogBreed, @RequestParam String dogGroup, @RequestParam String dogDescription, @RequestParam String dogPrice, String images){
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        newDogPost.setDogBreed(dogBreed);
+//        newDogPost.setDogGroup(dogGroup);
+//        newDogPost.setDogDescription(dogDescription);
+//        newDogPost.setDogPrice(dogPrice);
+//        newDogPost.setImages(images);
+//        newDogPost.setUser(loggedInUser);
+//        dogPostDao.save(newDogPost);
+//        return "redirect:/breeder-posts";
+//    }
+
 
     @GetMapping("/posts/edit")
     public String EditPost(@PathVariable long id, Model model) {
         model.addAttribute("posts", postDao.getOne(id));
-        return "post/edit";
+        return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
@@ -92,7 +114,7 @@ public class PostController {
     @PostMapping("/post/{id}/delete")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
-        return "redirect:/individualPost";
+        return "/posts/individualPost";
     }
 
     @PostMapping("/post/{id}")
