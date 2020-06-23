@@ -65,33 +65,8 @@ public class PostController {
         post.setPostImageUrl("https://picsum.photos/seed/picsum/200/300");
         post.setUser(u);
         postDao.save(post);
-        return "redirect:index";
+        return "redirect:/posts";
     }
-
-//    @GetMapping("/breeder-posts/create")
-//    public String getCreatedBreederPostForm(Model model){
-//        model.addAttribute("newDogPost", new DogPost());
-//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("showUserRoles", loggedIn);
-//        if(loggedIn.getUserRole().equals("breeder")  || loggedIn.getUserRole().equals("admin"))
-//            return "breeder-posts/create";
-//        else
-//            return "redirect:/home";
-//    }
-//
-//    @PostMapping("/breeder-posts/create")
-//    public String createBreederPost(@ModelAttribute DogPost newDogPost, @RequestParam String dogBreed, @RequestParam String dogGroup, @RequestParam String dogDescription, @RequestParam String dogPrice, String images){
-//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        newDogPost.setDogBreed(dogBreed);
-//        newDogPost.setDogGroup(dogGroup);
-//        newDogPost.setDogDescription(dogDescription);
-//        newDogPost.setDogPrice(dogPrice);
-//        newDogPost.setImages(images);
-//        newDogPost.setUser(loggedInUser);
-//        dogPostDao.save(newDogPost);
-//        return "redirect:/breeder-posts";
-//    }
-
 
     @GetMapping("/posts/edit")
     public String EditPost(@PathVariable long id, Model model) {
