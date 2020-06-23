@@ -68,14 +68,14 @@ public class PostController {
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/edit")
+    @GetMapping("/posts/{id}/edit")
     public String EditPost(@PathVariable long id, Model model) {
-        model.addAttribute("posts", postDao.getOne(id));
+        model.addAttribute("post", postDao.getOne(id));
         return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPostFrom(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
+    public String editPostFrom(@ModelAttribute Post post, @PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
         Post editPost = postDao.getOne(id);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         editPost.setBody(body);
@@ -83,7 +83,7 @@ public class PostController {
         editPost.setUser(u);
         editPost.setTitle(title);
         postDao.save(editPost);
-        return "redirect:/posts/" + id;
+        return "redirect:/profile";
     }
 
     @PostMapping("/post/{id}/delete")

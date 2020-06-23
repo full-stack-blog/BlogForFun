@@ -42,13 +42,15 @@ public class UserController {
 
     @GetMapping("/profile")
     public String gotToBlogger(Model model) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("blogger", loggedIn);
-        model.addAttribute("posts", postDao.findAll());
-        if(loggedIn.getUserRole().equals("blogger"))
-            return "users/profile";
-        else
-            return "redirect:/login";
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+            model.addAttribute("posts", postDao.findAll());
+            if(loggedIn.getUserRole().equals("blogger"))
+                return "users/profile";
+        }
+
+        return "redirect:/login";
     }
 
     @GetMapping("/admin-profile")

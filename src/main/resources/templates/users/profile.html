@@ -26,8 +26,11 @@
                 <div class="card-footer">
                     <p class="text-muted d-flex justify-content-center align-items-center"
                        th:text="${post.getUser().username}"></p>
-
+                    <a th:href="@{|/posts/${post.id}/edit|}">
+                    <button>Edit</button>
+                </a>
                 </div>
+
             </div>
 
         </div>
