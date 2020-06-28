@@ -86,10 +86,10 @@ public class PostController {
         return "redirect:/profile";
     }
 
-    @PostMapping("/post/{id}/delete")
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
-        return "/posts/index";
+        return "redirect:/profile";
     }
 
     @PostMapping("/post/{id}")
@@ -98,6 +98,7 @@ public class PostController {
         model.addAttribute("post", post);
         return "individualPost";
     }
+
 
 //    @PostMapping("/admin-profile/{id}/delete")
 //    public String deletePostAdmin(@PathVariable long id){
