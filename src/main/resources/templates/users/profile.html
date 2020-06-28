@@ -11,7 +11,7 @@
 
 <div class="container">
     <h1 th:text="Welcome + ' ' + ${blogger.username}" class="text-center"></h1>
-<h3 th:text="${blogger.firstName} + ' ' + ${blogger.lastName}" class="text-muted text-center"></h3>
+    <h3 th:text="${blogger.firstName} + ' ' + ${blogger.lastName}" class="text-muted text-center"></h3>
     <img alt="profile image" style="width: 16em; height: 16em;" class="rounded-circle shadow-lg img-profile"
          th:attr="src=@{${blogger.profileImage}}">
     <div class="card-columns">
@@ -21,14 +21,19 @@
             <div class="card shadow bg-white rounded">
                 <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
                 <div class="card-body">
-                    <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                    <a th:href="@{|/post/${post.id}|}">
+                        <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                    </a>
                 </div>
                 <div class="card-footer">
                     <p class="text-muted d-flex justify-content-center align-items-center"
                        th:text="${post.getUser().username}"></p>
                     <a th:href="@{|/posts/${post.id}/edit|}">
-                    <button>Edit</button>
-                </a>
+                        <button>Edit</button>
+                    </a>
+                    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
 
             </div>

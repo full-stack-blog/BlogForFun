@@ -86,18 +86,19 @@ public class PostController {
         return "redirect:/profile";
     }
 
-    @PostMapping("/post/{id}/delete")
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
-        return "/posts/index";
+        return "redirect:/profile";
     }
 
-    @PostMapping("/post/{id}")
+    @GetMapping("/post/{id}")
     public String viewIndividualPost(@PathVariable long id, Model model) {
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
-        return "individualPost";
+        return "posts/individualPost";
     }
+
 
 //    @PostMapping("/admin-profile/{id}/delete")
 //    public String deletePostAdmin(@PathVariable long id){
