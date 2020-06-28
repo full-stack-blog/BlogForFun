@@ -20,9 +20,17 @@
                     <h2 class="card-title text-center" th:text="${post.title}"></h2>
                 </div>
                 <div class="card-footer">
-                    <p class="text-muted d-flex justify-content-center align-items-center"
-                       th:text="${post.getUser().username}"></p>
+                    <div th:each="post : ${posts}" th:if="${blogger.id} == ${post.getUser().id}">
 
+                        <!--                    <p class="text-muted d-flex justify-content-center align-items-center"-->
+                        <!--                       th:text="${post.getUser().username}"></p>-->
+                        <a th:href="@{|/posts/${post.id}/edit|}">
+                            <button>Edit</button>
+                        </a>
+                        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
