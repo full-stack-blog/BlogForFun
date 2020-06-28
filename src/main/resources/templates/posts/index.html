@@ -17,21 +17,25 @@
             <div class="card shadow bg-white rounded">
                 <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
                 <div class="card-body">
-                    <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                    <a th:href="@{|/post/${post.id}|}">
+                        <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                    </a>
+
                 </div>
                 <div class="card-footer">
-                    <div th:each="post : ${posts}" th:if="${blogger.id} == ${post.getUser().id}">
-
-                        <!--                    <p class="text-muted d-flex justify-content-center align-items-center"-->
-                        <!--                       th:text="${post.getUser().username}"></p>-->
-                        <a th:href="@{|/posts/${post.id}/edit|}">
-                            <button>Edit</button>
-                        </a>
-                        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
+                    <div sec:authorize="isAuthenticated()">
+                        <div th:if="${blogger.id} == ${post.getUser().id}">
+                            <a th:href="@{|/posts/${post.id}/edit|}">
+                                <button>Edit</button>
+                            </a>
+                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    <div sec:authorize="!isAuthenticated()">
+                        <h4 th:text="${post.user.username}"></h4>
+                    </div>
             </div>
 
 

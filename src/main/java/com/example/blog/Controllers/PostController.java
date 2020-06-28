@@ -92,11 +92,11 @@ public class PostController {
         return "redirect:/profile";
     }
 
-    @PostMapping("/post/{id}")
+    @GetMapping("/post/{id}")
     public String viewIndividualPost(@PathVariable long id, Model model) {
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
-        return "individualPost";
+        return "posts/individualPost";
     }
 
 

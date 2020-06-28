@@ -4,8 +4,8 @@
 
 <body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
-
-post - individual
+<h2 th:text="${post.title}"></h2>
+<h4 th:text="${post.body}"></h4>
 <div class="fixed-bottom">
     <div th:replace="fragments/scripts.html :: scripts"></div>
     <footer th:replace="fragments/footer.html :: footer"></footer>
