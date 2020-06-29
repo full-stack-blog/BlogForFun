@@ -4,6 +4,8 @@ import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -83,6 +85,8 @@ public class UserController {
         user.setPassword(tempUser.getPassword());
         user.setId(tempUser.getId());
         user.setProfileImage("https://picsum.photos/seed/picsum/200/300");
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         userDoa.save(user);
         return "redirect:/profile";
     }
