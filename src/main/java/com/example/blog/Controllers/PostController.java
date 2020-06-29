@@ -94,6 +94,10 @@ public class PostController {
 
     @GetMapping("/post/{id}")
     public String viewIndividualPost(@PathVariable long id, Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("blogger", loggedIn);
+        }
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
         return "posts/individualPost";
