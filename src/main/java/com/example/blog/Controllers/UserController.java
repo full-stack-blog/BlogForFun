@@ -1,16 +1,15 @@
 package com.example.blog.Controllers;
 
+import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -64,6 +63,54 @@ public class UserController {
             return "redirect:/login";
     }
 
+
+    @GetMapping("/profile/edit")
+    public String getEditProfileForm(Model model) {
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (obj == null || !(obj instanceof UserDetails)) {
+            return "redirect:/login";
+        }
+        User tempUser = (User) obj;
+        User user = userDoa.getOne(tempUser.getId());
+        model.addAttribute("user", user);
+        return "users/editProfile";
+    }
+    @PostMapping("/profile/edit")
+    public String editProfile(@ModelAttribute User user) {
+        User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user.setUserRole(tempUser.getUserRole());
+        user.setPosts(tempUser.getPosts());
+        user.setPassword(tempUser.getPassword());
+        user.setId(tempUser.getId());
+        user.setProfileImage("https://picsum.photos/seed/picsum/200/300");
+        userDoa.save(user);
+        return "redirect:/profile";
+    }
+
+//    @RequestMapping("/profile/profile-edit-CCP")
+//    public String errorCCP(Model model){
+//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (obj == null || !(obj instanceof UserDetails)) {
+//            return "redirect:/login";
+//        }
+//        User tempUser = (User) obj;
+//        User user = userRepo.getOne(tempUser.getId());
+//        model.addAttribute("user", user);
+//        model.addAttribute("ccp",true);
+//        return "user/profile-edit";
+//    }
+//    @RequestMapping("/profile/profile-edit-MP")
+//    public String errorMP(Model model){
+//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (obj == null || !(obj instanceof UserDetails)) {
+//            return "redirect:/login";
+//        }
+//        User tempUser = (User) obj;
+//        User user = userRepo.getOne(tempUser.getId());
+//        model.addAttribute("user", user);
+//        model.addAttribute("mp",true);
+//        return "user/profile-edit";
+//    }
 
 //    @GetMapping("/blogger-contact/{id}")
 //    public String goToBreederContactInfo(@PathVariable long id, Model model){
