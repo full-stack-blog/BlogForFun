@@ -21,7 +21,7 @@
         </div>
     </form>
 
-    <div class="card-columns">
+    <div class="card-columns mt-4">
 
         <div th:each="post : ${posts}">
 
@@ -42,6 +42,9 @@
                             <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
                                 <button type="submit">Delete</button>
                             </form>
+                        </div>
+                        <div th:if="${user.id} != ${post.getUser().id}">
+                            <h4 th:text="${post.user.username}"></h4>
                         </div>
                     </div>
                     <div sec:authorize="!isAuthenticated()">

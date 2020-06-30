@@ -1,6 +1,5 @@
 package com.example.blog.Controllers;
 
-import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
@@ -40,19 +39,6 @@ public class UserController {
         userDoa.save(user);
         return "redirect:/login";
     }
-
-//    @GetMapping("/profile")
-//    public String profile(Model model) {
-//        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", u);
-//        model.addAttribute("recipes", recipeDao.findAll());
-//        model.addAttribute("fsapi", fsapi);
-//        if (u.isAdmin()){
-//            System.out.println("this user is an admin!");
-//        }
-//        System.out.println("inside profile method!");
-//        return "recipes/profile";
-//    }
 
     @GetMapping("/profile")
     public String gotToBlogger(Model model) {
