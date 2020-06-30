@@ -180,7 +180,7 @@ public class PostController {
         Post editPost = postDao.getOne(id);
         editPost.setBody(body);
         editPost.setPostImageUrl(postImageUrl);
-//        editPost.setUser(post.user);
+        editPost.setUser(post.getUser());
         editPost.setTitle(title);
         postDao.save(editPost);
         return "redirect:/profile";

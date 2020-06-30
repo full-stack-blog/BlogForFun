@@ -41,6 +41,19 @@ public class UserController {
         return "redirect:/login";
     }
 
+//    @GetMapping("/profile")
+//    public String profile(Model model) {
+//        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        model.addAttribute("user", u);
+//        model.addAttribute("recipes", recipeDao.findAll());
+//        model.addAttribute("fsapi", fsapi);
+//        if (u.isAdmin()){
+//            System.out.println("this user is an admin!");
+//        }
+//        System.out.println("inside profile method!");
+//        return "recipes/profile";
+//    }
+
     @GetMapping("/profile")
     public String gotToBlogger(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
