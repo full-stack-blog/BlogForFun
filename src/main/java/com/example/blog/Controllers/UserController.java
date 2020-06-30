@@ -49,7 +49,6 @@ public class UserController {
             model.addAttribute("posts", postDao.findAll());
         }
         return "users/profile";
-
     }
 
     @GetMapping("/admin-profile")
