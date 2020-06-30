@@ -23,10 +23,10 @@
         </thead>
         <tbody>
             <tr th:each="post : ${posts}">
-                <td class="bill-name text-center align-middle" th:text="${post.user.username}"></td>
-                <td class="bill-date text-center align-middle date-span" th:text="${post.user.id}"></td>
-                <td class="money-td bill-amount text-center align-middle" th:text="${post.id}"></td>
-                <td class="money-td bill-payment text-center align-middle" th:text="${post.title}"></td>
+                <td class=" text-center align-middle" th:text="${post.user.username}"></td>
+                <td class=" text-center align-middle date-span" th:text="${post.user.id}"></td>
+                <td class=" bill-amount text-center align-middle" th:text="${post.id}"></td>
+                <td class=" bill-payment text-center align-middle" th:text="${post.title}"></td>
 
                 <td class="text-center">
                     <a th:href="@{|/post/${post.id}|}">
