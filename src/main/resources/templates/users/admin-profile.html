@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header :: head('Admin Profile')"></head>
+<head th:replace="fragments/header :: head('Admin Profile')">
+    <title>Admin</title>
+</head>
     <meta charset="UTF-8">
-    <title>Title</title>
 
 <body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
@@ -25,8 +26,8 @@
             <tr th:each="post : ${posts}">
                 <td class=" text-center align-middle" th:text="${post.user.username}"></td>
                 <td class=" text-center align-middle date-span" th:text="${post.user.id}"></td>
-                <td class=" bill-amount text-center align-middle" th:text="${post.id}"></td>
-                <td class=" bill-payment text-center align-middle" th:text="${post.title}"></td>
+                <td class=" text-center align-middle" th:text="${post.id}"></td>
+                <td class=" text-center align-middle" th:text="${post.title}"></td>
 
                 <td class="text-center">
                     <a th:href="@{|/post/${post.id}|}">
