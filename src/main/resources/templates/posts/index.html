@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-footer">
                     <div sec:authorize="isAuthenticated()">
-                        <div th:if="${blogger.id} == ${post.getUser().id}">
+                        <div th:if="${user.id} == ${post.getUser().id}">
                             <a th:href="@{|/posts/${post.id}/edit|}">
                                 <button>Edit</button>
                             </a>

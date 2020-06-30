@@ -45,24 +45,21 @@ public class UserController {
     public String gotToBlogger(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("blogger", loggedIn);
+            model.addAttribute("user", loggedIn);
             model.addAttribute("posts", postDao.findAll());
-            if(loggedIn.getUserRole().equals("blogger"))
-                return "users/profile";
         }
+        return "users/profile";
 
-        return "redirect:/login";
     }
 
     @GetMapping("/admin-profile")
     public String goToAdmin(Model model) {
-        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("userRoleAdmin", loggedIn);
-        model.addAttribute("posts",postDao.findAll());
-        if(loggedIn.getUserRole().equals("admin"))
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+            model.addAttribute("posts", postDao.findAll());
+        }
             return "users/admin-profile";
-        else
-            return "redirect:/login";
     }
 
 

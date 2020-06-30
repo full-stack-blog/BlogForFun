@@ -26,7 +26,7 @@ public class PostController {
     public String welcome(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("blogger", loggedIn);
+            model.addAttribute("user", loggedIn);
         }
         List<Post> posts = postDao.findAll();
         System.out.println(posts);
@@ -34,22 +34,22 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/blogger-posts/{id}")
+    @GetMapping("/user-posts/{id}")
     public String getIndividualPost(Model model, @PathVariable long id) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("blogger", loggedIn);
+            model.addAttribute("user", loggedIn);
         }
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
-        return "individualPost";
+        return "posts/individualPost";
     }
 
     @GetMapping("/posts/create")
     public String createPostForm(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("blogger", loggedIn);
+            model.addAttribute("user", loggedIn);
         }
             model.addAttribute("post", new Post());
             return "posts/create";
@@ -70,17 +70,25 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     public String EditPost(@PathVariable long id, Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+        }
         model.addAttribute("post", postDao.getOne(id));
         return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPostFrom(@ModelAttribute Post post, @PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
+    public String editPostFrom(Model model, @ModelAttribute Post post, @PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+            model.addAttribute("posts", postDao.findAll());
+        }
         Post editPost = postDao.getOne(id);
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         editPost.setBody(body);
         editPost.setPostImageUrl(postImageUrl);
-        editPost.setUser(u);
+//        editPost.setUser(post.user);
         editPost.setTitle(title);
         postDao.save(editPost);
         return "redirect:/profile";
@@ -96,7 +104,7 @@ public class PostController {
     public String viewIndividualPost(@PathVariable long id, Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("blogger", loggedIn);
+            model.addAttribute("user", loggedIn);
         }
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
@@ -104,20 +112,20 @@ public class PostController {
     }
 
 
-//    @PostMapping("/admin-profile/{id}/delete")
-//    public String deletePostAdmin(@PathVariable long id){
-//        postDao.deleteById(id);
-//        return "redirect:/admin-profile";
-//    }
-//
+    @PostMapping("/admin-profile/{id}/delete")
+    public String deletePostAdmin(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/admin-profile";
+    }
+
 //    @GetMapping("/admin-profile/{id}/update2")
 //    public String updateDogPostFormAdmin(@PathVariable long id, Model model) {
 //        model.addAttribute("allPosts", postDao.getOne(id));
-//        return "breeder-posts/update2";
+//        return "posts/update2";
 //    }
-//
+
 //    @PostMapping("/admin-profile/{id}/update2")
-//    public String updateBreederPostAdmin(@PathVariable long id, @RequestParam String dogBreed, @RequestParam String dogGroup, @RequestParam String dogDescription, @RequestParam String dogPrice, @RequestParam String images) {
+//    public String updateBreederPostAdmin(@PathVariable long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String dogDescription, @RequestParam String dogPrice, @RequestParam String images) {
 //        postDao Post = PostDao.getOne(id);
 //        Post.set;
 //        Post.set;

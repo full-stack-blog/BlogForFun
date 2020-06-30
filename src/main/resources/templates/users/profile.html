@@ -10,16 +10,21 @@
 </div>
 
 <div class="container">
-    <h1 th:text="Welcome + ' ' + ${blogger.username}" class="text-center"></h1>
-    <h3 th:text="${blogger.firstName} + ' ' + ${blogger.lastName}" class="text-muted text-center"></h3>
+    <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center"></h1>
+    <h3 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-muted text-center"></h3>
     <img alt="profile image" style="width: 16em; height: 16em;" class="rounded-circle shadow-lg img-profile"
-         th:attr="src=@{${blogger.profileImage}}">
+         th:attr="src=@{${user.profileImage}}">
     <a th:href="@{|/profile/edit|}">
         <button>Edit Profile</button>
     </a>
+    <div th:if="${user.getUserRole()} == 'admin'">
+        <a th:href="@{|/admin-profile|}">
+            <button>Admin Page</button>
+        </a>
+    </div>
     <div class="card-columns">
 
-        <div th:each="post : ${posts}" th:if="${blogger.id} == ${post.getUser().id}">
+        <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
 
             <div class="card shadow bg-white rounded">
                 <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">

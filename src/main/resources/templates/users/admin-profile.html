@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<<<<<<< HEAD
-<head th:replace="fragments/header.html :: header">
+<head th:replace="fragments/header :: head('Admin Profile')"></head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-=======
-<head th:replace="fragments/header :: head('Admin Profile')"></head>
->>>>>>> 6fc41b76643acfd926ed40cc9b9f3364e7957068
+
 <body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+<div class="jumbotron-admin">
+    <h1 class="text-center display-1" id="h1-admin">Admin</h1>
+</div>
+<h1 class="text-center" id="welcome-admin">Welcome admin!</h1>
+<div class="row">
+    <table class="table table-hover" id="post-table">
+        <thead class="thead-dark">
+        <tr>
+            <th onclick="sortTable(0)" class="text-center">Username <i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(1)" class="text-center">user ID <i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(2)" class="text-center">Post ID <i class="fas fa-sort"></i></th>
+            <th onclick="sortTable(3)" class="text-center">Post Title <i class="fas fa-sort"></i></th>
+            <th class="text-center">View Post</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="post : ${posts}">
+                <td class="bill-name text-center align-middle" th:text="${post.user.username}"></td>
+                <td class="bill-date text-center align-middle date-span" th:text="${post.user.id}"></td>
+                <td class="money-td bill-amount text-center align-middle" th:text="${post.id}"></td>
+                <td class="money-td bill-payment text-center align-middle" th:text="${post.title}"></td>
 
+                <td class="text-center">
+                    <a th:href="@{|/post/${post.id}|}">
+                        <button type="button" class="btn btn-warning p-2 text-dark editIcon">View Post</button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/scripts.html :: scripts"></div>
+<footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
 </html>
