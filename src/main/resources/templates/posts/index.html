@@ -10,6 +10,17 @@
 </div>
 
 <div class="container">
+    <form action="#" th:action="@{/posts}" method="get" class="input-group">
+        <input class="form-control rounded" type="text" id="search"
+               placeholder="Search: posts, title..."
+               name="search" aria-label="Search"/>
+        <div class="input-group-append">
+            <label for="query-input"></label>
+            <button type="submit" class="btn" id="query-input" value="search">Search</button>
+            <!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
+        </div>
+    </form>
+
     <div class="card-columns">
 
         <div th:each="post : ${posts}">
