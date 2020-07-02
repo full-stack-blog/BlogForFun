@@ -21,6 +21,9 @@ public class Post {
     @Column(nullable = false)
     private String postImageUrl;
 
+    @Column(nullable = false)
+    private String access;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -32,15 +35,17 @@ public class Post {
         this.title = copy.title;
         this.body = copy.body;
         this.user = copy.user;
+        this.access = copy.access;
     }
 
 
 
-    public Post(long id, String title, String body, User user) {
+    public Post(long id, String title, String body, User user, String access) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
+        this.access = access;
     }
 
     public String getPostImageUrl() {
@@ -81,5 +86,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
     }
 }
