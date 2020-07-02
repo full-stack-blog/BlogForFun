@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,7 +75,10 @@ public class UserController {
     }
     @PostMapping("/profile/edit")
     public String editProfile(@ModelAttribute User user) {
-        User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User tempUser = new User();
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
         user.setUserRole(tempUser.getUserRole());
         user.setPosts(tempUser.getPosts());
         user.setPassword(tempUser.getPassword());
@@ -83,33 +87,66 @@ public class UserController {
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         userDoa.save(user);
-        return "redirect:/profile";
+        return "redirect:/profile-info-updated";
     }
 
-//    @RequestMapping("/profile/profile-edit-CCP")
-//    public String errorCCP(Model model){
-//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (obj == null || !(obj instanceof UserDetails)) {
-//            return "redirect:/login";
-//        }
-//        User tempUser = (User) obj;
-//        User user = userRepo.getOne(tempUser.getId());
-//        model.addAttribute("user", user);
-//        model.addAttribute("ccp",true);
-//        return "user/profile-edit";
-//    }
-//    @RequestMapping("/profile/profile-edit-MP")
-//    public String errorMP(Model model){
-//        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if (obj == null || !(obj instanceof UserDetails)) {
-//            return "redirect:/login";
-//        }
-//        User tempUser = (User) obj;
-//        User user = userRepo.getOne(tempUser.getId());
-//        model.addAttribute("user", user);
-//        model.addAttribute("mp",true);
-//        return "user/profile-edit";
-//    }
+    @RequestMapping("/profile/profile-edit-CCP")
+    public String errorCCP(Model model){
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (obj == null || !(obj instanceof UserDetails)) {
+            return "redirect:/login";
+        }
+        User tempUser = (User) obj;
+        User user = userDoa.getOne(tempUser.getId());
+        model.addAttribute("user", user);
+        model.addAttribute("ccp",true);
+        return "users/editProfile";
+    }
+    @RequestMapping("/profile/profile-edit-MP")
+    public String errorMP(Model model){
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (obj == null || !(obj instanceof UserDetails)) {
+            return "redirect:/login";
+        }
+        User tempUser = (User) obj;
+        User user = userDoa.getOne(tempUser.getId());
+        model.addAttribute("user", user);
+        model.addAttribute("mp",true);
+        return "users/editProfile";
+    }
+
+    @PostMapping("/profile/password-edit")
+    public String editPassword(@RequestParam String currentPass, @RequestParam String newPass, @RequestParam String confirmNewPass){
+        User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDoa.getOne(tempUser.getId());
+        if (!BCrypt.checkpw(currentPass, user.getPassword())){
+            return  "redirect:/profile/profile-edit-CCP";
+        } else if (!newPass.equals(confirmNewPass)){
+            return "redirect:/profile/profile-edit-MP";
+        }
+        String hash = passwordEncoder.encode(newPass);
+        user.setPassword(hash);
+        userDoa.save(user);
+        return "redirect:/profile-password-updated";
+    }
+
+    @RequestMapping("/profile-info-updated")
+    public String infoUpdated(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User tempUser = userDoa.getOne(user.getId());
+        model.addAttribute("user", tempUser);
+        model.addAttribute("sei", true);
+        return "users/editProfile";
+    }
+
+    @RequestMapping("/profile-password-updated")
+    public String passwordUpdated(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User tempUser = userDoa.getOne(user.getId());
+        model.addAttribute("user", tempUser);
+        model.addAttribute("scp", true);
+        return "users/editProfile";
+    }
 
 //    @GetMapping("/blogger-contact/{id}")
 //    public String goToBreederContactInfo(@PathVariable long id, Model model){

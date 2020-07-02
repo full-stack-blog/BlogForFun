@@ -8,6 +8,22 @@
 <div class="jumbotron-show">
     <h1 class="text-center text-dark display-1" id="h1-profile">Profile</h1>
 </div>
+
+<!--//password confirmation stuff// -->
+<div th:if="${ccp}" class="alert alert-danger text-center mt-2">
+    Current Password Incorrect.
+</div>
+<div th:if="${mp}" class="alert alert-danger text-center mt-2">
+    Passwords Do Not Match.
+</div>
+<div th:if="${sei}" class="alert alert-success text-center mt-2">
+    Your Information Was Updated.
+</div>
+<div th:if="${scp}" class="alert alert-success text-center mt-2">
+    Password Has Been Changed.
+</div>
+<!--///////////////////////////////////////////-->
+
 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
     <div class="card card-signin my-5">
         <div class="card-body">
@@ -42,40 +58,33 @@
     </div>
 </div>
 
-<!--//// passwored fields/////////////////-->
-<!--<div class="col-lg-5">-->
-<!--    <div class="card card-signin my-5">-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title text-center">Change Password</h5>-->
-<!--            <form class="form-signin" th:action="@{|/profile/password-edit|}" method="POST">-->
-<!--                <div class="form-label-group d-flex">-->
-<!--                    <label for="currentPass">Current Password</label>-->
-<!--                    <input class="ml-auto mt-2" type="password" id="currentPass" name="currentPass" />-->
-<!--                </div>-->
-<!--                <div class="form-label-group d-flex">-->
-<!--                    <label for="newPass">New Password</label>-->
-<!--                    <input class="ml-auto mt-2" type="password" id="newPass" name="newPass"/>-->
-<!--                </div>-->
-<!--                <div class="form-label-group d-flex">-->
-<!--                    <label for="confirmNewPass">Confirm New Password</label>-->
-<!--                    <input class="ml-auto mt-2" type="password" id="confirmNewPass" name="confirmNewPass"/>-->
-<!--                </div>-->
-<!--                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">-->
-<!--                    <i class="fas fa-check mr-2"></i>Update-->
-<!--                    Password-->
-<!--                </button>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<!--//// password fields/////////////////-->
+<div class="col-lg-5">
+    <div class="card card-signin my-5">
+        <div class="card-body">
+            <h5 class="card-title text-center">Change Password</h5>
+            <form class="form-signin" th:action="@{|/profile/password-edit|}" method="POST">
+                <div class="form-label-group d-flex">
+                    <label for="currentPass">Current Password</label>
+                    <input class="ml-auto mt-2" type="password" id="currentPass" name="currentPass" />
+                </div>
+                <div class="form-label-group d-flex">
+                    <label for="newPass">New Password</label>
+                    <input class="ml-auto mt-2" type="password" id="newPass" name="newPass"/>
+                </div>
+                <div class="form-label-group d-flex">
+                    <label for="confirmNewPass">Confirm New Password</label>
+                    <input class="ml-auto mt-2" type="password" id="confirmNewPass" name="confirmNewPass"/>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
+                    <i class="fas fa-check mr-2"></i>Update
+                    Password
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 <!--////////////////////////////////////////////////////////-->
-<!--//password confirmation stuff// -->
-            <!--<div th:if="${ccp}" class="alert alert-danger text-center mt-2">-->
-            <!--    Current Password Incorrect.-->
-            <!--</div>-->
-            <!--<div th:if="${mp}" class="alert alert-danger text-center mt-2">-->
-            <!--    Passwords Do Not Match.-->
-            <!--</div>-->
-<!--///////////////////////////////////////////-->
+
 </body>
 </html>
