@@ -4,6 +4,7 @@ import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
+import com.example.blog.Services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ public class PostController {
 
     private UserRepo userDoa;
     private PostRepo postDao;
+    private EmailService emailservice;
 
-    public PostController(UserRepo userDoa, PostRepo postDao) {
+    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice) {
         this.userDoa = userDoa;
         this.postDao = postDao;
+        this.emailservice = emailservice;
     }
 
     @GetMapping("/posts")
@@ -88,6 +91,7 @@ public class PostController {
         post.setPostImageUrl("https://picsum.photos/seed/picsum/200/300");
         post.setUser(u);
         postDao.save(post);
+        emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
         return "redirect:/posts";
     }
 
