@@ -61,9 +61,9 @@ public class UserController {
             return "users/admin-profile";
     }
 
-
     @GetMapping("/profile/edit")
     public String getEditProfileForm(Model model) {
+// creates an optional pathway to use security authentication for each method instead of the whole site //
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (obj == null || !(obj instanceof UserDetails)) {
             return "redirect:/login";
@@ -91,6 +91,7 @@ public class UserController {
     }
 
     @RequestMapping("/profile/profile-edit-CCP")
+//  Change current password alert //
     public String errorCCP(Model model){
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (obj == null || !(obj instanceof UserDetails)) {
@@ -103,6 +104,7 @@ public class UserController {
         return "users/editProfile";
     }
     @RequestMapping("/profile/profile-edit-MP")
+//  mismatch password alert //
     public String errorMP(Model model){
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (obj == null || !(obj instanceof UserDetails)) {
@@ -119,8 +121,10 @@ public class UserController {
     public String editPassword(@RequestParam String currentPass, @RequestParam String newPass, @RequestParam String confirmNewPass){
         User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDoa.getOne(tempUser.getId());
+//  this explains if the CCP equals what is in the DB, go create new PW //
         if (!BCrypt.checkpw(currentPass, user.getPassword())){
             return  "redirect:/profile/profile-edit-CCP";
+//  this confirms that the new PW equals the confirmed PW //
         } else if (!newPass.equals(confirmNewPass)){
             return "redirect:/profile/profile-edit-MP";
         }
@@ -148,10 +152,5 @@ public class UserController {
         return "users/editProfile";
     }
 
-//    @GetMapping("/blogger-contact/{id}")
-//    public String goToBreederContactInfo(@PathVariable long id, Model model){
-//        User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("blogger",usersdao.findUserByPost(postdao.findById(id)));
-//        return "users/blogger-contact";
-//    }
+
 }

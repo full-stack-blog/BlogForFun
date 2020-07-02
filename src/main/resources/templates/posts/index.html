@@ -35,23 +35,21 @@
 
                     </div>
                     <div class="card-footer">
-                        <div sec:authorize="isAuthenticated()">
-                            <div th:if="${user.id} == ${post.getUser().id}">
-                                <a th:href="@{|/posts/${post.id}/edit|}">
-                                    <button>Edit</button>
-                                </a>
-                                <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-                                    <button type="submit">Delete</button>
-                                </form>
-                            </div>
-                            <div th:if="${user.id} != ${post.getUser().id}">
-                                <h4 th:text="${post.user.username}"></h4>
-                            </div>
+                        <div th:if="${user.id} == ${post.getUser().id}">
+                            <a th:href="@{|/posts/${post.id}/edit|}">
+                                <button>Edit</button>
+                            </a>
+                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
+                        <div th:if="${user.id} != ${post.getUser().id}">
+                            <h4 th:text="${post.user.username}"></h4>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- explains if user is a visitor then access is the public posts only -->
             <div sec:authorize="isAnonymous()">
                 <div th:if="${post.getAccess() == 'public'}">
                     <div class="card shadow bg-white rounded">
@@ -63,9 +61,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <div sec:authorize="!isAuthenticated()">
-                                <h4 th:text="${post.user.username}"></h4>
-                            </div>
+                            <h4 th:text="${post.user.username}"></h4>
                         </div>
 
 

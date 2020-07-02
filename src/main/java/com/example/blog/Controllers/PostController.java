@@ -29,7 +29,7 @@ public class PostController {
     @GetMapping("/posts")
     public String welcome(Model model, @RequestParam(required = false) String search) {
         model.addAttribute("search", search);
-
+// This search code allows for searches that are not case sensitive, and can be searched by categories  //
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);

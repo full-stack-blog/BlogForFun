@@ -7,6 +7,7 @@
 <div class="jumbotron-show">
     <h1 class="text-center text-dark display-1" id="h1-login">Login</h1>
 </div>
+<!--login fields-->
 <form th:action="@{/login}" method="post">
     <label class="font-weight-bold" for="username">Username</label><br>
     <input id="username" placeholder="Enter username..." name="username" type="text" class="mx-auto w-75 shadow-sm form-control"/><br>
@@ -15,7 +16,7 @@
     <br>
     <input class="shadow main-styling-for-buttons mb-3 landingPageNoUnderline landingPage-a-links" type="submit" value="Login"/>
 </form>
-
+<!--footer-->
 <div class="fixed-bottom">
     <div th:replace="fragments/scripts.html :: scripts"></div>
     <footer th:replace="fragments/footer.html :: footer"></footer>
