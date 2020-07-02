@@ -83,13 +83,14 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
+    public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl, @RequestParam(name = "access") String access) {
         Post post = new Post();
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setTitle(title);
         post.setBody(body);
         post.setPostImageUrl("https://picsum.photos/seed/picsum/200/300");
         post.setUser(u);
+        post.setAccess(access);
         postDao.save(post);
         emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
         return "redirect:/posts";

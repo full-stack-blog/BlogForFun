@@ -33,6 +33,14 @@
                     <div class="col-xl-12">
                         <label for="body">body</label>
                         <input type="text" th:field="*{body}" placeholder="Enter text"/>
+
+                        <label for="access" class="m-1 font-weight-bold">Select Access</label><br>
+                        <select class="m-1 create-recipe-select selectpicker text-center" id="access" name="access" multiple data-live-search="false"
+                                data-flip="false">
+                            <!--                    <option selected>Select Category</option>-->
+                            <option name="categories" id="French" value="public">Public</option>
+                            <option name="categories" id="Filipino" value="private">Private</option>
+                        </select>
                     </div>
 
                     <div class="col-xl-12 create-photo-upload">
