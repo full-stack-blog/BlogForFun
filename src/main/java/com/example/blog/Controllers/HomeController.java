@@ -20,7 +20,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String landingPage(Model model) {
+    public String landingPage() {
         return "landing";
     }
 
@@ -45,24 +45,27 @@ public class HomeController {
 
     @GetMapping("/contact-us")
     public String contactPage(Model model){
-        SimpleMailMessage msg = new SimpleMailMessage();
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            SimpleMailMessage msg = new SimpleMailMessage();
             model.addAttribute("user", loggedIn);
+            model.addAttribute(msg);
         }
-        model.addAttribute(msg);
+        else{
+            return "redirect:/login";
+        }
         return "contact-us";
     }
 
     @PostMapping("/contact-us")
-    public String contactForm(User user, @RequestParam(name = "subject") String subject, @RequestParam(name = "text") String text){
-//        user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "text") String text){
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(user.getEmail());
-        msg.setTo("blog4fun@gmail.com");
+        msg.setFrom(u.getEmail());
+        msg.setTo("blog4fun123@gmail.com");
         msg.setSubject(subject);
         msg.setText(text);
-        emailService.prepareAndSend2(user, subject, text);
+        emailService.prepareAndSend2(u.getEmail(), subject, text);
         return "redirect:/about-BlogForFun";
     }
 
