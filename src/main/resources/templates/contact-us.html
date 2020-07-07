@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header :: head('contact-us')"></head>
+
+<body>
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+
+<!--    contact admin email stuff -->
+<div>
+    <form th:action="@{/contact-us}" th:method="POST" th:object="${simpleMailMessage}">
+        <div class="col-xl-12">
+            <label for="subject">Subject</label>
+            <input type="text" th:field="*{subject}" placeholder="Enter subject"/>
+
+            <label for="text">body</label>
+            <input type="text" th:field="*{text}" placeholder="Enter body"/>
+        </div>
+        <input id="save" class="contact-btn sign-contact-btn" type="Submit"/>
+    </form>
+
+</div>
+</body>
+</html>

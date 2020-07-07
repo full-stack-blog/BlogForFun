@@ -38,15 +38,15 @@
                         <select class="m-1 create-recipe-select selectpicker text-center" id="access" name="access" multiple data-live-search="false"
                                 data-flip="false">
                             <!--                    <option selected>Select Category</option>-->
-                            <option name="categories" id="French" value="public">Public</option>
-                            <option name="categories" id="Filipino" value="private">Private</option>
+                            <option name="categories" id="public" value="public">Public</option>
+                            <option name="categories" id="private" value="private">Private</option>
                         </select>
                     </div>
 
                     <div class="col-xl-12 create-photo-upload">
-<!--                        <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">-->
-<!--                            Upload Image-->
-<!--                        </button>-->
+                        <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
+                            Upload Image
+                        </button>
                         <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden">
                     </div>
                     <div class="col-xl-12">

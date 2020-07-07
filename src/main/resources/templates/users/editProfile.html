@@ -46,10 +46,13 @@
                         <label for="email">Email</label>
                         <input class="ml-auto mt-2" id="email" th:field="*{email}"/>
                     </div>
-                    <!--                <div class="form-label-group d-flex">-->
-                    <!--                    <label for="email">photo</label>-->
-                    <!--                    <input class="ml-auto mt-2" id="email" th:field="*{profileImage}"/>-->
-                    <!--                </div>-->
+                    <div class="form-label-group d-flex create-photo-upload">
+                        <label for="fileupload">photo</label>
+                            <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
+                                Upload Image
+                            </button>
+                            <input class="ml-auto mt-2" id="fileupload" th:field="*{profileImage}"/>
+                    </div>
                     <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
                         <i class="fas fa-check mr-2"></i>Save Changes
                     </button>
@@ -87,6 +90,7 @@
     </div>
 </div>
 <!--////////////////////////////////////////////////////////-->
+<div th:replace="fragments/scripts.html :: scripts"></div>
 
 </body>
 </html>

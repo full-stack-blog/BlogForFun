@@ -74,7 +74,7 @@ public class UserController {
         return "users/editProfile";
     }
     @PostMapping("/profile/edit")
-    public String editProfile(@ModelAttribute User user) {
+    public String editProfile(@ModelAttribute User user, @RequestParam(name = "profileImage") String profileImage) {
         User tempUser = new User();
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -83,7 +83,7 @@ public class UserController {
         user.setPosts(tempUser.getPosts());
         user.setPassword(tempUser.getPassword());
         user.setId(tempUser.getId());
-        user.setProfileImage("https://picsum.photos/seed/picsum/200/300");
+        user.setProfileImage(profileImage);
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         userDoa.save(user);

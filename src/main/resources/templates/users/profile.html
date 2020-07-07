@@ -29,7 +29,9 @@
         <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
 
             <div class="card shadow bg-white rounded">
-                <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
+                <div class="col-xl-12 create-photo-upload">
+<!--                    <input name="fileupload" id="fileupload" th:field="*{user.profileImage}">-->
+                </div>
                 <div class="card-body">
                     <a th:href="@{|/post/${post.id}|}">
                         <h2 class="card-title text-center" th:text="${post.title}"></h2>
@@ -51,5 +53,8 @@
         </div>
     </div>
 </div>
+
+<div th:replace="fragments/scripts.html :: scripts"></div>
+<footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
 </html>
