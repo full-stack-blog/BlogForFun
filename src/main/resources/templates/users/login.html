@@ -1,21 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      class="h-100">
 <head th:replace="fragments/header :: head('Login')"></head>
-<body>
+<body class="h-100">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
-<header class="container my-5"></header>
-<div class="jumbotron-show">
-    <h1 class="text-center text-dark display-1" id="h1-login">Login</h1>
+<div class="container d-flex h-100">
+
+    <div class="row col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
+
+        <h1 class="text-center text-dark display-1" id="h1-login">Login</h1>
+
+        <!--login fields-->
+        <form th:action="@{/login}" method="post">
+            <label class="font-weight-bold" for="username">Username</label><br>
+            <input id="username" placeholder="Enter username..." name="username" type="text"
+                   class="mx-auto w-75 shadow-sm form-control"/><br>
+            <label class="font-weight-bold" for="password">Password</label><br>
+            <input id="password" placeholder="Enter password..." name="password" type="password"
+                   class="mx-auto w-75 shadow-sm form-control"/><br>
+            <br>
+            <input class="shadow mb-3" type="submit"
+                   value="Login"/>
+        </form>
+        <p style="float: left;" class="p-1 m-0">Don't have an account?</p>
+        <p style="float: left;" class="p-1 m-0"><a class="" href="/sign-up">Register</a> to submit your posts today!</p>
+    </div>
 </div>
-<!--login fields-->
-<form th:action="@{/login}" method="post">
-    <label class="font-weight-bold" for="username">Username</label><br>
-    <input id="username" placeholder="Enter username..." name="username" type="text" class="mx-auto w-75 shadow-sm form-control"/><br>
-    <label class="font-weight-bold" for="password">Password</label><br>
-    <input id="password" placeholder="Enter password..." name="password" type="password" class="mx-auto w-75 shadow-sm form-control"/><br>
-    <br>
-    <input class="shadow main-styling-for-buttons mb-3 landingPageNoUnderline landingPage-a-links" type="submit" value="Login"/>
-</form>
 <!--footer-->
 <div class="fixed-bottom">
     <div th:replace="fragments/scripts.html :: scripts"></div>

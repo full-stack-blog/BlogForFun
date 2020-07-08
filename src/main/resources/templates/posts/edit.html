@@ -2,9 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: head('Create View')"></head>
 
-<body class="create">
+<body class="">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
-<div class="main-container">
+<div class="container">
     <!--    <div th:if="${showUserRoles.getUserRole().equals('blogger')}">-->
     <!--        <nav th:replace="fragments/navbar.html :: user-navbar"></nav>-->
     <!--    </div>-->
@@ -13,14 +13,14 @@
     <!--    </div>-->
 
     <header class="container my-5"></header>
-    <div class="jumbotron-create">
-        <h1 class="text-left text-light mx-5 display-1" id="h1-create"> Edit a Post</h1>
+    <div class="jumbotron">
+        <h1 class="text-left mx-5 display-1" id="h1-create"> Edit a Post</h1>
     </div>
 
     <div class="card-container mx-5">
         <div class="card bg-light text-dark col-xl-4">
             <div class="card-body post-Create">
-                <h5 class="card-title post-Create-Form user-Form-Text">Edit a Post</h5>
+                <h5 class="">Edit a Post</h5>
                 <hr>
 
                 <!--  FORM -->
@@ -35,8 +35,8 @@
                         <input type="text" th:field="*{body}" placeholder="Enter text"/>
                     </div>
 
-                    <div class="col-xl-12 create-photo-upload">
-                            <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
+                    <div class="col-xl-12 ">
+                            <button class="button" type="button" id="picker">
                                 Upload Image
                             </button>
                         <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden">
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-xl-12">
 <!--                                                    <button class="loginSign-btn" id="save">Save Post</button>-->
-                        <input id="save" class="loginSign-btn sign-create-btn" type="Submit"/>
+                        <input id="save" class="" type="Submit"/>
 
                     </div>
                 </form>
