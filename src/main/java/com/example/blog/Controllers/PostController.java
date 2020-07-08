@@ -102,7 +102,7 @@ public class PostController {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setTitle(title);
         post.setBody(body);
-        post.setPostImageUrl("https://picsum.photos/seed/picsum/200/300");
+        post.setPostImageUrl(postImageUrl);
         post.setUser(u);
         post.setAccess(access);
         post.setCategories(categories);
@@ -169,68 +169,4 @@ public class PostController {
 //        return "redirect:/admin-profile";
 //    }
 
-    ////////search example from pantry chef!///////
-//    @GetMapping("/recipes")
-//    public String getPosts(Model model, @RequestParam(required = false) String search, @RequestParam(required = false, name = "categories") Long value) {
-//        //=== SEARCH BAR ===//
-//        model.addAttribute("search", search);
-//        model.addAttribute("value", value);
-//        model.addAttribute("sapi", sapi);
-//
-//        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-//            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//            model.addAttribute("user", u);
-//        }
-//        if (search == null && value == null) {
-//            List<Recipe> recipes = recipeDao.findAll();
-//            model.addAttribute("recipes", recipes);
-//        } else {
-//            List<Recipe> recipes = recipeDao.findAll();
-//            List<Recipe> searchedRecipes = new ArrayList<>();
-//
-//            for (Recipe recipe : recipes) {
-//                if (value != null) {
-//                    boolean valueFlag = false;
-//                    for (Categories category : recipe.getCategories()) {
-//                        if (category.getId() == value) {
-//                            System.out.println(value + " --> =? " + category.getId());
-//
-//                            searchedRecipes.add(recipe);
-//                            valueFlag = true;
-//                            break;
-//                        }
-//                    }
-//                    if (valueFlag) {
-//                        continue;
-//                    }
-//                }
-//                if (search != null) {
-//                    if (recipe.getTitle().toLowerCase().contains(search.toLowerCase())) {
-//                        searchedRecipes.add(recipe);
-//                        continue;
-//                    }
-//                    String[] searchArray = search.replaceAll(", ", ",").split(",");
-//                    ArrayList<String> ingredientArray = new ArrayList<>();
-//
-//                    recipe.getIngredientList().forEach(ingredient -> {
-//                        ingredientArray.add(ingredient.getName());
-//                    });
-//                    //separate ingredient string into an array
-//                    boolean searchFlag = true;
-//                    for (String s : searchArray) {
-//                        if (!ingredientArray.toString().toLowerCase().contains(s.toLowerCase())) {
-//                            searchFlag = false;
-//                            break;
-//                        }
-//                    }
-//                    if (searchFlag) {
-//                        searchedRecipes.add(recipe);
-//                    }
-//                }
-//            }
-//            model.addAttribute("recipes", searchedRecipes);
-//
-//        }
-//        return "recipes/recipes";
-//    }
 }
