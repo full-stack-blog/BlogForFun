@@ -12,19 +12,19 @@
     <form th:action="@{/sign-up}" method="POST" th:object="${user}">
 
         <label for="username">Username</label>
-        <input class="mx-auto w-75 shadow-sm form-control" placeholder="Enter your first name..." th:field="*{username}" />
+        <input class="mx-auto w-75 shadow-sm form-control" placeholder="Enter username..." th:field="*{username}" />
 
         <label for="email">Email</label>
-        <input class="mx-auto w-75 shadow-sm form-control" th:field="*{email}" placeholder="Enter your email.."/>
+        <input class="mx-auto w-75 shadow-sm form-control" th:field="*{email}" placeholder="Enter email.."/>
 
         <label for="firstName">First Name</label>
-        <input class="mx-auto w-75 shadow-sm form-control" th:field="*{firstName}" placeholder="Enter your first name"/>
+        <input class="mx-auto w-75 shadow-sm form-control" th:field="*{firstName}" placeholder="Enter first name"/>
 
         <label for="lastName">Last Name</label>
-        <input class="mx-auto w-75 shadow-sm form-control" th:field="*{lastName}" placeholder="Enter your last name"/>
+        <input class="mx-auto w-75 shadow-sm form-control" th:field="*{lastName}" placeholder="Enter last name"/>
 
         <label for="password">Password</label>
-        <input class="mx-auto w-75 shadow-sm form-control" type="password" th:field="*{password}" placeholder="Enter your password"/>
+        <input class="mx-auto w-75 shadow-sm form-control" type="password" th:field="*{password}" placeholder="Enter password"/>
 
         <input value="Sign me up!" type="submit" />
 
