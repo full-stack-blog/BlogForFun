@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="h-100">
 <head th:replace="fragments/header :: head('Register - BlogForFun')"></head>
-<body>
+<body class="h-100">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+<div class="container d-flex h-100">
 
-<header class="container my-5"></header>
-<div class="jumbotron-show">
-    <h1 class="text-center text-dark display-1" id="h1-signup">Create Account</h1>
-</div>
                 <!--//////////// fields for sign up form/////////////// -->
 <div class="row col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
-    <!--        <div class="col-sm-12 col-md-6 mx-auto text-center p-3 card card-block shadow-lg">-->
     <h1 class="signup-text">Create account</h1>
     <br>
     <form th:action="@{/sign-up}" method="POST" th:object="${user}">
@@ -37,7 +33,7 @@
 
 
 </div>
-
+</div>
 <!--<a href="#myModal" role="button" class="btn btn-primary" data-toggle="modal">Launch modal</a>-->
 <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">-->
 <!--    <div class="modal-dialog modal-full" role="document">-->
