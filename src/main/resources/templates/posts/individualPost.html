@@ -11,6 +11,11 @@
     <h2 th:text="${post.user.username}"></h2>
     <h2 th:text="${post.title}"></h2>
     <h4 th:text="${post.body}"></h4>
+
+    <div th:each="category : ${post.categories}">
+        <h4 th:text="${category.name}"></h4>
+    </div>
+
     <div sec:authorize="isAuthenticated()">
         <div th:if="${user.id} == ${post.getUser().id} OR ${user.userRole} == 'admin'">
             <a th:href="@{|/posts/${post.id}/edit|}">

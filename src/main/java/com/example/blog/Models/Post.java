@@ -1,6 +1,7 @@
 package com.example.blog.Models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="posts")
@@ -28,6 +29,15 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToMany
+    @JoinTable(
+
+            name = "post_categories",
+            joinColumns = {@JoinColumn(name = "post_id")}
+//            inverseJoinColumns = {@JoinColumn(name = "post_id")}
+    )
+    private List<Categories> categories;
+
     public Post() {}
 
     public Post(Post copy) {
@@ -36,16 +46,16 @@ public class Post {
         this.body = copy.body;
         this.user = copy.user;
         this.access = copy.access;
+        this.categories = copy.categories;
     }
 
-
-
-    public Post(long id, String title, String body, User user, String access) {
+    public Post(long id, String title, String body, User user, String access, List<Categories> categories) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
         this.access = access;
+        this.categories = categories;
     }
 
     public String getPostImageUrl() {
@@ -95,4 +105,13 @@ public class Post {
     public void setAccess(String access) {
         this.access = access;
     }
+
+    public List<Categories> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categories> categories) {
+        this.categories = categories;
+    }
 }
+

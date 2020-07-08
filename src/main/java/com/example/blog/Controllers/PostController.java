@@ -1,5 +1,6 @@
 package com.example.blog.Controllers;
 
+import com.example.blog.Models.Categories;
 import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
 import com.example.blog.Repositories.PostRepo;
@@ -41,7 +42,8 @@ public class PostController {
             List<Post> posts = postDao.findAll();
             List<Post> searchedPosts = new ArrayList<>();
             for (Post post : posts) {
-                if (search != null) {
+                if (search.length() > 0) {
+//                    System.out.println(search.length());
                     if (post.getTitle().toLowerCase().contains(search.toLowerCase())) {
                         searchedPosts.add(post);
                         continue;
@@ -52,7 +54,19 @@ public class PostController {
                     }
                     if(post.getUser().getUsername().toLowerCase().contains(search.toLowerCase())){
                         searchedPosts.add(post);
+                        continue;
                     }
+                    if(post.getCategories().toArray().length > 0){
+//                        System.out.println("inside categories array length  :  " + post.getCategories().toArray().length);
+                        for(Categories category : post.getCategories()){
+//                            System.out.println(category.getName() + " : " + post.getId());
+                            if(category.getName().toLowerCase().contains(search.toLowerCase())){
+                                searchedPosts.add(post);
+//                                System.out.println("added " + post.getId());
+                            }
+                        }
+                    }
+
                 }
             }
             model.addAttribute("posts", searchedPosts);
@@ -83,7 +97,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl, @RequestParam(name = "access") String access) {
+    public String SubmitPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl, @RequestParam(name = "access") String access, @RequestParam List<Categories> categories) {
         Post post = new Post();
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setTitle(title);
@@ -91,6 +105,7 @@ public class PostController {
         post.setPostImageUrl("https://picsum.photos/seed/picsum/200/300");
         post.setUser(u);
         post.setAccess(access);
+        post.setCategories(categories);
         postDao.save(post);
         emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
         return "redirect:/posts";
@@ -107,7 +122,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPostFrom(Model model, @ModelAttribute Post post, @PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
+    public String editPostFrom(Model model, @RequestParam List<Categories> categories, @ModelAttribute Post post, @PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, @RequestParam(name = "postImageUrl") String postImageUrl) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
@@ -119,6 +134,7 @@ public class PostController {
         editPost.setUser(editPost.getUser());
         editPost.setTitle(title);
         editPost.setId(id);
+        editPost.setCategories(categories);
         postDao.save(editPost);
         return "redirect:/profile";
     }
