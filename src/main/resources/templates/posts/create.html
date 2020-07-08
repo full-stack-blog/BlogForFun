@@ -35,7 +35,7 @@
                         <input type="text" th:field="*{body}" placeholder="Enter text"/>
 
                         <label for="access" class="m-1 font-weight-bold">Select Access</label><br>
-                        <select class="m-1 create-recipe-select selectpicker text-center" id="access" name="access" multiple data-live-search="false"
+                        <select class="selectpicker text-center" id="access" name="access" multiple data-live-search="false"
                                 data-flip="false">
                             <!--                    <option selected>Select Category</option>-->
                             <option name="categories" id="public" value="public">Public</option>
@@ -48,6 +48,27 @@
                             Upload Image
                         </button>
                         <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden">
+                        <label for="categories" class="m-1 font-weight-bold">Select Categories</label><br>
+                        <select class="selectpicker text-center" id="categories" name="categories" multiple data-live-search="true"
+                                data-flip="false">
+                            <!--                    <option selected>Select Category</option>-->
+                            <option name="categories" id="American" value="1">American</option>
+                            <option name="categories" id="Chinese" value="2">Chinese</option>
+                            <option name="categories" id="Italian" value="3">Italian</option>
+                            <option name="categories" id="Vegetarian" value="4">Vegetarian</option>
+                            <option name="categories" id="Vegan" value="5">Vegan</option>
+                            <option name="categories" id="Thai" value="6">Thai</option>
+                            <option name="categories" id="Indian" value="7">Indian</option>
+                            <option name="categories" id="Mexican" value="8">Mexican</option>
+                            <option name="categories" id="German" value="9">German</option>
+                            <option name="categories" id="Greek" value="10">Greek</option>
+                            <option name="categories" id="Mediterranean" value="11">Mediterranean</option>
+                            <option name="categories" id="Cajun" value="12">Cajun</option>
+                            <option name="categories" id="Latin" value="13">Latin</option>
+                            <option name="categories" id="French" value="14">French</option>
+                            <option name="categories" id="Filipino" value="15">Filipino</option>
+                        </select>
+
                     </div>
                     <div class="col-xl-12">
                         <!--                            <button class="loginSign-btn" id="save">Save Post</button>-->
