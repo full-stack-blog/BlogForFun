@@ -29,9 +29,9 @@ public class EmailService {
 
 
 
-    public void prepareAndSend2(String email, String subject, String body) {
+    public void prepareAndSend2(String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(email);
+        msg.setFrom(from);
         msg.setTo(from);
         msg.setSubject(subject);
         msg.setText(body);

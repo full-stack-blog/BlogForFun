@@ -102,12 +102,14 @@ public class PostController {
 
     @PostMapping("/contact-us/{id}")
     public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "body") String body, @PathVariable long id){
-        EmailService emailService = new EmailService();
-        emailService.setBody(body);
-        emailService.setSubject(subject);
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String desc = "Complainant: " + u.getEmail() + "\nComplaint: " + body;
+        EmailService emailService = new EmailService();
+        emailService.setBody(desc);
+        emailService.setSubject(subject);
+        emailService.setFrom("blog4fun123@gmail.com");
         Post post = postDao.getOne(id);
-        emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
+        emailservice.prepareAndSend2(subject, desc);
         return "redirect:/post/" + post.getId();
     }
 
