@@ -5,7 +5,8 @@
 <body>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<!--    contact admin email stuff -->
+<!--  contact admin for report issue and general information -->
+
 <div>
     <form th:action="@{|/contact-us/${post.id}|}" th:method="POST" th:object="${emailService}">
         <div class="col-xl-12">

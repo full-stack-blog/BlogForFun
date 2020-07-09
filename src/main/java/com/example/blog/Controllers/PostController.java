@@ -99,7 +99,7 @@ public class PostController {
         }
         return "contact-us";
     }
-
+// contact admin and report posts method //
     @PostMapping("/contact-us/{id}")
     public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "body") String body, @PathVariable long id){
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
