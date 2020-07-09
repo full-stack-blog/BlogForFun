@@ -7,13 +7,13 @@
 
 <!--    contact admin email stuff -->
 <div>
-    <form th:action="@{/contact-us}" th:method="POST" th:object="${simpleMailMessage}">
+    <form th:action="@{|/contact-us/${post.id}|}" th:method="POST" th:object="${emailService}">
         <div class="col-xl-12">
             <label for="subject">Subject</label>
             <input type="text" th:field="*{subject}" placeholder="Enter subject"/>
 
-            <label for="text">body</label>
-            <input type="text" th:field="*{text}" placeholder="Enter body"/>
+            <label for="body">body</label>
+            <input type="text" th:field="*{body}" placeholder="Enter body"/>
         </div>
         <input id="save" class="" type="Submit"/>
     </form>

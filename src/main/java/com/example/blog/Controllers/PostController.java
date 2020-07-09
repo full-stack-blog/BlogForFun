@@ -6,6 +6,7 @@ import com.example.blog.Models.User;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import com.example.blog.Services.EmailService;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController {
 
+    private EmailService emailService;
     private UserRepo userDoa;
     private PostRepo postDao;
     private EmailService emailservice;
@@ -73,6 +76,39 @@ public class PostController {
 
         }
         return "posts/index";
+    }
+
+    @GetMapping("/contact-us/{id}")
+    public String contactPage(Model model, @PathVariable long id){
+
+        Post post = postDao.getOne(id);
+        model.addAttribute("post", post);
+        EmailService emailService = new EmailService();
+        model.addAttribute("emailService", emailService);
+        String subject = emailService.getSubject();
+        String body = emailService.getBody();
+        model.addAttribute("subject", subject);
+        model.addAttribute("body", body);
+
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+        }
+        else{
+            return "redirect:/login";
+        }
+        return "contact-us";
+    }
+
+    @PostMapping("/contact-us/{id}")
+    public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "body") String body, @PathVariable long id){
+        EmailService emailService = new EmailService();
+        emailService.setBody(body);
+        emailService.setSubject(subject);
+        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postDao.getOne(id);
+        emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
+        return "redirect:/post/" + post.getId();
     }
 
     @GetMapping("/post/{id}")
@@ -144,6 +180,8 @@ public class PostController {
         postDao.deleteById(id);
         return "redirect:/profile";
     }
+
+
 
 //    @PostMapping("/admin-profile/{id}/delete")
 //    public String deletePostAdmin(@PathVariable long id){

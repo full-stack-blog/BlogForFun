@@ -43,30 +43,6 @@ public class HomeController {
         return "about-BlogForFun";
     }
 
-    @GetMapping("/contact-us")
-    public String contactPage(Model model){
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            SimpleMailMessage msg = new SimpleMailMessage();
-            model.addAttribute("user", loggedIn);
-            model.addAttribute(msg);
-        }
-        else{
-            return "redirect:/login";
-        }
-        return "contact-us";
-    }
 
-    @PostMapping("/contact-us")
-    public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "text") String text){
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(u.getEmail());
-        msg.setTo("blog4fun123@gmail.com");
-        msg.setSubject(subject);
-        msg.setText(text);
-        emailService.prepareAndSend2(u.getEmail(), subject, text);
-        return "redirect:/about-BlogForFun";
-    }
 
 }

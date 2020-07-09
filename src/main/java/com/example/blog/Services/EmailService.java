@@ -19,6 +19,16 @@ public class EmailService {
     @Value("blog4fun123@gmail.com")
     private String from;
 
+    @Value("subject")
+    private String subject;
+    @Value("body")
+    private String body;
+
+    public EmailService() {
+    }
+
+
+
     public void prepareAndSend2(String email, String subject, String body) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(email);
@@ -48,41 +58,28 @@ public class EmailService {
             System.err.println(ex.getMessage());
         }
     }
-//    public void prepareAndSend2(User user, String subject, String body) {
-//        SimpleMailMessage msg = new SimpleMailMessage();
-//        msg.setFrom(from);
-//        msg.setTo(user.getEmail());
-//        msg.setSubject(subject);
-//        msg.setText(body);
-//
-//        try {
-//            this.emailSender.send(msg);
-//        } catch (MailException ex) {
-//            // simply log it and go on...
-//            System.err.println(ex.getMessage());
-//        }
-//    }
 
-//    public EmailService(JavaMailSender emailSender, String subject, String body) {
-//        this.emailSender = emailSender;
-//        this.from = from;
-//        this.subject = subject;
-//    }
-//
-//    public JavaMailSender getEmailSender() {
-//        return emailSender;
-//    }
-//
-//    public void setEmailSender(JavaMailSender emailSender) {
-//        this.emailSender = emailSender;
-//    }
-//
-//    public String getFrom() {
-//        return from;
-//    }
-//
-//    public void setFrom(String from) {
-//        this.from = from;
-//    }
+    public String getFrom() {
+        return from;
+    }
 
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 }
