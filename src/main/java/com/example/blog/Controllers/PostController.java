@@ -145,7 +145,7 @@ public class PostController {
         post.setAccess(access);
         post.setCategories(categories);
         postDao.save(post);
-        emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
+//        emailservice.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getBody());
         return "redirect:/posts";
     }
 

@@ -1,5 +1,14 @@
-.body {
-    border: lightseagreen 15px solid;
-    background-color: lightseagreen;
-    /*margin: 10px;*/
+
+i {
+    position: relative;
+    font-size: 40px;
+    line-height: 1;
+    color: steelblue;
+}
+.i-mail{
+    top: -1px;!important;
+}
+.flex{
+    display: flex;
+    justify-content: space-around;
 }
