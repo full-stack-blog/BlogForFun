@@ -5,16 +5,16 @@
 </head>
 
 <body>
-<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
-
+<div class="about">
 
 <!--<header class="container my-5"></header>-->
-<div class="jumbotron">
-    <h1 class="text-center text-dark display-1" id="h1-about">Creators</h1>
-    <h1 class="text-center text-dark display-1" id="h1-about1">Blog for Fun</h1>
+<div class="jumbotron m-0">
+    <h1 class="text-center text-light display-1" id="h1-about">Creators 'Blog-ie'</h1>
+<!--    <h1 class="text-center text-light display-1" id="h1-about1">Blog for Fun</h1>-->
 </div>
+    <nav th:replace="fragments/navbar.html :: user-navbar" class=""></nav>
 
-<div class=" container">
+<div class="container mt-4">
     <div class="row">
 
         <!-- Team Member 1 -->
@@ -105,6 +105,7 @@
     </div>
     <div>
     </div>
+</div>
 </div>
 </body>
 </html>
