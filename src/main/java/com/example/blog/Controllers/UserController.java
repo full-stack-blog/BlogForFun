@@ -1,6 +1,7 @@
 package com.example.blog.Controllers;
 
 import com.example.blog.Models.User;
+import com.example.blog.Repositories.FavoritesRepo;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,11 +19,13 @@ public class UserController {
     private UserRepo userDoa;
     private PasswordEncoder passwordEncoder;
     private PostRepo postDao;
+    private FavoritesRepo favoritesDao;
 
-    public UserController(UserRepo userDoa, PasswordEncoder passwordEncoder, PostRepo postDao) {
+    public UserController(UserRepo userDoa, PasswordEncoder passwordEncoder, PostRepo postDao, FavoritesRepo favoritesDao) {
         this.userDoa = userDoa;
         this.passwordEncoder = passwordEncoder;
         this.postDao = postDao;
+        this.favoritesDao = favoritesDao;
     }
 
     @GetMapping("/sign-up")
@@ -47,6 +50,7 @@ public class UserController {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
             model.addAttribute("posts", postDao.findAll());
+            model.addAttribute("favorites", favoritesDao.findAll());
         }
         return "users/profile";
     }

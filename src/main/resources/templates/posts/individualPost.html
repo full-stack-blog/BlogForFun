@@ -14,7 +14,7 @@
             </a>
         </div>
     </div>
-    <img th:attr="src=@{${post.postImageUrl}}"/>
+    <img th:attr="src=@{${post.postImageUrl}}" style="width: 5em; height: 5em;"/>
     <h2 th:text="${post.user.username}"></h2>
     <h2 th:text="${post.title}"></h2>
     <h4 th:text="${post.body}"></h4>
@@ -37,7 +37,9 @@
                 <button type="submit">Delete</button>
             </form>
         </div>
-
+        <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
+            <button type="submit">Add to Favorites</button>
+        </form>
     </div>
 </div>
 
