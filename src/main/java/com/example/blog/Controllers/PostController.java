@@ -1,8 +1,10 @@
 package com.example.blog.Controllers;
 
 import com.example.blog.Models.Categories;
+import com.example.blog.Models.Favorites;
 import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
+import com.example.blog.Repositories.FavoritesRepo;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import com.example.blog.Services.EmailService;
@@ -23,11 +25,13 @@ public class PostController {
     private UserRepo userDoa;
     private PostRepo postDao;
     private EmailService emailservice;
+    private FavoritesRepo favoritesDao;
 
-    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice) {
+    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice, FavoritesRepo favoritesDao) {
         this.userDoa = userDoa;
         this.postDao = postDao;
         this.emailservice = emailservice;
+        this.favoritesDao = favoritesDao;
     }
 
     @GetMapping("/posts")
@@ -208,5 +212,26 @@ public class PostController {
 //        postDao.save(Post);
 //        return "redirect:/admin-profile";
 //    }
+
+    @PostMapping("/favorite/{id}")
+    public String favorite(@PathVariable long id, Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+            Post post = postDao.getOne(id);
+            Favorites favorites = new Favorites();
+            favorites.setAccess(post.getAccess());
+            favorites.setBody(post.getBody());
+            favorites.setFavCategories(post.getCategories());
+            favorites.setPostImageUrl(post.getPostImageUrl());
+            favorites.setUser(loggedIn);
+            favorites.setTitle(post.getTitle());
+            favorites.setId(post.getId());
+            favoritesDao.save(favorites);
+            return "redirect:/profile";
+
+        }
+        return "redirect:/login";
+    }
 
 }

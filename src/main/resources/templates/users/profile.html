@@ -30,7 +30,7 @@
 
             <div class="card shadow bg-white rounded">
                 <div class="col-xl-12 create-photo-upload">
-<!--                    <input name="fileupload" id="fileupload" th:field="*{user.profileImage}">-->
+                    <!--<input name="fileupload"id="fileupload"th:field="*{user.profileImage}">-->
                 </div>
                 <div class="card-body">
                     <a th:href="@{|/post/${post.id}|}">
@@ -51,10 +51,19 @@
             </div>
 
         </div>
-    </div>
-</div>
 
-<div th:replace="fragments/scripts.html :: scripts"></div>
-<footer th:replace="fragments/footer.html :: footer"></footer>
+        <div th:each="favorite : ${favorites}">
+            <div th:if="${favorite.user.id } == ${user.id}">
+                <div class="card shadow bg-white rounded">
+                    <div class="card-body">
+                        <h2 class="card-title text-center" th:text="'favorite:' + ${favorite.title}"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/scripts.html :: scripts"></div>
+    <footer th:replace="fragments/footer.html :: footer"></footer>
 </body>
 </html>
