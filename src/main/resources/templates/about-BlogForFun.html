@@ -7,105 +7,132 @@
 <body>
 <div class="about">
 
-<!--<header class="container my-5"></header>-->
-<div class="jumbotron m-0">
-    <h1 class="text-center text-light display-1" id="h1-about">Creators 'Blog-ie'</h1>
-<!--    <h1 class="text-center text-light display-1" id="h1-about1">Blog for Fun</h1>-->
-</div>
+    <div class="jumbotron jumbotron-fluid m-0">
+        <h1 class="text-center text-light display-1" id="h1-titles">Creators 'Blog-ie'</h1>
+    </div>
     <nav th:replace="fragments/navbar.html :: user-navbar" class=""></nav>
 
-<div class="container mt-4">
-    <div class="row">
+    <div class="container mt-4">
+        <div class="row">
 
-        <!-- Team Member 1 -->
-        <div class="col-xl-4 col-md-4 mb-4">
-            <div class="card border-1 shadow about-card">
-                <h5 class="card-title text-center">Crystal Thibodeau</h5>
-                <img class="card-img-top" src="images/Thibs.png" alt="..."/>
-                <div class="card-body text-center flex">
-                    <a href="https://alumni.codeup.com/students/777" target="_blank">
-                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
-                    </a>
+            <!-- Team Member 1 -->
+            <div class="col-xl-4 col-md-4 mb-4">
+                <div class="card border-1 shadow about-card">
+                    <h5 class="card-title text-center">Crystal Thibodeau</h5>
+                    <img class="card-img-top" src="images/Thibs.png" alt="..."/>
+                    <div class="card-body text-center flex">
+                        <a href="https://alumni.codeup.com/students/777" target="_blank">
+                            <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
+                        </a>
 
-                    <!--                        <a href="https://github.com/crystalthibodeau" target="_blank" >-->
-                    <!--                            <img src="images/github.png" style="width:50px;height:50px;" alt="">-->
-                    <!--                        </a>-->
+                        <a href="https://github.com/crystalthibodeau"><i class="fab fa-github about-i fa-3x"></i></a>
 
-                    <!--                        <a href="https://www.linkedin.com/in/crystal-thibodeau" target="_blank" >-->
-                    <!--                            <img src="images/linkedin_tag.png" style="width:50px;height:50px;" alt="">-->
-                    <!--                        </a>-->
+                        <a href="https://www.linkedin.com/in/crystal-thibodeau/"><i
+                                class="fab fa-linkedin fa-3x about-i"></i></a>
 
-                    <a href="https://github.com/crystalthibodeau"><i class="fab fa-github fa-3x"></i></a>
+                        <a href="mailto:crystalthibodeau2@gmail.com" target="_blank" class="">
+                            <i class="fas fa-envelope-open-text about-i fa-3x i-mail"></i>
+                        </a>
 
-                    <a href="https://www.linkedin.com/in/crystal-thibodeau/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
-
-                    <a href="mailto:crystalthibodeau2@gmail.com" target="_blank" class="">
-                        <i class="fas fa-envelope-open-text fa-3x i-mail"></i>
-                    </a>
-
+                    </div>
                 </div>
             </div>
+            <!-- Team Member 2 -->
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-1 shadow">
+                    <h5 class="card-title text-center ">Paris Tyus</h5>
+                    <img class="card-img-top" src="images/Paris-Tyus.jpg" alt="..."/>
+                    <div class="card-body text-center flex">
+                        <a href="https://alumni.codeup.com/students/779">
+                            <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
+                        </a>
+
+                        <a href="https://github.com/ParisTyus1"><i class="about-i fab fa-github fa-3x"></i></a>
+
+                        <a href="https://www.linkedin.com/in/paris-tyus/"><i
+                                class="fab fa-linkedin fa-3x about-i"></i></a>
+
+                        <a href="mailto:tyus.paris1@gmail.com" target="_blank" class="">
+                            <i class="fas about-i fa-envelope-open-text fa-3x i-mail"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Team member 3 -->
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-1 shadow">
+                    <h5 class="card-title text-center ">Ted Zamarron</h5>
+                    <img class="card-img-top" src="images/Ted.jpeg" alt="..."/>
+                    <div class="card-body text-center flex">
+                        <a href="https://alumni.codeup.com/students/807">
+                            <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
+                        </a>
+
+                        <a href="https://github.com/tzamarron"><i class="about-i fab fa-github fa-3x"></i></a>
+
+                        <a href="https://www.linkedin.com/in/tzamarron/"><i
+                                class="fab fa-linkedin about-i fa-3x"></i></a>
+
+                        <a href="mailto:ted.zamarron@gmail.com" target="_blank" class="">
+                            <i class="fas about-i fa-envelope-open-text fa-3x i-mail"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--        <div class="col-xl-4 col-md-6 mb-4">-->
+            <!--            <div class="card border-1 shadow">-->
+            <!--                <h5 class="card-title text-center ">Ted Zamarron</h5>-->
+            <!--                <img class="card-img-top" src="images/Ted.jpeg" alt="..."/>-->
+            <!--                <div class="card-body text-center flex">-->
+            <!--                    <a href="https://alumni.codeup.com/students/807">-->
+            <!--                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">-->
+            <!--                    </a>-->
+
+            <!--                    <a href="https://github.com/tzamarron"><i class="fab fa-github fa-3x"></i></a>-->
+
+            <!--                    <a href="https://www.linkedin.com/in/tzamarron/"><i-->
+            <!--                            class="fab fa-linkedin fa-3x"></i></a>-->
+
+            <!--                    <a href="mailto:ted.zamarron@gmail.com" target="_blank" class="">-->
+            <!--                        <i class="fas fa-envelope-open-text fa-3x i-mail"></i>-->
+            <!--                    </a>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+
+            <!--        <div class="col-xl-4 col-md-6 mb-4">-->
+            <!--            <div class="card border-1 shadow">-->
+            <!--                <h5 class="card-title text-center ">Ted Zamarron</h5>-->
+            <!--                <img class="card-img-top" src="images/Ted.jpeg" alt="..."/>-->
+            <!--                <div class="card-body text-center flex">-->
+            <!--                    <a href="https://alumni.codeup.com/students/807">-->
+            <!--                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">-->
+            <!--                    </a>-->
+
+            <!--                    <a href="https://github.com/tzamarron"><i class="fab fa-github fa-3x"></i></a>-->
+
+            <!--                    <a href="https://www.linkedin.com/in/tzamarron/"><i-->
+            <!--                            class="fab fa-linkedin fa-3x"></i></a>-->
+
+            <!--                    <a href="mailto:ted.zamarron@gmail.com" target="_blank" class="">-->
+            <!--                        <i class="fas fa-envelope-open-text fa-3x i-mail"></i>-->
+            <!--                    </a>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+
+            <!-- https://github.com/SpicerRJames -->
+            <!-- https://www.linkedin.com/in/jamesrs-cu/ -->
+            <!-- https://alumni.codeup.com/students/799 -->
+            <!-- spicer.r.james@gmail.com -->
+
         </div>
-        <!-- Team Member 2 -->
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-1 shadow">
-                <h5 class="card-title text-center ">Paris Tyus</h5>
-                <img class="card-img-top" src="images/Paris-Tyus.jpg" alt="..."/>
-                <div class="card-body text-center flex">
-                    <a href="https://alumni.codeup.com/students/779">
-                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
-                    </a>
-<!--                    <a href="https://github.com/ParisTyus1">-->
-<!--                        <img src="images/github.png" style="width:50px;height:50px;" alt="">-->
-<!--                    </a>-->
-<!--                    <a href="https://www.linkedin.com/in/paris-tyus/">-->
-<!--                        <img src="images/linkedin_tag.png" style="width:50px;height:50px;" alt="">-->
-<!--                    </a>-->
-
-                    <a href="https://github.com/ParisTyus1"><i class="fab fa-github fa-3x"></i></a>
-
-                    <a href="https://www.linkedin.com/in/paris-tyus/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
-
-                    <a href="mailto:tyus.paris1@gmail.com" target="_blank" class="">
-                        <i class="fas fa-envelope-open-text fa-3x i-mail"></i>
-                    </a>
-
-                </div>
-            </div>
-        </div>
-        <!-- Team member 3 -->
-        <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-1 shadow">
-                <h5 class="card-title text-center ">Ted Zamarron</h5>
-                <img class="card-img-top" src="images/Ted.jpeg" alt="..."/>
-                <div class="card-body text-center flex">
-                    <a href="https://alumni.codeup.com/students/807">
-                        <img src="images/codeup_tag.png" style="width:50px;height:50px;" alt="">
-                    </a>
-<!--                    <a href="https://github.com/tzamarron">-->
-<!--                        <img src="images/github.png" style="width:50px;height:50px;" alt="">-->
-<!--                    </a>-->
-<!--                    <a href="https://www.linkedin.com/in/tzamarron/">-->
-<!--                        <img src="images/linkedin_tag.png" style="width:50px;height:50px;" alt="">-->
-<!--                    </a>-->
-
-                    <a href="https://github.com/tzamarron"><i class="fab fa-github fa-3x"></i></a>
-
-                    <a href="https://www.linkedin.com/in/tzamarron/"><i
-                            class="fab fa-linkedin fa-3x"></i></a>
-
-                    <a href="mailto:ted.zamarron@gmail.com" target="_blank" class="">
-                        <i class="fas fa-envelope-open-text fa-3x i-mail"></i>
-                    </a>
-                </div>
-            </div>
+        <div>
         </div>
     </div>
-    <div>
-    </div>
 </div>
-</div>
+<div th:replace="fragments/scripts.html :: scripts"></div>
 </body>
 </html>
