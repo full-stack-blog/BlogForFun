@@ -187,6 +187,12 @@ public class PostController {
         return "redirect:/profile";
     }
 
+    @PostMapping("/favorites/{id}/delete")
+    public String deleteFavorite(@PathVariable long id) {
+        favoritesDao.deleteById(id);
+        return "redirect:/profile";
+    }
+
 
 
 //    @PostMapping("/admin-profile/{id}/delete")

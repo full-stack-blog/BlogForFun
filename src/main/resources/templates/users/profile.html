@@ -12,6 +12,8 @@
 </div>
 
 <div class="container">
+    <!--    Welcome profile name -->
+    <!--    ///////////////////////////////////////////////////////////////-->
     <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center"></h1>
     <h3 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-muted text-center"></h3>
     <img alt="profile image" style="width: 16em; height: 16em;" class="rounded-circle shadow-lg img-profile"
@@ -19,11 +21,13 @@
     <a th:href="@{|/profile/edit|}">
         <button>Edit Profile</button>
     </a>
+<!-- //////////////////////Only for Admin//////////////////////////////////-->
     <div th:if="${user.getUserRole()} == 'admin'">
         <a th:href="@{|/admin-profile|}">
             <button>Admin Page</button>
         </a>
     </div>
+<!--   /////////////////////////// Cards for posts/////////////////// -->
     <div class="card-columns">
 
         <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
@@ -51,17 +55,31 @@
             </div>
 
         </div>
-
+        </div>
+    <!-- ////////////////////// Favorites /////////////////////////////  -->
+    <h1 class="text-center">Favorites</h1>
+    <div class="card-columns">
         <div th:each="favorite : ${favorites}">
             <div th:if="${favorite.user.id } == ${user.id}">
                 <div class="card shadow bg-white rounded">
                     <div class="card-body">
-                        <h2 class="card-title text-center" th:text="'favorite:' + ${favorite.title}"></h2>
+                        <h2 class="card-title text-center" th:text="${favorite.title}"></h2>
+                        <img th:attr="src=@{${favorite.postImageUrl}}" style="width: 5em; height: 5em;"/>
+                        <h2 th:text="${favorite.user.username}"></h2>
+                        <h4 th:text="${favorite.body}"></h4>
+                    </div>
+                    <div class="card-footer">
+                        <form th:action="@{|/favorites/${favorite.id}/delete|}" th:method="POST">
+                            <button type="submit">Delete Favorite</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
 
     <div th:replace="fragments/scripts.html :: scripts"></div>
     <footer th:replace="fragments/footer.html :: footer"></footer>
