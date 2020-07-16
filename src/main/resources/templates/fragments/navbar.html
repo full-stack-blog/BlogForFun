@@ -1,39 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Navbar</title>
-</head>
+<head th:replace="fragments/header :: head('navbar')">
+
 <body>
-<div>
-    <nav th:fragment="user-navbar" class=" navbar navbar-1 navbar-expand-lg">
-        <a class="navbar-brand" th:href="@{/}">Blog For Fun</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+<th:block th:fragment="user-navbar">
+    <nav class="navbar navbar-expand-xl sticky-top navbar-1">
+<!--        <a th:href="@{/}" class="pull-left pl-2 my-1"><img class="nav-logo" src="/images/imagescontainer/PantryChef%20Logo%201500x1500.png"></a>-->
+        <a th:href="@{/}">Blog For Fun</a>
+        <button class="navbar-toggler my-auto nav-hamburgerIcon" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="custom-toggler navbar-toggler-icon"><i class="fas fa-bars"></i></span>
         </button>
-        <div class="collapse navbar-collapse" id="breeder-navbar">
-
-            <ul class="navbar-nav">
-
-                <th:block sec:authorize="isAnonymous()">
-
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/posts}">Posts</a>
-                    </li>
-
-                    <li>
-                        <a class="nav-link" th:href="@{/login}">Login</a>
-                    </li>
-
-                    <li>
-                        <a class="nav-link" th:href="@{/sign-up}">Sign Up!</a>
-                    </li>
-
-                </th:block>
-
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto text-right pr-2">
                 <th:block sec:authorize="isAuthenticated()">
-
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/posts}">Posts</a>
                     </li>
@@ -53,15 +33,82 @@
                     </li>
 
                 </th:block>
+                <th:block sec:authorize="isAnonymous()">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/posts}">Posts</a>
+                    </li>
 
+                    <li>
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+
+                    <li>
+                        <a class="nav-link" th:href="@{/sign-up}">Sign Up!</a>
+                    </li>
+                </th:block>
             </ul>
-            <!--            <form class="form-inline my-2 my-lg-0">-->
-            <!--                <input onkeyup="searchFunction()" id="search_bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-            <!--                <button class="btn btn-light my-2 my-sm-0"><a id="search_execute" href="/search/">Search</a></button>-->
-            <!--            </form>-->
         </div>
     </nav>
-</div>
+</th:block>
+
+
+<!--<div>-->
+<!--    <nav th:fragment="user-navbar" class=" navbar navbar-1 navbar-expand-lg">-->
+<!--        <a class="navbar-brand" th:href="@{/}">Blog For Fun</a>-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"-->
+<!--                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="breeder-navbar">-->
+
+<!--            <ul class="navbar-nav">-->
+
+<!--                <th:block sec:authorize="isAnonymous()">-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" th:href="@{/posts}">Posts</a>-->
+<!--                    </li>-->
+
+<!--                    <li>-->
+<!--                        <a class="nav-link" th:href="@{/login}">Login</a>-->
+<!--                    </li>-->
+
+<!--                    <li>-->
+<!--                        <a class="nav-link" th:href="@{/sign-up}">Sign Up!</a>-->
+<!--                    </li>-->
+
+<!--                </th:block>-->
+
+<!--                <th:block sec:authorize="isAuthenticated()">-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" th:href="@{/posts}">Posts</a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" th:href="@{/posts/create}">Create Post</a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item ml-auto">-->
+<!--                        <a class="nav-link" th:href="@{/profile}">Profile</a>-->
+<!--                    </li>-->
+
+<!--                    <li>-->
+<!--                        <form th:action="@{/logout}" th:method="post">-->
+<!--                            <button class="btn-link btn" style="margin-top: 1px">Logout</button>-->
+<!--                        </form>-->
+<!--                    </li>-->
+
+<!--                </th:block>-->
+
+<!--            </ul>-->
+<!--            &lt;!&ndash;            <form class="form-inline my-2 my-lg-0">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <input onkeyup="searchFunction()" id="search_bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <button class="btn btn-light my-2 my-sm-0"><a id="search_execute" href="/search/">Search</a></button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </form>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</div>-->
 
 <!--<div>-->
 <!--    <nav th:fragment="buyer-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">-->

@@ -3,10 +3,12 @@
 <head th:replace="fragments/header :: head('Landing')"></head>
 
 <body>
+<header class="container"></header>
+<div class="jumbotron jumbotron-fluid mb-0 jumbotron-landing h-100">
+    <h1 class="text-center text-light display-1" id="h1-titles">Blogg - ie</h1>
+</div>
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<header class="container my-5"></header>
-<div class="jumbotron-landing">
-    <h1 class="text-center text-dark display-1" id="h1-landing">Blog For Fun</h1>
-</div></body>
+<div th:replace="fragments/scripts.html :: scripts"></div>
+</body>
 </html>
