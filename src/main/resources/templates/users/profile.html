@@ -1,122 +1,150 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="Eng">
-<head th:replace="fragments/header :: head('Profile')">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+  lang="Eng"
+>
+  <head th:replace="fragments/header :: head('Profile')">
     <title>Profile</title>
-</head>
+  </head>
 
-<body>
-<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
-<!--<header class="container my-5"></header>-->
-<!--<div class="jumbotron-show">-->
-<!--    <h1 class="text-center text-dark display-1" id="h1-profile">Profile</h1>-->
-<!--</div>-->
+  <body>
+    <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+    <!--<header class="container my-5"></header>-->
+    <!--<div class="jumbotron-show">-->
+    <!--    <h1 class="text-center text-dark display-1" id="h1-profile">Profile</h1>-->
+    <!--</div>-->
 
-<div class="container">
+    <div class="container p-0">
+      <div class="row no-gutters">
+        <div class="col-lg-4">
+          <div class="">
+            <h1
+              th:text="Welcome + ' ' + ${user.username}"
+              class="text-center mb-3 display-3"
+            ></h1>
+          </div>
 
-<div class="row no-gutters">
+          <div class="">
+            <!--    ///////////////////////////////////////////////////////////////-->
+            <!--        <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center"></h1>-->
+            <h2
+              th:text="${user.firstName} + ' ' + ${user.lastName}"
+              class="text-center font-weight-light"
+            ></h2>
 
-    <div class="col-md-12">
-        <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center mb-3 display-3"></h1>
-    </div>
-
-    <div class="col-md-4">
-        <!--    ///////////////////////////////////////////////////////////////-->
-<!--        <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center"></h1>-->
-        <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center font-weight-light"></h2>
-
-        <div class="text-center">
-            <img alt="profile image" style="width: 16em; height: 16em;" class="rounded-circle shadow-lg img-profile m-0-auto"
-                 th:attr="src=@{${user.profileImage}}">
-        </div>
-
-        <div class="text-center">
-
-            <a th:href="@{|/profile/edit|}" class="m-1">
-                <button class="m-1">Edit Profile</button>
-            </a>
-
-            <!-- //////////////////////Only for Admin//////////////////////////////////-->
-            <div th:if="${user.getUserRole()} == 'admin'">
-                <a th:href="@{|/admin-profile|}" class="m-1">
-                    <button class="m-1">Admin Page</button>
-                </a>
+            <div class="text-center m-0">
+              <img
+                alt="profile image"
+                style="width: 16em; height: 16em;"
+                class="rounded-circle shadow-lg img-profile m-0-auto"
+                th:attr="src=@{${user.profileImage}}"
+              />
             </div>
 
+            <div class="text-center">
+              <a th:href="@{|/profile/edit|}" class="m-1">
+                <button class="m-1">Edit Profile</button>
+              </a>
+
+              <!-- //////////////////////Only for Admin//////////////////////////////////-->
+              <div th:if="${user.getUserRole()} == 'admin'">
+                <a th:href="@{|/admin-profile|}" class="m-1">
+                  <button class="m-1">Admin Page</button>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-
-    </div>
-    <div class="col-md-8">
-        <div class="text-center">
-            <h2 class="text-center font-weight-light">Your Posts</h2>
-        </div>
-        <div class="card-columns">
-            <!--   /////////////////////////// Cards for posts/////////////////// -->
-            <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
-
+        <div class="col-lg-8">
+          <div class="">
+            <div class="text-center">
+              <h2 class="text-center font-weight-light">Your Posts</h2>
+            </div>
+            <div class="card-columns">
+              <!--   /////////////////////////// Cards for posts/////////////////// -->
+              <div
+                th:each="post : ${posts}"
+                th:if="${user.id} == ${post.user.id}"
+              >
                 <div class="card shadow bg-white rounded">
-                    <div class="col-xl-12 create-photo-upload">
-                        <!--<input name="fileupload"id="fileupload"th:field="*{user.profileImage}">-->
-                    </div>
+                  <div class="col-xl-12 create-photo-upload">
+                    <!--<input name="fileupload"id="fileupload"th:field="*{user.profileImage}">-->
+                  </div>
+                  <div class="card-body">
+                    <a th:href="@{|/post/${post.id}|}">
+                      <h2
+                        class="card-title text-center"
+                        th:text="${post.title}"
+                      ></h2>
+                    </a>
+                    <img
+                      th:attr="src=@{${post.postImageUrl}}"
+                      style="width: 5em; height: 5em;"
+                    />
+                    <h4 th:text="${post.body}"></h4>
+                  </div>
+                  <div class="card-footer">
+                    <p
+                      class="text-muted d-flex justify-content-center align-items-center"
+                      th:text="${post.getUser().username}"
+                    ></p>
+                    <a th:href="@{|/posts/${post.id}/edit|}">
+                      <button>Edit</button>
+                    </a>
+                    <form
+                      th:action="@{|/posts/${post.id}/delete|}"
+                      th:method="POST"
+                    >
+                      <button type="submit">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="">
+            <!-- ////////////////////// Favorites /////////////////////////////  -->
+
+            <div class="text-center">
+              <h2 class="text-center font-weight-light">Favorites</h2>
+            </div>
+            <div class="card-columns">
+              <div th:each="favorite : ${favorites}">
+                <div th:if="${favorite.user.id } == ${user.id}">
+                  <div class="card shadow bg-white rounded">
                     <div class="card-body">
-                        <a th:href="@{|/post/${post.id}|}">
-                            <h2 class="card-title text-center" th:text="${post.title}"></h2>
-                        </a>
-                        <img th:attr="src=@{${post.postImageUrl}}" style="width: 5em; height: 5em;"/>
-                        <h4 th:text="${post.body}"></h4>
+                      <h2
+                        class="card-title text-center"
+                        th:text="${favorite.title}"
+                      ></h2>
+                      <img
+                        th:attr="src=@{${favorite.postImageUrl}}"
+                        style="width: 5em; height: 5em;"
+                      />
+                      <h2 th:text="${favorite.user.username}"></h2>
+                      <h4 th:text="${favorite.body}"></h4>
                     </div>
                     <div class="card-footer">
-                        <p class="text-muted d-flex justify-content-center align-items-center"
-                           th:text="${post.getUser().username}"></p>
-                        <a th:href="@{|/posts/${post.id}/edit|}">
-                            <button>Edit</button>
-                        </a>
-                        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
+                      <form
+                        th:action="@{|/favorites/${favorite.id}/delete|}"
+                        th:method="POST"
+                      >
+                        <button type="submit">Delete Favorite</button>
+                      </form>
                     </div>
-
+                  </div>
                 </div>
-
+              </div>
             </div>
+          </div>
         </div>
-
+      </div>
     </div>
-
-    <div class="col-md-8 offset-md-4">
-        <!-- ////////////////////// Favorites /////////////////////////////  -->
-
-        <div class="text-center">
-            <h2 class="text-center font-weight-light">Favorites</h2>
-        </div>
-        <div class="card-columns">
-            <div th:each="favorite : ${favorites}">
-                <div th:if="${favorite.user.id } == ${user.id}">
-                    <div class="card shadow bg-white rounded">
-                        <div class="card-body">
-                            <h2 class="card-title text-center" th:text="${favorite.title}"></h2>
-                            <img th:attr="src=@{${favorite.postImageUrl}}" style="width: 5em; height: 5em;"/>
-                            <h2 th:text="${favorite.user.username}"></h2>
-                            <h4 th:text="${favorite.body}"></h4>
-                        </div>
-                        <div class="card-footer">
-                            <form th:action="@{|/favorites/${favorite.id}/delete|}" th:method="POST">
-                                <button type="submit">Delete Favorite</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-</div>
-</div>
-
 
     <div th:replace="fragments/scripts.html :: scripts"></div>
     <footer th:replace="fragments/footer.html :: footer"></footer>
-</body>
+  </body>
 </html>
