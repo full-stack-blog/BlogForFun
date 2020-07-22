@@ -6,6 +6,20 @@
 /*#DED0D0*/
 /*#621012*/
 /*#631936*/
+.profile-grid {
+    display: grid;
+    grid-template-columns: 12% 13% repeat(3, 25%);
+    grid-template-rows: repeat(5, 20%);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.profile-info {
+    grid-area: 1 / 1 / 6 / 3;
+}
+
+.posts-area {
+    grid-area: 1 / 3 / 6 / 6;
+}
 
 body{
     /*background-color:#DED0D0*/
