@@ -9,7 +9,12 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long comment_id;
+
+    @Column(name = "comment")
+    private String comment_txt;
+
+    
 
     
 }
