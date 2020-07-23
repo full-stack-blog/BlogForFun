@@ -1,4 +1,3 @@
-
 /*#A59F97*/
 /*#5F0F39*/
 /*#2096A4*/
@@ -7,51 +6,73 @@
 /*#621012*/
 /*#631936*/
 .profile-grid {
+    height: 100vh;
     display: grid;
     grid-template-columns: 12% 13% repeat(3, 25%);
     grid-template-rows: repeat(5, 20%);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+
 .profile-info {
     grid-area: 1 / 1 / 6 / 3;
+    border-right: solid black 3px;
 }
 
 .posts-area {
     grid-area: 1 / 3 / 6 / 6;
 }
 
-body{
+body {
     /*background-color:#DED0D0*/
-            /*#431D31*/
+    /*#431D31*/
 }
 
-.jumbotron{
+.jumbotron {
     background-color: #621012;
 }
 
-#h1-titles{
+#h1-titles {
     font-family: 'Merienda One', cursive;
     text-shadow: 3px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
 
-a{
-    color: #621012;
+nav a {
+    color: white;
     font-family: 'Open Sans', sans-serif;
 }
-a:hover{
+
+nav a:hover {
     color: #2096A4;
 }
 
-.navbar-1{
-    background-color:white;
+.profile-name {
+    color: white;
+    font-family: 'Merienda One', cursive;
 }
 
-.card{
+.profile-a {
+    font-size: large;
+    color: white;
+    /*transition-duration: 4s;*/
+    /*transition-delay: 2s;*/
+    /*font-family: 'Merienda One', cursive;*/
+}
+
+.profile-a:hover {
+    color: #2096A4;
+    /*transform: scale(1.1);*/
+}
+
+.navbar-1 {
+    background-color: black;
+}
+
+.card {
     border: black 2px solid;
 }
 
-.nav-hamburgerIcon{
+.nav-hamburgerIcon {
     color: #621012;
 }
 
@@ -61,10 +82,13 @@ a:hover{
     line-height: 1;
     color: steelblue;
 }
-.i-mail{
-    top: -1px;!important;
+
+.i-mail {
+    top: -1px;
+!important;
 }
-.flex{
+
+.flex {
     display: flex;
     justify-content: space-around;
 }
