@@ -1,124 +1,223 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="Eng">
-<head th:replace="fragments/header :: head('Profile')">
-    <title>Profile</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="Eng" class="h-100">
+<head th:replace="fragments/header :: head('Profile')"></head>
 
 
-<body>
+<body class="h-100">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<!--        <div class="col-md-12">-->
-<!--            <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center mb-3 display-3"></h1>-->
-<!--        </div>-->
+<div class="profile-grid">
 
-
-<div class="profile-grid mt-1">
-
-    <div class="profile-info">
+    <div class="profile-info pt-4" style="background: #621012">
         <!--    ///////////////////////////////////////////////////////////////-->
-        <!--        <h1 th:text="Welcome + ' ' + ${user.username}" class="text-center"></h1>-->
-        <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center font-weight-light"></h2>
 
         <div class="text-center">
+
             <img alt="profile image" style="width: 16em; height: 16em;"
-                 class="rounded-circle shadow-lg img-profile m-0-auto"
+                 class="shadow-lg rounded-circle img-profile m-0-auto"
                  th:attr="src=@{${user.profileImage}}">
-        </div>
 
-        <div class="text-center">
+            <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center profile-name p-2 pt-2"></h2>
+            <h4 th:text="${user.username}" class="text-center text-muted profile-name p-2"></h4>
 
-            <a th:href="@{|/profile/edit|}" class="m-1">
-                <button class="m-1">Edit Profile</button>
-            </a>
+            <a th:href="@{|/profile/edit|}" class="text-left m-1 profile-a">Profile Info</a>
 
             <!-- //////////////////////Only for Admin//////////////////////////////////-->
             <div th:if="${user.getUserRole()} == 'admin'">
-                <a th:href="@{|/admin-profile|}" class="m-1">
-                    <button class="m-1">Admin Page</button>
-                </a>
+                <a th:href="@{|/admin-profile|}" class=" text-left m-1 profile-a">Admin Page</a>
             </div>
 
         </div>
+
+
+
     </div>
 
-    <div class="posts-area container">
+    <div class="posts-area container pt-4">
 
-        <div class="row">
 
-            <div class="col-md-12">
-                <div class="text-center">
-                    <h2 class="text-center font-weight-light">Your Posts</h2>
-                </div>
-                <div class="card-columns">
-                    <!--   /////////////////////////// Cards for posts/////////////////// -->
-                    <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                   aria-selected="true">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab"
+                   aria-controls="favorites" aria-selected="false">Favorites</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
 
-                        <div class="card shadow bg-white rounded">
-                            <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
-                            <div class="card-body">
-                                <a th:href="@{|/post/${post.id}|}">
-                                    <h2 class="card-title text-center" th:text="${post.title}"></h2>
-                                </a>
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row pt-4">
 
-                            </div>
-                            <div class="card-footer">
-                                <div th:if="${user.id} == ${post.getUser().id}">
-                                    <a th:href="@{|/posts/${post.id}/edit|}">
-                                        <button>Edit</button>
-                                    </a>
-                                    <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-                                        <button type="submit">Delete</button>
-                                    </form>
+                    <div class="col-md-12">
+
+                        <div class="card-columns">
+                            <!--    //////////////////////////////posts/////////////////////////////////-->
+
+                            <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
+
+                                <div class="card bg-white rounded">
+                                    <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
+                                    <div class="card-body">
+                                        <a th:href="@{|/post/${post.id}|}">
+                                            <h2 class="card-title text-center" th:text="${post.title}"></h2>
+                                        </a>
+
+                                    </div>
+                                    <div class="card-footer">
+                                        <div th:if="${user.id} == ${post.getUser().id}">
+                                            <a th:href="@{|/posts/${post.id}/edit|}">
+                                                <button>Edit</button>
+                                            </a>
+                                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
+                                                <button type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                        <div th:if="${user.id} != ${post.getUser().id}">
+                                            <h4 th:text="${post.user.username}"></h4>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div th:if="${user.id} != ${post.getUser().id}">
-                                    <h4 th:text="${post.user.username}"></h4>
-                                </div>
+
                             </div>
                         </div>
 
                     </div>
                 </div>
-
             </div>
+            <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row pt-4">
 
-            <div class="col-md-12">
-                <!-- ////////////////////// Favorites /////////////////////////////  -->
+                    <div class="col-md-12">
+                        <!--    //////////////////////////////Favorites/////////////////////////////////-->
+                        <div class="card-columns">
+                            <div th:each="favorite : ${favorites}">
+                                <div th:if="${favorite.user.id } == ${user.id}">
 
-                <div class="text-center">
-                    <h2 class="text-center font-weight-light">Favorites</h2>
-                </div>
-                <div class="card-columns">
-                    <div th:each="favorite : ${favorites}">
-                        <div th:if="${favorite.user.id } == ${user.id}">
+                                    <div class="card bg-white rounded">
+                                        <img class="card-img-top" th:attr="src=@{${favorite.postImageUrl}}"
+                                             alt="Recipe image">
+                                        <div class="card-body">
+                                            <a th:href="@{|/post/${favorite.id}|}">
+                                                <h2 class="card-title text-center" th:text="${favorite.title}"></h2>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer">
+                                            <h4 th:text="${favorite.user.username}"></h4>
+                                            <form th:action="@{|/favorites/${favorite.id}/delete|}" th:method="POST">
+                                                <button type="submit">Delete Favorite</button>
+                                            </form>
 
-                            <div class="card shadow bg-white rounded">
-                                <img class="card-img-top" th:attr="src=@{${favorite.postImageUrl}}" alt="Recipe image">
-                                <div class="card-body">
-                                    <a th:href="@{|/post/${favorite.id}|}">
-                                        <h2 class="card-title text-center" th:text="${favorite.title}"></h2>
-                                    </a>
-                                </div>
-                                <div class="card-footer">
-                                    <h4 th:text="${favorite.user.username}"></h4>
-                                    <form th:action="@{|/favorites/${favorite.id}/delete|}" th:method="POST">
-                                        <button type="submit">Delete Favorite</button>
-                                    </form>
-
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </div>
+
     </div>
 </div>
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="card">-->
+<!--            <div class="card-header">-->
+<!--                <ul class="nav nav-tabs card-header-tabs" id="user-list" role="tablist">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Posts</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">Favorites</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--                <div class="tab-content mt-3">-->
+<!--                    <div class="tab-pane active" id="description" role="tabpanel">-->
+<!--                        <div class="col-md-12">-->
 
+<!--                            <div class="card-columns">-->
+<!--                                &lt;!&ndash;   /////////////////////////// Cards for posts/////////////////// &ndash;&gt;-->
+<!--                                <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">-->
+
+<!--                                    <div class="card shadow bg-white rounded">-->
+<!--                                        <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">-->
+<!--                                        <div class="card-body">-->
+<!--                                            <a th:href="@{|/post/${post.id}|}">-->
+<!--                                                <h2 class="card-title text-center" th:text="${post.title}"></h2>-->
+<!--                                            </a>-->
+
+<!--                                        </div>-->
+<!--                                        <div class="card-footer">-->
+<!--                                            <div th:if="${user.id} == ${post.getUser().id}">-->
+<!--                                                <a th:href="@{|/posts/${post.id}/edit|}">-->
+<!--                                                    <button>Edit</button>-->
+<!--                                                </a>-->
+<!--                                                <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
+<!--                                                    <button type="submit">Delete</button>-->
+<!--                                                </form>-->
+<!--                                            </div>-->
+<!--                                            <div th:if="${user.id} != ${post.getUser().id}">-->
+<!--                                                <h4 th:text="${post.user.username}"></h4>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">-->
+
+<!--                        <div class="col-md-12">-->
+<!--                            &lt;!&ndash; ////////////////////// Favorites /////////////////////////////  &ndash;&gt;-->
+
+<!--                            <div class="card-columns">-->
+<!--                                <div th:each="favorite : ${favorites}">-->
+<!--                                    <div th:if="${favorite.user.id } == ${user.id}">-->
+
+<!--                                        <div class="card shadow bg-white rounded">-->
+<!--                                            <img class="card-img-top" th:attr="src=@{${favorite.postImageUrl}}"-->
+<!--                                                 alt="Recipe image">-->
+<!--                                            <div class="card-body">-->
+<!--                                                <a th:href="@{|/post/${favorite.id}|}">-->
+<!--                                                    <h2 class="card-title text-center" th:text="${favorite.title}"></h2>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                            <div class="card-footer">-->
+<!--                                                <h4 th:text="${favorite.user.username}"></h4>-->
+<!--                                                <form th:action="@{|/favorites/${favorite.id}/delete|}" th:method="POST">-->
+<!--                                                    <button type="submit">Delete Favorite</button>-->
+<!--                                                </form>-->
+
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div th:replace="fragments/scripts.html :: scripts"></div>
-<footer th:replace="fragments/footer.html :: footer"></footer>
+<!--<footer th:replace="fragments/footer.html :: footer"></footer>-->
+<script>
+    $('#user-list a').on('click', function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
 </body>
 </html>
