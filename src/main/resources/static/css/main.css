@@ -64,12 +64,12 @@
 }
 
 .text-div {
-    /*background: rgba(0,0,0,.5); contrast(2)blur(2px)*/
+    background: rgba(0,0,0,.2);
     /*backdrop-filter: contrast(.8) blur(2px);*/
     /*background-color: ;*/
     color: white;
     font-size: 16px;
-    padding: 16px 32px;
+    /*padding: auto;*/
 }
 /*=============================================Video for jumbotron==============================================*/
 
