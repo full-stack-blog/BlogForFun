@@ -26,7 +26,7 @@
         <div th:each="post : ${posts}">
             <div sec:authorize="isAuthenticated()">
 
-                <div class="card shadow bg-white rounded">
+                <div class="card card-hover shadow bg-white rounded">
                     <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
                     <div class="card-body">
                         <a th:href="@{|/post/${post.id}|}">
@@ -52,7 +52,7 @@
             <!-- explains if user is a visitor then access is the public posts only -->
             <div sec:authorize="isAnonymous()">
                 <div th:if="${post.getAccess() == 'public'}">
-                    <div class="card shadow bg-white rounded">
+                    <div class="card card-hover shadow bg-white rounded">
                         <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
                         <div class="card-body">
                             <a th:href="@{|/post/${post.id}|}">

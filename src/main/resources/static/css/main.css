@@ -64,8 +64,13 @@ nav a:hover {
     background-color: black;
 }
 
-.card {
-    border: black 2px solid;
+.card-hover {
+    /*border: black 2px solid;*/
+    transition:transform 1s;
+}
+
+.card-hover:hover{
+    transform: scale(1.05);
 }
 
 .nav-hamburgerIcon {
