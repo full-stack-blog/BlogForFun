@@ -97,62 +97,74 @@
                             <div th:each="favorite : ${favorites}">
                                 <div th:if="${favorite.user.id } == ${user.id}">
 
-                                    <div class="card card-hover bg-white rounded">
-                                        <img class="card-img-top" th:attr="src=@{${favorite.postImageUrl}}" alt="Recipe image">
-                                        <div class="card-body">
-                                            <a th:href="@{|/post/${favorite.id}|}">
-                                                <h2 class="card-title text-center" th:text="${favorite.title}"></h2>
-                                            </a>
-
+                                        <div class="img-container card rounded">
+                                            <img class="card-img-top" th:attr="src=@{${favorite.postImageUrl}}"/>
+                                            <div class="overlay">
+                                                <div>
+                                                    <a th:href="@{|/post/${favorite.id}|}">
+                                                        <h1 th:text="${favorite.title}"></h1>
+                                                    </a>
+                                                        <p th:text="${favorite.body}"></p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="card-footer">
-<!--                                            <div th:if="${user.id} == ${favorite.getUser().id}">-->
-<!--                                             -->
-<!--                                            </div>-->
-                                            <form th:action="@{|/favorites/${favorite.id}/delete|}"
-                                                  th:method="POST">
-                                                <button type="submit"
-                                                        class="btn btn-primary stretched-link">Remove
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
+
+                                        <!--                                    <div class="card card-hover bg-white rounded">-->
+                                    <!--                                        <img class="card-img-top" th:attr="src=@{${favorite.postImageUrl}}" alt="Recipe image">-->
+                                    <!--                                        <div class="card-body">-->
+                                    <!--                                            <a th:href="@{|/post/${favorite.id}|}">-->
+                                    <!--                                                <h2 class="card-title text-center" th:text="${favorite.title}"></h2>-->
+                                    <!--                                            </a>-->
+
+                                    <!--                                        </div>-->
+                                    <!--                                        <div class="card-footer">-->
+                                    <!--&lt;!&ndash;                                            <div th:if="${user.id} == ${favorite.getUser().id}">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                             &ndash;&gt;-->
+                                    <!--&lt;!&ndash;                                            </div>&ndash;&gt;-->
+                                    <!--                                            <form th:action="@{|/favorites/${favorite.id}/delete|}"-->
+                                    <!--                                                  th:method="POST">-->
+                                    <!--                                                <button type="submit"-->
+                                    <!--                                                        class="btn btn-primary stretched-link">Remove-->
+                                    <!--                                                </button>-->
+                                    <!--                                            </form>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
 
 
-<!--                                    <div class="col-12">-->
+                                    <!--                                    <div class="col-12">-->
 
-<!--                                        <div class="card">-->
-<!--                                            <div class="row no-gutters">-->
-<!--                                                <div class="col-6" style="background: #868e96;">-->
-<!--                                                    <img th:attr="src=@{${favorite.postImageUrl}}"-->
-<!--                                                         class="card-img-top h-100"-->
-<!--                                                         alt="...">-->
-<!--                                                </div>-->
-<!--                                                <div class="col-6">-->
-<!--                                                    <div class="card-body">-->
-<!--                                                        &lt;!&ndash;                                                <a th:href="@{|/post/${favorite.id}|}">&ndash;&gt;-->
-<!--                                                        <h4 class="card-title text-center"-->
-<!--                                                            th:text="${favorite.title}"></h4>-->
-<!--                                                        &lt;!&ndash;                                                </a>&ndash;&gt;-->
-<!--                                                        <p class="card-text" th:text="${favorite.body}"></p>-->
+                                    <!--                                        <div class="card">-->
+                                    <!--                                            <div class="row no-gutters">-->
+                                    <!--                                                <div class="col-6" style="background: #868e96;">-->
+                                    <!--                                                    <img th:attr="src=@{${favorite.postImageUrl}}"-->
+                                    <!--                                                         class="card-img-top h-100"-->
+                                    <!--                                                         alt="...">-->
+                                    <!--                                                </div>-->
+                                    <!--                                                <div class="col-6">-->
+                                    <!--                                                    <div class="card-body">-->
+                                    <!--                                                        &lt;!&ndash;                                                <a th:href="@{|/post/${favorite.id}|}">&ndash;&gt;-->
+                                    <!--                                                        <h4 class="card-title text-center"-->
+                                    <!--                                                            th:text="${favorite.title}"></h4>-->
+                                    <!--                                                        &lt;!&ndash;                                                </a>&ndash;&gt;-->
+                                    <!--                                                        <p class="card-text" th:text="${favorite.body}"></p>-->
 
-<!--                                                        <div class="col-12">-->
-<!--                                                            <a th:href="@{|/post/${favorite.id}|}"-->
-<!--                                                               class="btn btn-primary stretched-link">View</a>-->
-<!--                                                            <form th:action="@{|/favorites/${favorite.id}/delete|}"-->
-<!--                                                                  th:method="POST">-->
-<!--                                                                <button type="submit"-->
-<!--                                                                        class="btn btn-primary stretched-link">Remove-->
-<!--                                                                </button>-->
-<!--                                                            </form>-->
-<!--                                                        </div>-->
+                                    <!--                                                        <div class="col-12">-->
+                                    <!--                                                            <a th:href="@{|/post/${favorite.id}|}"-->
+                                    <!--                                                               class="btn btn-primary stretched-link">View</a>-->
+                                    <!--                                                            <form th:action="@{|/favorites/${favorite.id}/delete|}"-->
+                                    <!--                                                                  th:method="POST">-->
+                                    <!--                                                                <button type="submit"-->
+                                    <!--                                                                        class="btn btn-primary stretched-link">Remove-->
+                                    <!--                                                                </button>-->
+                                    <!--                                                            </form>-->
+                                    <!--                                                        </div>-->
 
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
 
-<!--                                    </div>-->
+                                    <!--                                    </div>-->
 
 
                                     <!--                                    <div class="card card-hover bg-white rounded">-->

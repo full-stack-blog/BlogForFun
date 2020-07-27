@@ -5,6 +5,38 @@
 /*#DED0D0*/
 /*#621012*/
 /*#631936*/
+
+
+.img-container{
+    position:relative;
+    /*display:inline-block;*/
+}
+.img-container > img:hover{
+    -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+    filter: blur(5px);
+}
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition: .3s all;
+    /*background: rgba(255, 255, 255, 0.3);*/
+/*    backdrop-filter: blur(50px);*/
+}
+.overlay div{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:white;
+}
+.overlay:hover {
+    opacity: 1;
+}
+
 .profile-grid {
     height: 100vh;
     display: grid;
@@ -23,10 +55,6 @@
     grid-area: 1 / 3 / 6 / 6;
 }
 
-body {
-    /*background-color:#DED0D0*/
-    /*#431D31*/
-}
 
 #h1-titles {
     font-family: 'Merienda One', cursive;
