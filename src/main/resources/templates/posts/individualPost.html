@@ -8,7 +8,7 @@
 
 <div class="container">
     <div sec:authorize="isAuthenticated()">
-        <div th:if="${user.id} != ${post.getUser().id}">
+        <div th:if="${user.id} != ${post.user.id}">
             <a th:href="@{|/contact-us/${post.id}|}">
                 <button>Report an Issue</button>
             </a>
@@ -24,11 +24,11 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        <div th:if="${user.id} != ${post.getUser().id}">
-            <a href="/contact-us">
-                <button>Report Issue</button>
-            </a>
-        </div>
+<!--        <div th:if="${user.id} != ${post.getUser().id}">-->
+<!--            <a href="/contact-us">-->
+<!--                <button>Report Issue</button>-->
+<!--            </a>-->
+<!--        </div>-->
         <div th:if="${user.id} == ${post.getUser().id} OR ${user.userRole} == 'admin'">
             <a th:href="@{|/posts/${post.id}/edit|}">
                 <button>Edit</button>
