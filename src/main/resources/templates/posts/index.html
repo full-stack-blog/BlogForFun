@@ -26,46 +26,83 @@
         <div th:each="post : ${posts}">
             <div sec:authorize="isAuthenticated()">
 
-                <div class="card card-hover shadow bg-white rounded">
-                    <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
-                    <div class="card-body">
-                        <a th:href="@{|/post/${post.id}|}">
-                            <h2 class="card-title text-center" th:text="${post.title}"></h2>
-                        </a>
+                <a th:href="@{|/post/${post.id}|}">
 
-                    </div>
-                    <div class="card-footer">
-                        <div th:if="${user.id} == ${post.getUser().id}">
-                            <a th:href="@{|/posts/${post.id}/edit|}">
-                                <button>Edit</button>
-                            </a>
-                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-                                <button type="submit">Delete</button>
-                            </form>
+                    <div class="img-container card rounded card-hover">
+
+                        <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
+
+                        <div class="overlay">
+
+                            <div class="text-div h-100 w-100">
+                                <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
+                                <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
+                            </div>
+
                         </div>
-                        <div th:if="${user.id} != ${post.getUser().id}">
-                            <h4 th:text="${post.user.username}"></h4>
-                        </div>
                     </div>
-                </div>
+                </a>
+
+<!--                <div class="card card-hover shadow bg-white rounded">-->
+<!--                    <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">-->
+<!--                    <div class="card-body">-->
+<!--                        <a th:href="@{|/post/${post.id}|}">-->
+<!--                            <h2 class="card-title text-center" th:text="${post.title}"></h2>-->
+<!--                        </a>-->
+
+<!--                    </div>-->
+<!--                    <div class="card-footer">-->
+<!--                        <div th:if="${user.id} == ${post.getUser().id}">-->
+<!--                            <a th:href="@{|/posts/${post.id}/edit|}">-->
+<!--                                <button>Edit</button>-->
+<!--                            </a>-->
+<!--                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
+<!--                                <button type="submit">Delete</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                        <div th:if="${user.id} != ${post.getUser().id}">-->
+<!--                            <h4 th:text="${post.user.username}"></h4>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
             </div>
+
             <!-- explains if user is a visitor then access is the public posts only -->
             <div sec:authorize="isAnonymous()">
                 <div th:if="${post.getAccess() == 'public'}">
-                    <div class="card card-hover shadow bg-white rounded">
-                        <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">
-                        <div class="card-body">
-                            <a th:href="@{|/post/${post.id}|}">
-                                <h2 class="card-title text-center" th:text="${post.title}"></h2>
-                            </a>
 
+                    <a th:href="@{|/post/${post.id}|}">
+
+                        <div class="img-container card rounded card-hover">
+
+                            <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
+
+                            <div class="overlay">
+
+                                <div class="text-div h-100 w-100">
+                                    <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
+                                    <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <h4 th:text="${post.user.username}"></h4>
-                        </div>
+                    </a>
+
+<!--                    <div class="card card-hover shadow bg-white rounded">-->
+<!--                        <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">-->
+<!--                        <div class="card-body">-->
+<!--                            <a th:href="@{|/post/${post.id}|}">-->
+<!--                                <h2 class="card-title text-center" th:text="${post.title}"></h2>-->
+<!--                            </a>-->
+
+<!--                        </div>-->
+<!--                        <div class="card-footer">-->
+<!--                            <h4 th:text="${post.user.username}"></h4>-->
+<!--                        </div>-->
 
 
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
         </div>
