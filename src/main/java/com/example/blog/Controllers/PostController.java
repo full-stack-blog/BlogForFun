@@ -145,6 +145,12 @@ public class PostController {
         post.setTitle(title);
         post.setBody(body);
         post.setPostImageUrl(postImageUrl);
+//        if(postImageUrl != null){
+//            post.setPostImageUrl(postImageUrl);
+//        }
+//        else{
+//            post.setPostImageUrl('example here');
+//        }
         post.setUser(u);
         post.setAccess(access);
         post.setCategories(categories);

@@ -14,7 +14,7 @@
 
         <div class="text-center">
 
-            <img alt="profile image" style="width: 16em; height: 16em;"
+            <img alt="profile image" style="width: 10em; height: 10em;"
                  class="shadow-lg rounded-circle img-profile m-0-auto"
                  th:attr="src=@{${user.profileImage}}">
 
@@ -141,9 +141,9 @@
         </div>
 
     </div>
+    <div th:replace="fragments/scripts.html :: scripts"></div>
 </div>
 
-<div th:replace="fragments/scripts.html :: scripts"></div>
 <!--<footer th:replace="fragments/footer.html :: footer"></footer>-->
 <script>
     $('#user-list a').on('click', function (e) {

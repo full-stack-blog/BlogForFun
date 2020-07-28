@@ -8,11 +8,22 @@
 /*#621012*/
 /*#631936*/
 
+/**{*/
+/*    box-sizing: border-box;*/
+/*    padding: 0;*/
+/*    margin: 0;*/
+/*}*/
+
+
+
 /*====================================Start of Profile Grid====================================*/
 .profile-grid {
-    height: 100vh;
     display: grid;
-    grid-template-columns: 12% 13% repeat(3, 25%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    column-width: fill-available;
+    grid-template-columns: 8% 8% repeat(3, 28%);
     grid-template-rows: repeat(5, 20%);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
