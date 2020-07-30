@@ -8,6 +8,36 @@
 /*#621012*/
 /*#631936*/
 
+/*========================================typewriter animation=========================================*/
+
+/*.h1-titles {*/
+/*    text-shadow: 3px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;*/
+/*}*/
+
+#h1 {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Merienda One', cursive;
+    font-size: 5em;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#text-span {
+    border-right: .05em solid;
+    /*animation: typewriter 6.5s steps(50) 2s 1 normal both, blinkTextCursor .5s 18 normal forwards;*/
+    animation: caret 1s steps(1) infinite normal both, blinkTextCursor .5s normal forwards;
+}
+
+@keyframes caret {
+    50% {
+        border-color: transparent;
+    }
+}
+
 /*====================================Start of Profile Grid====================================*/
 .profile-grid {
     display: grid;
@@ -124,10 +154,6 @@
 }
 
 /*=============================================General styling classes===============================================*/
-#h1-titles {
-    font-family: 'Merienda One', cursive;
-    text-shadow: 3px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
-}
 
 nav a {
     color: white;

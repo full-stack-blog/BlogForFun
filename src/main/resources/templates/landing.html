@@ -11,10 +11,12 @@
     <video autoplay muted loop poster="">
         <source src="/videos/blogger.mp4" type="video/mp4">
     </video>
-    <div class="text-white">
-        <div class="text-center">
-            <h1 class="text-center text-light display-1 m-0" id="h1-titles">Bloggie</h1>
-            <h5 class="m-3">For whatever your "ie" is...</h5>
+
+    <div id="h1"></div>
+
+    <div class="text-white mt-5">
+        <div class="text-center mt-5">
+            <h5 class="mt-5">For whatever your "ie" is...</h5>
         </div>
     </div>
 
@@ -82,4 +84,50 @@
 
 <div th:replace="fragments/scripts.html :: scripts"></div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        // array with texts to type in typewriter
+        var dataText = ["Bloggie.", "Foodie.", "Groupie.", "Bougie."];
+
+        // type one text in the typwriter
+        // keeps calling itself until the text is finished
+        function typeWriter(text, i, fnCallback) {
+            // chekc if text isn't finished yet
+            if (i < (text.length)) {
+                // add next character to h1
+                document.querySelector("#h1").innerHTML = text.substring(0, i + 1) + '<span id="text-span" aria-hidden="true"></span>';
+
+                // wait for a while and call this function again for next character
+                setTimeout(function () {
+                    typeWriter(text, i + 1, fnCallback)
+                }, 300);
+            }
+            // text finished, call callback if there is a callback function
+            else if (typeof fnCallback == 'function') {
+                // call callback after timeout
+                setTimeout(fnCallback, 700);
+            }
+        }
+
+        // start a typewriter animation for a text in the dataText array
+        function StartTextAnimation(i) {
+            if (typeof dataText[i] == 'undefined') {
+                setTimeout(function () {
+                    StartTextAnimation(0);
+                }, 300);
+            }
+            // check if dataText[i] exists
+            if (i < dataText[i].length) {
+                // text exists! start typewriter animation
+                typeWriter(dataText[i], 0, function () {
+                    // after callback (and whole text has been animated), start next text
+                    StartTextAnimation(i + 1);
+                });
+            }
+        }
+
+        // start the text animation
+        StartTextAnimation(0);
+    });
+</script>
 </html>
