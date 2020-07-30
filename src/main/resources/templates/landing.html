@@ -2,10 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: head('Landing')"></head>
 
-<body>
-<nav th:replace="fragments/navbar.html :: user-navbar">
-    <!--    <h1 class="text-center text-light display-1b" id="h1-titles">Blogg - ie</h1>-->
-</nav>
+<body class="landing-background">
+
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 <div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
 
@@ -14,82 +13,37 @@
     </video>
     <div class="text-white">
         <div class="text-center">
-            <h1 class="text-center text-light display-1 m-0" id="h1-titles">Blogg - ie</h1>
+            <h1 class="text-center text-light display-1 m-0" id="h1-titles">Bloggie</h1>
+            <h5 class="m-3">For whatever your "ie" is...</h5>
         </div>
     </div>
 
 </div>
 
-<!--<div style="height:auto;background-color:antiquewhite">-->
-<!--    <h4 class="text-center m-0">-->
-<!--       test test test-->
-<!--    </h4>-->
-<!--</div>-->
-<div class="landing-background">
-
-    <div class="parallax">
-
-    <div style=" width: 500px; z-index: 100">
-        <h4 class="text-center m-0 text-light">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
-            cupiditate dolorum, eaque earum eos exercitationem,
-            explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
-            quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Aliquid aperiam autem cum debitis deleniti facilis
-            impedit quis reprehenderit sequi veniam? Accusantium,
-            enim in minima nesciunt placeat repellat tempore temporibus! Provident!
-        </h4>
-
-
-    </div>
-        <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-             style="width: 300px; z-index: 99" alt="" class="mx-auto d-block">
-    </div>
-
-
-
-
-
-</div>
-
-<div class="landing-background">
-    <div class="parallax" style="background-image:
-url('https://images.pexels.com/photos/1274260/pexels-photo-1274260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'); float: left;">
-    </div>
-
-
-    <div style="height:500px;background-color:white">
-        <h4 class="text-center m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
-            cupiditate dolorum, eaque earum eos exercitationem,
-            explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
-            quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Aliquid aperiam autem cum debitis deleniti facilis
-            impedit quis reprehenderit sequi veniam? Accusantium,
-            enim in minima nesciunt placeat repellat tempore temporibus! Provident!
-        </h4>
-    </div>
-
-</div>
-
-<div class="landing-background">
-    <div class="parallax" style="background-image:
-url('https://images.pexels.com/photos/4667086/pexels-photo-4667086.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'); float: right;">
-    </div>
-    <div style="height:500px;background-color:white; width: 30%">
-        <h4 class="text-center m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
-            cupiditate dolorum, eaque earum eos exercitationem,
-            explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
-            quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Aliquid aperiam autem cum debitis deleniti facilis
-            impedit quis reprehenderit sequi veniam? Accusantium,
-            enim in minima nesciunt placeat repellat tempore temporibus! Provident!
-        </h4>
-    </div>
+<div class="parallax">
+    <h4 class="text-light p-3" style="z-index: 100;position: absolute; width: 35%">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
+        cupiditate dolorum, eaque earum eos exercitationem,
+        explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
+        quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
+    </h4>
+    <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+         style="width: 300px;" alt="landing image" class="mx-auto">
 </div>
 
 
+<div class="parallax">
+    <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+         style="width: 300px;" alt="landing image" class="mr-auto">
+    <h4 class="text-right">hello hello hello</h4>
+</div>
+
+
+<div class="parallax">
+    <h4 class="text-left text-light">hello hello hello</h4>
+    <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+         style="width: 300px;" alt="landing image" class="ml-auto">
+</div>
 
 
 <!-- Modal -->
@@ -127,7 +81,5 @@ url('https://images.pexels.com/photos/4667086/pexels-photo-4667086.jpeg?auto=com
 <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Please Login</button>-->
 
 <div th:replace="fragments/scripts.html :: scripts"></div>
-
-
 </body>
 </html>
