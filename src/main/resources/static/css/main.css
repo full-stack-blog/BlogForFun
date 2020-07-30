@@ -88,7 +88,7 @@
     /* The image used */
     /*background-image: url("../images/aerial.jpg");*/
     z-index: -998;
-    width: 30%;
+    width: 100%;
     display: flex;
     /* Set a specific height */
     height: 300px;
