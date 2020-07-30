@@ -8,6 +8,15 @@
 /*#621012*/
 /*#631936*/
 
+.landing-background{
+    height: 100%;
+    z-index: -999;
+    background: -webkit-linear-gradient(left, black 50%, white 50%);
+    background: -moz-linear-gradient(left, black 50%, white 50%);
+    background: -ms-linear-gradient(left, black 50%, white 50%);
+    background: linear-gradient(left, black 50%, white 50%);
+}
+
 /*====================================Start of Profile Grid====================================*/
 .profile-grid {
     display: grid;
@@ -78,12 +87,11 @@
 .parallax {
     /* The image used */
     /*background-image: url("../images/aerial.jpg");*/
-    z-index: -999;
-
+    z-index: -998;
+    width: 30%;
+    display: flex;
     /* Set a specific height */
-    height: 500px;
-
-
+    height: 300px;
     /* Create the parallax scrolling effect */
     background-attachment: scroll;
     background-position: center;
