@@ -1,3 +1,4 @@
+/*========================================Theme colors===============================================*/
 
 /*#A59F97*/
 /*#5F0F39*/
@@ -6,52 +7,190 @@
 /*#DED0D0*/
 /*#621012*/
 /*#631936*/
+
+.landing-background{
+    height: 100%;
+    z-index: -999;
+    background: -webkit-linear-gradient(left, black 50%, white 50%);
+    background: -moz-linear-gradient(left, black 50%, white 50%);
+    background: -ms-linear-gradient(left, black 50%, white 50%);
+    background: linear-gradient(left, black 50%, white 50%);
+}
+
+/*====================================Start of Profile Grid====================================*/
 .profile-grid {
     display: grid;
-    grid-template-columns: 12% 13% repeat(3, 25%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    column-width: fill-available;
+    grid-template-columns: 8% 8% repeat(3, 28%);
     grid-template-rows: repeat(5, 20%);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+
 .profile-info {
     grid-area: 1 / 1 / 6 / 3;
+    border-right: solid black 3px;
 }
 
 .posts-area {
     grid-area: 1 / 3 / 6 / 6;
 }
 
-body{
-    /*background-color:#DED0D0*/
-            /*#431D31*/
+/*========================================Card hover for posts=============================================*/
+.img-container {
+    position: relative;
+    width: 50%;
 }
 
-.jumbotron{
-    background-color: #621012;
+.image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
 }
 
-#h1-titles{
+.overlay {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.img-container:hover .image {
+    opacity: 0.7;
+    /*backdrop-filter: contrast(.8) blur(2px);*/
+
+}
+
+.img-container:hover .overlay {
+    opacity: 1;
+}
+
+.text-div {
+    background: rgba(0,0,0,.2);
+    /*backdrop-filter: contrast(.8) blur(2px);*/
+    /*background-color: ;*/
+    color: white;
+    font-size: 16px;
+    /*padding: auto;*/
+}
+/*=============================================Video for jumbotron==============================================*/
+.parallax {
+    /* The image used */
+    /*background-image: url("../images/aerial.jpg");*/
+    z-index: -998;
+    width: 30%;
+    display: flex;
+    /* Set a specific height */
+    height: 300px;
+    /* Create the parallax scrolling effect */
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*.ParallaxVideo{*/
+/*    height: 300px;*/
+/*    padding-bottom: 50px;*/
+/*    padding-top: 50px;*/
+/*}*/
+/*.ParallaxVideo video{*/
+/*    max-width: 100%;*/
+/*    max-height: 160%;*/
+/*    position: fixed;*/
+/*    top:0;*/
+/*    z-index: -999;*/
+/*}*/
+/*.ParallaxVideo h1 {*/
+/*    color: #fff;*/
+/*    !*font-size: 76px;*!*/
+/*    font-weight: 700;*/
+/*    text-align: center;*/
+/*    text-transform: uppercase;*/
+/*}*/
+
+
+.jumbotron {
+    position: relative;
+    overflow: hidden;
+    background-color: black;
+    height: 50vh;
+    width: 100%;
+}
+
+.jumbotron video {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*  object-fit is not supported on IE  */
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+.jumbotron .container {
+    z-index: 2;
+    position: relative;
+}
+
+/*=============================================General styling classes===============================================*/
+#h1-titles {
     font-family: 'Merienda One', cursive;
     text-shadow: 3px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
 
-a{
-    color: #621012;
+nav a {
+    color: white;
     font-family: 'Open Sans', sans-serif;
 }
-a:hover{
+
+nav a:hover {
     color: #2096A4;
 }
 
-.navbar-1{
-    background-color:white;
+.profile-name {
+    color: white;
+    font-family: 'Merienda One', cursive;
 }
 
-.card{
-    border: black 2px solid;
+.profile-a {
+    font-size: large;
+    color: white;
+    /*transition-duration: 4s;*/
+    /*transition-delay: 2s;*/
+    /*font-family: 'Merienda One', cursive;*/
 }
 
-.nav-hamburgerIcon{
+.profile-a:hover {
+    color: #2096A4;
+    /*transform: scale(1.1);*/
+}
+
+.navbar-1 {
+    background-color: black;
+}
+
+.card-hover {
+    /*border: black 2px solid;*/
+    transition: transform 1s;
+}
+
+.card-hover:hover {
+    transform: scale(1.03);
+}
+
+.nav-hamburgerIcon {
     color: #621012;
 }
 
@@ -61,11 +200,17 @@ a:hover{
     line-height: 1;
     color: steelblue;
 }
-.i-mail{
-    top: -1px;!important;
+
+.i-mail {
+    top: -1px;
+!important;
 }
-.flex{
+
+.flex {
     display: flex;
     justify-content: space-around;
 }
+
+
+
 

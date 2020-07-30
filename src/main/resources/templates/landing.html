@@ -3,12 +3,124 @@
 <head th:replace="fragments/header :: head('Landing')"></head>
 
 <body>
-<header class="container"></header>
-<div class="jumbotron jumbotron-fluid mb-0 jumbotron-landing h-100">
-    <h1 class="text-center text-light display-1" id="h1-titles">Blogg - ie</h1>
+<nav th:replace="fragments/navbar.html :: user-navbar">
+    <!--    <h1 class="text-center text-light display-1b" id="h1-titles">Blogg - ie</h1>-->
+</nav>
+
+<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
+
+    <video autoplay muted loop poster="">
+        <source src="/videos/blogger.mp4" type="video/mp4">
+    </video>
+    <div class="text-white">
+        <div class="text-center">
+            <h1 class="text-center text-light display-1 m-0" id="h1-titles">Blogg - ie</h1>
+        </div>
+    </div>
+
 </div>
-<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+
+<!--<div style="height:auto;background-color:antiquewhite">-->
+<!--    <h4 class="text-center m-0">-->
+<!--       test test test-->
+<!--    </h4>-->
+<!--</div>-->
+<div class="landing-background">
+    <div class="parallax" style="
+     background-image:url('https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500');
+     float: right;
+">
+    </div>
+
+    <div style="height:500px;background-color:white; width: 30%">
+        <h4 class="text-center m-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
+            cupiditate dolorum, eaque earum eos exercitationem,
+            explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
+            quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Aliquid aperiam autem cum debitis deleniti facilis
+            impedit quis reprehenderit sequi veniam? Accusantium,
+            enim in minima nesciunt placeat repellat tempore temporibus! Provident!
+        </h4>
+    </div>
+</div>
+
+<div class="landing-background">
+    <div class="parallax" style="background-image:
+url('https://images.pexels.com/photos/1274260/pexels-photo-1274260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'); float: left;">
+    </div>
+
+
+    <div style="height:500px;background-color:white">
+        <h4 class="text-center m-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
+            cupiditate dolorum, eaque earum eos exercitationem,
+            explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
+            quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Aliquid aperiam autem cum debitis deleniti facilis
+            impedit quis reprehenderit sequi veniam? Accusantium,
+            enim in minima nesciunt placeat repellat tempore temporibus! Provident!
+        </h4>
+    </div>
+
+</div>
+
+<div class="landing-background">
+    <div class="parallax" style="background-image:
+url('https://images.pexels.com/photos/4667086/pexels-photo-4667086.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'); float: right;">
+    </div>
+    <div style="height:500px;background-color:white; width: 30%">
+        <h4 class="text-center m-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
+            cupiditate dolorum, eaque earum eos exercitationem,
+            explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
+            quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Aliquid aperiam autem cum debitis deleniti facilis
+            impedit quis reprehenderit sequi veniam? Accusantium,
+            enim in minima nesciunt placeat repellat tempore temporibus! Provident!
+        </h4>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/login}" method="post">-->
+<!--                <label class="font-weight-bold" for="username">Username</label><br>-->
+<!--                <input id="username" placeholder="Enter username..." name="username" type="text"-->
+<!--                       class="mx-auto w-75 shadow-sm form-control"/><br>-->
+<!--                <label class="font-weight-bold" for="password">Password</label><br>-->
+<!--                <input id="password" placeholder="Enter password..." name="password" type="password"-->
+<!--                       class="mx-auto w-75 shadow-sm form-control"/><br>-->
+<!--                <br>-->
+<!--                <input class="shadow mb-3" type="submit"-->
+<!--                       value="Login"/>-->
+<!--            </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Please Login</button>-->
 
 <div th:replace="fragments/scripts.html :: scripts"></div>
+
+
 </body>
 </html>

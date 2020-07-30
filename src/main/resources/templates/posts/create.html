@@ -38,7 +38,7 @@
                         </button>
                         <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden">
                         <label for="categories" class="m-1 font-weight-bold">Select Categories</label><br>
-                        <select class="selectpicker text-center" id="categories" name="categories" multiple data-live-search="true"
+                        <select class="selectpicker text-center text-dark" id="categories" name="categories" multiple data-live-search="true"
                                 data-flip="false">
                             <!--                    <option selected>Select Category</option>-->
                             <option name="categories" id="Sports" value="1">Sports</option>
@@ -69,8 +69,8 @@
     </div>
 
 </div>
+<div th:replace="fragments/scripts.html :: scripts"></div>
 <div class="fixed-bottom">
-    <div th:replace="fragments/scripts.html :: scripts"></div>
     <footer th:replace="fragments/footer.html :: footer"></footer>
 </div>
 </body>
