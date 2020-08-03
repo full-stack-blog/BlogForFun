@@ -1,10 +1,10 @@
 package com.example.blog.Controllers;
 
 import com.example.blog.Models.Categories;
-import com.example.blog.Models.Favorites;
+// import com.example.blog.Models.Favorites;
 import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
-import com.example.blog.Repositories.FavoritesRepo;
+// import com.example.blog.Repositories.FavoritesRepo;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import com.example.blog.Services.EmailService;
@@ -25,13 +25,13 @@ public class PostController {
     private UserRepo userDoa;
     private PostRepo postDao;
     private EmailService emailservice;
-    private FavoritesRepo favoritesDao;
+    // private FavoritesRepo favoritesDao;
 
-    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice, FavoritesRepo favoritesDao) {
+    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice) {
         this.userDoa = userDoa;
         this.postDao = postDao;
         this.emailservice = emailservice;
-        this.favoritesDao = favoritesDao;
+        // this.favoritesDao = favoritesDao;
     }
 
     @GetMapping("/posts")
@@ -193,11 +193,11 @@ public class PostController {
         return "redirect:/profile";
     }
 
-    @PostMapping("/favorites/{id}/delete")
-    public String deleteFavorite(@PathVariable long id) {
-        favoritesDao.deleteById(id);
-        return "redirect:/profile";
-    }
+    // @PostMapping("/favorites/{id}/delete")
+    // public String deleteFavorite(@PathVariable long id) {
+    //     favoritesDao.deleteById(id);
+    //     return "redirect:/profile";
+    // }
 
 
 
@@ -225,25 +225,55 @@ public class PostController {
 //        return "redirect:/admin-profile";
 //    }
 
-    @PostMapping("/favorite/{id}")
-    public String favorite(@PathVariable long id, Model model) {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", loggedIn);
-            Post post = postDao.getOne(id);
-            Favorites favorites = new Favorites();
-            favorites.setAccess(post.getAccess());
-            favorites.setBody(post.getBody());
-            favorites.setFavCategories(post.getCategories());
-            favorites.setPostImageUrl(post.getPostImageUrl());
-            favorites.setUser(loggedIn);
-            favorites.setTitle(post.getTitle());
-            favorites.setId(post.getId());
-            favoritesDao.save(favorites);
-            return "redirect:/profile";
+    // @PostMapping("/favorite/{id}")
+    // public String favorite(@PathVariable long id, Model model) {
+    //     if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+    //         User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    //         model.addAttribute("user", loggedIn);
+    //         Post post = postDao.getOne(id);
+    //         Favorites favorites = new Favorites();
+    //         favorites.setAccess(post.getAccess());
+    //         favorites.setBody(post.getBody());
+    //         favorites.setFavCategories(post.getCategories());
+    //         favorites.setPostImageUrl(post.getPostImageUrl());
+    //         favorites.setUser(loggedIn);
+    //         favorites.setTitle(post.getTitle());
+    //         favorites.setId(post.getId());
+    //         favoritesDao.save(favorites);
+    //         return "redirect:/profile";
 
+    //     }
+    //     return "redirect:/login";
+    // }
+
+        @GetMapping("/favorites/{id}")
+            public String favorites(Model model, @PathVariable long id) {
+            model.addAttribute("breederPost", postDao.getOne(id));
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("favorites", loggedInUser.getFavorites());
+            return "users/profile";
         }
-        return "redirect:/login";
-    }
+
+        @PostMapping("/favorites/{id}")
+        public String addToFavorites(@PathVariable long id) {
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDoa.findUserById(loggedInUser.getId());
+            Post post = postDao.getOne(id);
+            user.addFavorite(post);
+            userDoa.save(user);
+            postDao.save(post);
+            return "redirect:/profile";
+        }
+        
+        @PostMapping("/favorites/{id}/delete")
+        public String removeFromFavorites(@PathVariable long id){
+            User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User user = userDoa.findUserById(loggedInUser.getId());
+            Post post = postDao.getOne(id);
+            user.removeFavorite(post);
+            userDoa.save(user);
+            postDao.save(post);
+            return "redirect:/profile";
+        }
 
 }

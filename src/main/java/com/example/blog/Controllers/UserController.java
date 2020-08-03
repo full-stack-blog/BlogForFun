@@ -1,7 +1,7 @@
 package com.example.blog.Controllers;
 
 import com.example.blog.Models.User;
-import com.example.blog.Repositories.FavoritesRepo;
+// import com.example.blog.Repositories.FavoritesRepo;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,13 +19,13 @@ public class UserController {
     private UserRepo userDoa;
     private PasswordEncoder passwordEncoder;
     private PostRepo postDao;
-    private FavoritesRepo favoritesDao;
+    // private FavoritesRepo favoritesDao;
 
-    public UserController(UserRepo userDoa, PasswordEncoder passwordEncoder, PostRepo postDao, FavoritesRepo favoritesDao) {
+    public UserController(UserRepo userDoa, PasswordEncoder passwordEncoder, PostRepo postDao) {
         this.userDoa = userDoa;
         this.passwordEncoder = passwordEncoder;
         this.postDao = postDao;
-        this.favoritesDao = favoritesDao;
+        // this.favoritesDao = favoritesDao;
     }
 
     @GetMapping("/sign-up")
@@ -50,7 +50,7 @@ public class UserController {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
             model.addAttribute("posts", postDao.findAll());
-            model.addAttribute("favorites", favoritesDao.findAll());
+            // model.addAttribute("favorites", favoritesDao.findAll());
         }
         return "users/profile";
     }
@@ -156,5 +156,16 @@ public class UserController {
         return "users/editProfile";
     }
 
+    @GetMapping("/buyer-profile")
+    public String gotToBuyer(Model model) {
+    User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User user = userDoa.findUserById(loggedIn.getId());
+    model.addAttribute("userRoleBuyer", user);
+    model.addAttribute("favorites", user.getFavorites());
+    if(loggedIn.getUserRole().equals("buyer"))
+        return "users/buyer-profile";
+    else
+        return "redirect:/login";
+}
 
 }
