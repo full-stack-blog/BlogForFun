@@ -1,7 +1,10 @@
 package com.example.blog.Models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="posts")
@@ -38,6 +41,17 @@ public class Post {
     )
     private List<Categories> categories;
 
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name="favorites",
+            joinColumns={@JoinColumn(name="post_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")}
+    )
+    private Set<User> favorites = new HashSet<>();
+
+
+
     public Post() {}
 
     public Post(Post copy) {
@@ -47,15 +61,17 @@ public class Post {
         this.user = copy.user;
         this.access = copy.access;
         this.categories = copy.categories;
+        this.favorites = copy.favorites;
     }
 
-    public Post(long id, String title, String body, User user, String access, List<Categories> categories) {
+    public Post(long id, String title, String body, User user, String access, List<Categories> categories, Set<User> favorites) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
         this.access = access;
         this.categories = categories;
+        this.favorites = favorites;
     }
 
     public String getPostImageUrl() {
@@ -112,6 +128,14 @@ public class Post {
 
     public void setCategories(List<Categories> categories) {
         this.categories = categories;
+    }
+
+    public Set<User> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<User> favorites) {
+        this.favorites = favorites;
     }
 }
 
