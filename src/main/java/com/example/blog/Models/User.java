@@ -38,15 +38,6 @@ public class User {
 
     @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER)
     private List<Post> favorites = new ArrayList<>();
-    public void addFavorite(Post post) {
-        this.posts.add(post);
-        post.getFavorites().add(this);
-    }
-    public void removeFavorite(Post post) {
-        this.posts.remove(post);
-        post.getFavorites().remove(this);
-    }
-
 
 
     public User() {
@@ -158,5 +149,14 @@ public class User {
 
     public void setFavorites(List<Post> favorites) {
         this.favorites = favorites;
+    }
+
+    public void addFavorite(Post post) {
+        this.posts.add(post);
+        post.getFavorites().add(this);
+    }
+    public void removeFavorite(Post post) {
+        this.posts.remove(post);
+        post.getFavorites().remove(this);
     }
 }

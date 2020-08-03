@@ -112,22 +112,24 @@
                         <div class="card-columns">
 
                             <div th:each="favorite : ${favorites}">
-                                <div th:if="${favorite.user.id } == ${user.id}">
 
-                                    <div class="img-container card rounded card-hover">
+                                <div class="img-container card rounded card-hover">
 
-                                        <img class="image" th:attr="src=@{${favorite.postImageUrl}}"/>
+                                    <img class="image" th:attr="src=@{${favorite.postImageUrl}}"/>
 
-                                        <div class="overlay">
+                                    <div class="overlay">
 
-                                            <div class="text-div">
-                                                <h1 th:text="${favorite.title}"></h1>
+                                        <div class="text-div">
+                                            <h1 th:text="${favorite.title}"></h1>
 
-                                                <p th:text="|${#strings.abbreviate(favorite.body,50)}|"></p>
-<!--                                                <p th:text="${favorite.body.toString().toUpperCase()}"></p>-->
-                                            </div>
+                                            <p th:text="|${#strings.abbreviate(favorite.body,50)}|"></p>
+                                            <!--                                                <p th:text="${favorite.body.toString().toUpperCase()}"></p>-->
 
+                                            <form th:action="@{|/favorites/${favorite.id}/delete|}" th:method="POST">
+                                                <button type="submit">Remove Favorite</button>
+                                            </form>
                                         </div>
+
                                     </div>
 
                                 </div>

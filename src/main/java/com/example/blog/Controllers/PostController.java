@@ -9,6 +9,7 @@ import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import com.example.blog.Services.EmailService;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -254,7 +255,7 @@ public class PostController {
             return "users/profile";
         }
 
-        @PostMapping("/favorites/{id}")
+        @PostMapping("/favorite/{id}")
         public String addToFavorites(@PathVariable long id) {
             User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             User user = userDoa.findUserById(loggedInUser.getId());
@@ -271,6 +272,7 @@ public class PostController {
             User user = userDoa.findUserById(loggedInUser.getId());
             Post post = postDao.getOne(id);
             user.removeFavorite(post);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             userDoa.save(user);
             postDao.save(post);
             return "redirect:/profile";

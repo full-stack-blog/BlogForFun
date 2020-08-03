@@ -50,7 +50,8 @@ public class UserController {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
             model.addAttribute("posts", postDao.findAll());
-            // model.addAttribute("favorites", favoritesDao.findAll());
+            model.addAttribute("favorites", loggedIn.getFavorites());
+            System.out.println(loggedIn.getFavorites().size());
         }
         return "users/profile";
     }
@@ -156,16 +157,16 @@ public class UserController {
         return "users/editProfile";
     }
 
-    @GetMapping("/buyer-profile")
-    public String gotToBuyer(Model model) {
-    User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    User user = userDoa.findUserById(loggedIn.getId());
-    model.addAttribute("userRoleBuyer", user);
-    model.addAttribute("favorites", user.getFavorites());
-    if(loggedIn.getUserRole().equals("buyer"))
-        return "users/buyer-profile";
-    else
-        return "redirect:/login";
-}
+//    @GetMapping("/buyer-profile")
+//    public String gotToBuyer(Model model) {
+//    User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    User user = userDoa.findUserById(loggedIn.getId());
+//    model.addAttribute("userRoleBuyer", user);
+//    model.addAttribute("favorites", user.getFavorites());
+//    if(loggedIn.getUserRole().equals("buyer"))
+//        return "users/buyer-profile";
+//    else
+//        return "redirect:/login";
+//}
 
 }
