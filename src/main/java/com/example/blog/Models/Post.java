@@ -137,5 +137,12 @@ public class Post {
     public void setFavorites(Set<User> favorites) {
         this.favorites = favorites;
     }
+
+    public long getFavoritesPostId() {
+        return this.id;
+    }
+
+
+
 }
 

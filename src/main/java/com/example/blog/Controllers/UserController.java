@@ -48,10 +48,10 @@ public class UserController {
     public String gotToBlogger(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", loggedIn);
+            User user = userDoa.findUserById(loggedIn.getId());
+            model.addAttribute("user", user);
             model.addAttribute("posts", postDao.findAll());
-            model.addAttribute("favorites", loggedIn.getFavorites());
-            System.out.println(loggedIn.getFavorites().size());
+            model.addAttribute("favorites", user.getFavorites());
         }
         return "users/profile";
     }
@@ -156,17 +156,5 @@ public class UserController {
         model.addAttribute("scp", true);
         return "users/editProfile";
     }
-
-//    @GetMapping("/buyer-profile")
-//    public String gotToBuyer(Model model) {
-//    User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    User user = userDoa.findUserById(loggedIn.getId());
-//    model.addAttribute("userRoleBuyer", user);
-//    model.addAttribute("favorites", user.getFavorites());
-//    if(loggedIn.getUserRole().equals("buyer"))
-//        return "users/buyer-profile";
-//    else
-//        return "redirect:/login";
-//}
 
 }

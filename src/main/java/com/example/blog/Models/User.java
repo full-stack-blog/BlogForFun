@@ -36,7 +36,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
-    @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Post> favorites = new ArrayList<>();
 
 
@@ -158,5 +158,8 @@ public class User {
     public void removeFavorite(Post post) {
         this.posts.remove(post);
         post.getFavorites().remove(this);
+    }
+    public Boolean containsPost(Post post) {
+        return this.favorites.contains(post);
     }
 }
