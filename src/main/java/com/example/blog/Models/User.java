@@ -58,9 +58,10 @@ public class User {
         firstName = copy.firstName;
         profileImage = copy.profileImage;
         favorites = copy.favorites;
+        comments = copy.comments;
     }
 
-    public User(long id,String userRole, String username, String password, String email, List<Post> posts, String firstName, String lastName, String profileImage, List<Post>favorites) {
+    public User(long id,String userRole, String username, String password, String email, List<Post> posts, String firstName, String lastName, String profileImage, List<Post>favorites, List<Comment> comments) {
         this.id = id;
         this.userRole = userRole;
         this.username = username;
@@ -71,6 +72,7 @@ public class User {
         this.lastName = lastName;
         this.profileImage = profileImage;
         this.favorites = favorites;
+        this.comments = comments;
     }
 
     public long getId() {
@@ -163,5 +165,13 @@ public class User {
     }
     public Boolean containsPost(Post post) {
         return this.favorites.contains(post);
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

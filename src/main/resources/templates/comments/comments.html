@@ -14,30 +14,39 @@
 
                 <!--  FORM -->
 
-                <form th:action="@{|/comments/post/${post_id}|}" th:method="POST" th:object="${comment}">
-                    <!-- <div class="col-xl-12">
-                        <label for="title">Comment</label>
-                        <input type="text" th:field="*{comment_txt}" placeholder="Enter tile"/>
-                    </div> -->
-                    <div class="col-xl-12">
-                        <label for="body">body</label>
-                        <input type="text" th:field="*{comment_txt}" placeholder="Enter text"/>
 
-                        <!-- <label for="access" class="m-1 font-weight-bold">Select Access</label><br>
-                        <select class="selectpicker text-center" id="access" name="access" multiple data-live-search="false"
-                                data-flip="false">
-                        <option selected>Select Category</option>-->
-                            <!-- <option name="categories" id="public" value="public">Public</option>
-                            <option name="categories" id="private" value="private">Private</option>
-                        </select> -->
-                    </div>
-
-                    <div class="col-xl-12">
-                        <!--                            <button class="loginSign-btn" id="save">Save Post</button>-->
-                        <input id="save" class="" value="Create Post" type="submit"/>
-
-                    </div>
+                <form th:action="@{|/comments/post/${post.id}|}" th:method="post" th:object="${comment}">
+                    <label for="comment_txt" class="font-weight-bold">Add a comment</label><br>
+                    <input id="comment_txt" class="mx-auto w-75 shadow-sm form-control" placeholder="Enter comment.."
+                           th:field="*{comment_txt}"/>
+                    <br/>
+                    <input type="submit" class="editComment-button"/>
                 </form>
+
+<!--                <form th:action="@{|/comments/post/${post.id}|}" th:method="POST" th:object="${comment}">-->
+<!--                    &lt;!&ndash; <div class="col-xl-12">-->
+<!--                        <label for="title">Comment</label>-->
+<!--                        <input type="text" th:field="*{comment_txt}" placeholder="Enter tile"/>-->
+<!--                    </div> &ndash;&gt;-->
+<!--                    <div class="col-xl-12">-->
+<!--                        <label for="body">body</label>-->
+<!--                        <input type="text" th:field="*{comment_txt}" placeholder="Enter text"/>-->
+
+<!--                        &lt;!&ndash; <label for="access" class="m-1 font-weight-bold">Select Access</label><br>-->
+<!--                        <select class="selectpicker text-center" id="access" name="access" multiple data-live-search="false"-->
+<!--                                data-flip="false">-->
+<!--                        <option selected>Select Category</option>&ndash;&gt;-->
+<!--                            &lt;!&ndash; <option name="categories" id="public" value="public">Public</option>-->
+<!--                            <option name="categories" id="private" value="private">Private</option>-->
+<!--                        </select> &ndash;&gt;-->
+<!--                    </div>-->
+
+<!--                    <div class="col-xl-12">-->
+<!--                        &lt;!&ndash;                            <button class="loginSign-btn" id="save">Save Post</button>&ndash;&gt;-->
+<!--                        <input id="save" class="" value="Create Post" type="submit"/>-->
+
+<!--                    </div>-->
+<!--                </form>-->
             </div>
         </div>
     </div>

@@ -36,27 +36,26 @@ public class CommentController {
 
     @GetMapping("/comments/post/{id}")
         public String getPostCommentForm(@PathVariable long id, Model model) {
-            // Post post = postDao.getOne(id);
-            model.addAttribute("post_id", id);
+             Post post = postDao.getOne(id);
+            model.addAttribute("post", post);
             model.addAttribute("comment", new Comment());
             return "comments/comments";
         }
 
     //this will be the mapping for the comment creation form
-    @PostMapping("comments/post/${post_id}")
-    public String createResponse(@PathVariable long post_id, Model model, @RequestParam String comment) {
-        Post post = postDao.getOne(post_id);
+    @PostMapping("/comments/post/{id}")
+    public String createResponse(@PathVariable long id, Model model, @RequestParam String comment_txt) {
+        Post post = postDao.getOne(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Comment com = new Comment();
-
-        com.setComment_txt(comment);
+        com.setComment_txt(comment_txt);
         com.setUser(user);
         com.setCreateDate(new Timestamp(System.currentTimeMillis()));
         com.setPost(post);
 
         commentDao.save(com);
 
-        return "redirect:/posts/" + post_id;
+        return "redirect:/post/" + id;
     }
 }
 
