@@ -50,7 +50,8 @@ public class Post {
     )
     private Set<User> favorites = new HashSet<>();
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Comment> comments;
 
     public Post() {}
 
@@ -62,9 +63,10 @@ public class Post {
         this.access = copy.access;
         this.categories = copy.categories;
         this.favorites = copy.favorites;
+        this.comments = copy.comments;
     }
 
-    public Post(long id, String title, String body, User user, String access, List<Categories> categories, Set<User> favorites) {
+    public Post(long id, String title, String body, User user, String access, List<Categories> categories, Set<User> favorites, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -72,6 +74,7 @@ public class Post {
         this.access = access;
         this.categories = categories;
         this.favorites = favorites;
+        this.comments = comments;
     }
 
     public String getPostImageUrl() {
@@ -142,7 +145,12 @@ public class Post {
         return this.id;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
 
-
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
 

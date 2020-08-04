@@ -24,21 +24,21 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-
-    @Column (nullable = false)
-    String commentedAt;
+//
+//    @Column (nullable = false)
+//    String commentedAt;
 
     @Column(name = "create_date", updatable = false)
     @CreationTimestamp
     private Timestamp createDate;
 
-    private Post post_id;
-
-    private User user_id;
+//    private Post post_id;
+//
+//    private User user_id;
 
    
 
@@ -48,17 +48,18 @@ public class Comment {
 
     }
 
-    public Comment(long comment_id, String comment_txt, Post post_id){
-        this.comment_id = comment_id;
-        this.comment_txt = comment_txt;
-        this.post_id = post_id;
-    }
+//    public Comment(long comment_id, String comment_txt, Post post){
+//        this.comment_id = comment_id;
+//        this.comment_txt = comment_txt;
+//        this.post = post;
+////        this.post_id = post_id;
+//    }
 
-    public Comment(long comment_id, String comment_txt, Post post_id, User user_id){
+    public Comment(long comment_id, String comment_txt, Post post, User user){
         this.comment_id = comment_id;
         this.comment_txt = comment_txt;
-        this.post_id = post_id;
-        this.user_id = user_id;
+        this.post = post;
+//        this.user_id = user_id;
 
     }
 
@@ -96,29 +97,29 @@ public class Comment {
         this.user = user;
     }
 
-    public String getCommentedAt() {
-        return this.commentedAt;
-    }
+//    public String getCommentedAt() {
+//        return this.commentedAt;
+//    }
+//
+//    public void setCommentedAt(String commentedAt) {
+//        this.commentedAt = commentedAt;
+//    }
 
-    public void setCommentedAt(String commentedAt) {
-        this.commentedAt = commentedAt;
-    }
-
-    public Post getPost_id() {
-        return this.post_id;
-    }
-
-    public void setPost_id(Post post_id) {
-        this.post_id = post_id;
-    }
-
-    public User getUser_id() {
-        return this.user_id;
-    }
-
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
-    }
+//    public Post getPost_id() {
+//        return this.post_id;
+//    }
+//
+//    public void setPost_id(Post post_id) {
+//        this.post_id = post_id;
+//    }
+//
+//    public User getUser_id() {
+//        return this.user_id;
+//    }
+//
+//    public void setUser_id(User user_id) {
+//        this.user_id = user_id;
+//    }
 
 	public void setCreateDate(Timestamp timestamp) {
     }
@@ -167,5 +168,8 @@ public class Comment {
     // }
 
 
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
 
 }
