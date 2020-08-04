@@ -14,13 +14,13 @@
             </a>
         </div>
     </div>
-    <img th:attr="src=@{${post.postImageUrl}}" style="width: 5em; height: 5em;"/>
+    <img th:attr="src=@{${post.postImageUrl}}" style="width: 15em; height: 10em;"/>
     <h2 th:text="${post.user.username}"></h2>
     <h2 th:text="${post.title}"></h2>
     <h4 th:text="${post.body}"></h4>
     <div th:each="comment : ${post.comments}">
-        <h4 th:text="${comment.comment_txt}"></h4>
-        <h4 th:text="${comment.prettyDate()}"></h4>
+        <p th:text="${comment.comment_txt}" style="width: 40%;height: 100px;padding: 10px; background-color: lightgray;"></p>
+        <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
 
     </div>
     <div th:each="category : ${post.categories}">

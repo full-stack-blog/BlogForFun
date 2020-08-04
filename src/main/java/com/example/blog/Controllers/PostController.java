@@ -198,10 +198,17 @@ public class PostController {
         User user2 = userDoa.findUserById(loggedInUser.getId());
         Post post = postDao.getOne(id);
         for (User user : userDoa.findAll()) {
-            if (user.getFavorites().contains(post)) {
-                user.removeFavorite(post);
-                userDoa.save(user);
-            }
+//            if (user.getFavorites().contains(post)) {
+//              user.removeFavorite(post);
+//               userDoa.save(user);
+//           }
+//            for( Post favorite: user.getFavorites()){
+//                if (favorite.getFavoritesPostId() == post.getId())
+//                    user.removeFavorite(post);
+//                    userDoa.save(user);
+//
+//            }
+
         }
         if (!post.getFavorites().isEmpty()) {
             post.getFavorites().clear();

@@ -17,7 +17,7 @@
 
                 <form th:action="@{|/comments/post/${post.id}|}" th:method="post" th:object="${comment}">
                     <label for="comment_txt" class="font-weight-bold">Add a comment</label><br>
-                    <input id="comment_txt" class="mx-auto w-75 shadow-sm form-control" placeholder="Enter comment.."
+                    <input id="comment_txt" class="mx-auto w-100 shadow-sm form-control" placeholder="Enter comment.."
                            th:field="*{comment_txt}"/>
                     <br/>
                     <input type="submit" class="editComment-button"/>
