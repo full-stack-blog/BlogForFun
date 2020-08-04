@@ -37,9 +37,18 @@
                 <button type="submit">Delete</button>
             </form>
         </div>
-        <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
-            <button type="submit">Add to Favorites</button>
-        </form>
+
+        <div th:if="|${!user.containsPost(post)}|">
+            <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
+                <button type="submit">Add to Favorites</button>
+            </form>
+        </div>
+        <div th:if="|${user.containsPost(post)}|">
+            <form th:action="@{|/favorites/${post.id}/delete|}"
+                  th:method="POST">
+                <button type="submit">Remove Favorite</button>
+            </form>
+        </div>
     </div>
 </div>
 
