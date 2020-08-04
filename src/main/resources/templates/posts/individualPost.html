@@ -18,7 +18,9 @@
     <h2 th:text="${post.user.username}"></h2>
     <h2 th:text="${post.title}"></h2>
     <h4 th:text="${post.body}"></h4>
-
+    <div th:each="comment : ${post.comments}">
+        <h4 th:text="${comment.comment_txt}"></h4>
+    </div>
     <div th:each="category : ${post.categories}">
         <h4 th:text="${category.name}"></h4>
     </div>
