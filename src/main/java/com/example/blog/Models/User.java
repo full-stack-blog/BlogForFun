@@ -39,6 +39,8 @@ public class User {
     @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Post> favorites = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Comment> comments;
 
     public User() {
     }
