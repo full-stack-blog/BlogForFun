@@ -43,6 +43,14 @@ public class HomeController {
         return "about-BlogForFun";
     }
 
+    @GetMapping("/test")
+    public String testpage(Model model){
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
 
+        }
+        return "Test/test";
+    }
 
 }
