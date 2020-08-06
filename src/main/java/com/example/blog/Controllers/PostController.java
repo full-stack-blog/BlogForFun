@@ -1,15 +1,18 @@
 package com.example.blog.Controllers;
 
 import com.example.blog.Models.Categories;
-import com.example.blog.Models.Favorites;
+// import com.example.blog.Models.Favorites;
 import com.example.blog.Models.Post;
 import com.example.blog.Models.User;
-import com.example.blog.Repositories.FavoritesRepo;
+// import com.example.blog.Repositories.FavoritesRepo;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import com.example.blog.Services.EmailService;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +28,13 @@ public class PostController {
     private UserRepo userDoa;
     private PostRepo postDao;
     private EmailService emailservice;
-    private FavoritesRepo favoritesDao;
+    // private FavoritesRepo favoritesDao;
 
-    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice, FavoritesRepo favoritesDao) {
+    public PostController(UserRepo userDoa, PostRepo postDao, EmailService emailservice) {
         this.userDoa = userDoa;
         this.postDao = postDao;
         this.emailservice = emailservice;
-        this.favoritesDao = favoritesDao;
+        // this.favoritesDao = favoritesDao;
     }
 
     @GetMapping("/posts")
@@ -45,7 +48,7 @@ public class PostController {
         if (search == null) {
             List<Post> posts = postDao.findAll();
             model.addAttribute("posts", posts);
-        }else {
+        } else {
             List<Post> posts = postDao.findAll();
             List<Post> searchedPosts = new ArrayList<>();
             for (Post post : posts) {
@@ -59,15 +62,15 @@ public class PostController {
                         searchedPosts.add(post);
                         continue;
                     }
-                    if(post.getUser().getUsername().toLowerCase().contains(search.toLowerCase())){
+                    if (post.getUser().getUsername().toLowerCase().contains(search.toLowerCase())) {
                         searchedPosts.add(post);
                         continue;
                     }
-                    if(post.getCategories().toArray().length > 0){
+                    if (post.getCategories().toArray().length > 0) {
 //                        System.out.println("inside categories array length  :  " + post.getCategories().toArray().length);
-                        for(Categories category : post.getCategories()){
+                        for (Categories category : post.getCategories()) {
 //                            System.out.println(category.getName() + " : " + post.getId());
-                            if(category.getName().toLowerCase().contains(search.toLowerCase())){
+                            if (category.getName().toLowerCase().contains(search.toLowerCase())) {
                                 searchedPosts.add(post);
 //                                System.out.println("added " + post.getId());
                             }
@@ -83,7 +86,7 @@ public class PostController {
     }
 
     @GetMapping("/contact-us/{id}")
-    public String contactPage(Model model, @PathVariable long id){
+    public String contactPage(Model model, @PathVariable long id) {
 
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
@@ -97,15 +100,15 @@ public class PostController {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
-        }
-        else{
+        } else {
             return "redirect:/login";
         }
         return "contact-us";
     }
-// contact admin and report posts method //
+
+    // contact admin and report posts method //
     @PostMapping("/contact-us/{id}")
-    public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "body") String body, @PathVariable long id){
+    public String contactForm(@RequestParam(name = "subject") String subject, @RequestParam(name = "body") String body, @PathVariable long id) {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String desc = "Complainant: " + u.getEmail() + "\nComplaint: " + body;
         EmailService emailService = new EmailService();
@@ -121,10 +124,12 @@ public class PostController {
     public String viewIndividualPost(@PathVariable long id, Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", loggedIn);
+            User user = userDoa.getOne(loggedIn.getId());
+            model.addAttribute("user", user);
         }
         Post post = postDao.getOne(id);
         model.addAttribute("post", post);
+        model.addAttribute("posts", postDao.findAll());
         return "posts/individualPost";
     }
 
@@ -134,8 +139,8 @@ public class PostController {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
         }
-            model.addAttribute("post", new Post());
-            return "posts/create";
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
@@ -145,6 +150,12 @@ public class PostController {
         post.setTitle(title);
         post.setBody(body);
         post.setPostImageUrl(postImageUrl);
+//        if(postImageUrl != null){
+//            post.setPostImageUrl(postImageUrl);
+//        }
+//        else{
+//            post.setPostImageUrl('example here');
+//        }
         post.setUser(u);
         post.setAccess(access);
         post.setCategories(categories);
@@ -183,61 +194,32 @@ public class PostController {
 
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
-        postDao.deleteById(id);
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postDao.getOne(id);
+        postDao.delete(post);
+        System.out.println("before update user2");
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/favorite/{id}")
+    public String addToFavorites(@PathVariable long id) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDoa.findUserById(loggedInUser.getId());
+        Post post = postDao.getOne(id);
+        user.addFavorite(post);
+        userDoa.save(user);
+        postDao.save(post);
         return "redirect:/profile";
     }
 
     @PostMapping("/favorites/{id}/delete")
-    public String deleteFavorite(@PathVariable long id) {
-        favoritesDao.deleteById(id);
+    public String removeFromFavorites(@ModelAttribute User user, @PathVariable long id) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        user = userDoa.findUserById(loggedInUser.getId());
+        Post post = postDao.getOne(id);
+        user.removeFavorite(post);
+        userDoa.save(user);
+        postDao.save(post);
         return "redirect:/profile";
     }
-
-
-
-//    @PostMapping("/admin-profile/{id}/delete")
-//    public String deletePostAdmin(@PathVariable long id){
-//        postDao.deleteById(id);
-//        return "redirect:/admin-profile";
-//    }
-
-//    @GetMapping("/admin-profile/{id}/update2")
-//    public String updateDogPostFormAdmin(@PathVariable long id, Model model) {
-//        model.addAttribute("allPosts", postDao.getOne(id));
-//        return "posts/update2";
-//    }
-
-//    @PostMapping("/admin-profile/{id}/update2")
-//    public String updateBreederPostAdmin(@PathVariable long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String dogDescription, @RequestParam String dogPrice, @RequestParam String images) {
-//        postDao Post = PostDao.getOne(id);
-//        Post.set;
-//        Post.set;
-//        Post.set;
-//        Post.set;
-//        Post.set;
-//        postDao.save(Post);
-//        return "redirect:/admin-profile";
-//    }
-
-    @PostMapping("/favorite/{id}")
-    public String favorite(@PathVariable long id, Model model) {
-        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
-            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", loggedIn);
-            Post post = postDao.getOne(id);
-            Favorites favorites = new Favorites();
-            favorites.setAccess(post.getAccess());
-            favorites.setBody(post.getBody());
-            favorites.setFavCategories(post.getCategories());
-            favorites.setPostImageUrl(post.getPostImageUrl());
-            favorites.setUser(loggedIn);
-            favorites.setTitle(post.getTitle());
-            favorites.setId(post.getId());
-            favoritesDao.save(favorites);
-            return "redirect:/profile";
-
-        }
-        return "redirect:/login";
-    }
-
 }

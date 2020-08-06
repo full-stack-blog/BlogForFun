@@ -8,27 +8,31 @@
 
 <div class="container">
     <div sec:authorize="isAuthenticated()">
-        <div th:if="${user.id} != ${post.getUser().id}">
+        <div th:if="${user.id} != ${post.user.id}">
             <a th:href="@{|/contact-us/${post.id}|}">
                 <button>Report an Issue</button>
             </a>
         </div>
     </div>
-    <img th:attr="src=@{${post.postImageUrl}}" style="width: 5em; height: 5em;"/>
+    <img th:attr="src=@{${post.postImageUrl}}" style="width: 15em; height: 10em;"/>
     <h2 th:text="${post.user.username}"></h2>
     <h2 th:text="${post.title}"></h2>
     <h4 th:text="${post.body}"></h4>
+    <div th:each="comment : ${post.comments}">
+        <p th:text="${comment.comment_txt}" style="width: 40%;height: 100px;padding: 10px; background-color: lightgray;"></p>
+        <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
 
+    </div>
     <div th:each="category : ${post.categories}">
         <h4 th:text="${category.name}"></h4>
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        <div th:if="${user.id} != ${post.getUser().id}">
-            <a href="/contact-us">
-                <button>Report Issue</button>
-            </a>
-        </div>
+<!--        <div th:if="${user.id} != ${post.getUser().id}">-->
+<!--            <a href="/contact-us">-->
+<!--                <button>Report Issue</button>-->
+<!--            </a>-->
+<!--        </div>-->
         <div th:if="${user.id} == ${post.getUser().id} OR ${user.userRole} == 'admin'">
             <a th:href="@{|/posts/${post.id}/edit|}">
                 <button>Edit</button>
@@ -37,9 +41,23 @@
                 <button type="submit">Delete</button>
             </form>
         </div>
-        <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
-            <button type="submit">Add to Favorites</button>
-        </form>
+
+        <div th:if="|${!user.containsPost(post)}|">
+            <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
+                <button type="submit">Add to Favorites</button>
+            </form>
+        </div>
+        <div th:if="|${user.containsPost(post)}|">
+            <form th:action="@{|/favorites/${post.id}/delete|}"
+                  th:method="POST">
+                <button type="submit">Remove Favorite</button>
+            </form>
+        </div>
+            <a th:href="@{|/comments/post/${post.id}|}"><button>Comment</button></a>
+<!--        <form th:action="@{|/comments/post/${post.id}|}"-->
+<!--              th:method="POST">-->
+<!--            <button type="submit">Comment</button>-->
+<!--        </form>-->
     </div>
 </div>
 

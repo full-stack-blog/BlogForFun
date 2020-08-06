@@ -1,7 +1,7 @@
 package com.example.blog.Controllers;
 
 import com.example.blog.Models.User;
-import com.example.blog.Repositories.FavoritesRepo;
+// import com.example.blog.Repositories.FavoritesRepo;
 import com.example.blog.Repositories.PostRepo;
 import com.example.blog.Repositories.UserRepo;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,13 +19,13 @@ public class UserController {
     private UserRepo userDoa;
     private PasswordEncoder passwordEncoder;
     private PostRepo postDao;
-    private FavoritesRepo favoritesDao;
+    // private FavoritesRepo favoritesDao;
 
-    public UserController(UserRepo userDoa, PasswordEncoder passwordEncoder, PostRepo postDao, FavoritesRepo favoritesDao) {
+    public UserController(UserRepo userDoa, PasswordEncoder passwordEncoder, PostRepo postDao) {
         this.userDoa = userDoa;
         this.passwordEncoder = passwordEncoder;
         this.postDao = postDao;
-        this.favoritesDao = favoritesDao;
+        // this.favoritesDao = favoritesDao;
     }
 
     @GetMapping("/sign-up")
@@ -48,9 +48,9 @@ public class UserController {
     public String gotToBlogger(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("user", loggedIn);
+            User user = userDoa.findUserById(loggedIn.getId());
+            model.addAttribute("user", user);
             model.addAttribute("posts", postDao.findAll());
-            model.addAttribute("favorites", favoritesDao.findAll());
         }
         return "users/profile";
     }
@@ -155,6 +155,5 @@ public class UserController {
         model.addAttribute("scp", true);
         return "users/editProfile";
     }
-
 
 }
