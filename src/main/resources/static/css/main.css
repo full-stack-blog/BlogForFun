@@ -1,12 +1,8 @@
 /*========================================Theme colors===============================================*/
 
-/*#A59F97*/
-/*#5F0F39*/
-/*#2096A4*/
-/*#431D31*/
-/*#DED0D0*/
-/*#621012*/
-/*#631936*/
+/*.about-i {*/
+/*    #A59F97 #5f0f39 #2096A4 #431D31 #DED0D0 #621012 #631936*/
+/*}*/
 
 /*========================================typewriter animation=========================================*/
 
@@ -108,11 +104,13 @@
 .landing-background{
     height: 100%;
     z-index: -999;
-    background: -webkit-linear-gradient(left, black 50%, white 50%);
-    background: -moz-linear-gradient(left, black 50%, white 50%);
-    background: -ms-linear-gradient(left, black 50%, white 50%);
-    background: linear-gradient(left, black 50%, white 50%);
+    background: -webkit-linear-gradient(left, #621012 50%, white 50%);
+    background: -moz-linear-gradient(left, #621012 50%, white 50%);
+    background: -ms-linear-gradient(left, #621012 50%, white 50%);
+    background: linear-gradient(left, #621012 50%, white 50%);
 }
+
+
 
 .parallax {
     /* The image used */
