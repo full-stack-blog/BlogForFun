@@ -2,13 +2,132 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: head('Landing')"></head>
 
-<body>
-<header class="container"></header>
-<div class="jumbotron jumbotron-fluid mb-0 jumbotron-landing h-100">
-    <h1 class="text-center text-light display-1" id="h1-titles">Blogg - ie</h1>
-</div>
+<body class="landing-background">
+
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+
+<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
+
+    <video autoplay muted loop poster="">
+        <source src="/videos/blogger.mp4" type="video/mp4">
+    </video>
+
+    <div id="h1"></div>
+
+    <div class="text-white mt-5">
+        <div class="text-center mt-5">
+            <h5 class="mt-5">For whatever your "ie" is...</h5>
+        </div>
+    </div>
+
+</div>
+
+<div class="parallax">
+    <h4 class="text-light p-3" style="z-index: 100;position: absolute; width: 35%">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
+        cupiditate dolorum, eaque earum eos exercitationem,
+        explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
+        quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
+    </h4>
+    <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+         style="width: 300px;" alt="landing image" class="rounded mx-auto">
+</div>
+
+
+<div class="parallax">
+    <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+         style="width: 300px;" alt="landing image" class="mr-auto">
+    <h4 class="text-right">hello hello hello</h4>
+</div>
+
+
+<div class="parallax">
+    <h4 class="text-left text-light">hello hello hello</h4>
+    <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+         style="width: 300px;" alt="landing image" class="ml-auto">
+</div>
+
+
+<!-- Modal -->
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <form th:action="@{/login}" method="post">-->
+<!--                <label class="font-weight-bold" for="username">Username</label><br>-->
+<!--                <input id="username" placeholder="Enter username..." name="username" type="text"-->
+<!--                       class="mx-auto w-75 shadow-sm form-control"/><br>-->
+<!--                <label class="font-weight-bold" for="password">Password</label><br>-->
+<!--                <input id="password" placeholder="Enter password..." name="password" type="password"-->
+<!--                       class="mx-auto w-75 shadow-sm form-control"/><br>-->
+<!--                <br>-->
+<!--                <input class="shadow mb-3" type="submit"-->
+<!--                       value="Login"/>-->
+<!--            </form>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Please Login</button>-->
 
 <div th:replace="fragments/scripts.html :: scripts"></div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function (event) {
+        // array with texts to type in typewriter
+        var dataText = ["Bloggie.", "Foodie.", "Groupie.", "Bougie."];
+
+        // type one text in the typwriter
+        // keeps calling itself until the text is finished
+        function typeWriter(text, i, fnCallback) {
+            // chekc if text isn't finished yet
+            if (i < (text.length)) {
+                // add next character to h1
+                document.querySelector("#h1").innerHTML = text.substring(0, i + 1) + '<span id="text-span" aria-hidden="true"></span>';
+
+                // wait for a while and call this function again for next character
+                setTimeout(function () {
+                    typeWriter(text, i + 1, fnCallback)
+                }, 300);
+            }
+            // text finished, call callback if there is a callback function
+            else if (typeof fnCallback == 'function') {
+                // call callback after timeout
+                setTimeout(fnCallback, 700);
+            }
+        }
+
+        // start a typewriter animation for a text in the dataText array
+        function StartTextAnimation(i) {
+            if (typeof dataText[i] == 'undefined') {
+                setTimeout(function () {
+                    StartTextAnimation(0);
+                }, 300);
+            }
+            // check if dataText[i] exists
+            if (i < dataText[i].length) {
+                // text exists! start typewriter animation
+                typeWriter(dataText[i], 0, function () {
+                    // after callback (and whole text has been animated), start next text
+                    StartTextAnimation(i + 1);
+                });
+            }
+        }
+
+        // start the text animation
+        StartTextAnimation(0);
+    });
+</script>
 </html>

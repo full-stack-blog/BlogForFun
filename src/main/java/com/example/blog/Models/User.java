@@ -1,6 +1,7 @@
 package com.example.blog.Models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,8 +36,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
+    @ManyToMany(mappedBy = "favorites", fetch = FetchType.EAGER) //, cascade = CascadeType.ALL
+    private List<Post> favorites = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Comment> comments;
+
     public User() {
     }
+
+
 
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
@@ -48,9 +57,11 @@ public class User {
         lastName = copy.lastName;
         firstName = copy.firstName;
         profileImage = copy.profileImage;
+        favorites = copy.favorites;
+        comments = copy.comments;
     }
 
-    public User(long id,String userRole, String username, String password, String email, List<Post> posts, String firstName, String lastName, String profileImage) {
+    public User(long id,String userRole, String username, String password, String email, List<Post> posts, String firstName, String lastName, String profileImage, List<Post>favorites, List<Comment> comments) {
         this.id = id;
         this.userRole = userRole;
         this.username = username;
@@ -60,6 +71,8 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.profileImage = profileImage;
+        this.favorites = favorites;
+        this.comments = comments;
     }
 
     public long getId() {
@@ -132,5 +145,33 @@ public class User {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public List<Post> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Post> favorites) {
+        this.favorites = favorites;
+    }
+
+    public void addFavorite(Post post) {
+        this.posts.add(post);
+        post.getFavorites().add(this);
+    }
+    public void removeFavorite(Post post) {
+        this.posts.remove(post);
+        post.getFavorites().remove(this);
+    }
+    public Boolean containsPost(Post post) {
+        return this.favorites.contains(post);
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
