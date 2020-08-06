@@ -111,7 +111,7 @@
 
                         <div class="card-columns">
 
-                            <div th:each="favorite : ${favorites}">
+                            <div th:each="favorite : ${user.favorites}">
 
                                 <a th:href="@{|/post/${favorite.getFavoritesPostId()}|}">
                                     <div class="img-container card rounded card-hover">

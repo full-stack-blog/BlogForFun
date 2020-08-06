@@ -51,7 +51,6 @@ public class UserController {
             User user = userDoa.findUserById(loggedIn.getId());
             model.addAttribute("user", user);
             model.addAttribute("posts", postDao.findAll());
-            model.addAttribute("favorites", user.getFavorites());
         }
         return "users/profile";
     }

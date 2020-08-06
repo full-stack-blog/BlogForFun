@@ -42,7 +42,7 @@ public class Post {
     private List<Categories> categories;
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER) //cascade = CascadeType.ALL,
     @JoinTable(
             name="favorites",
             joinColumns={@JoinColumn(name="post_id")},

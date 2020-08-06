@@ -195,26 +195,9 @@ public class PostController {
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user2 = userDoa.findUserById(loggedInUser.getId());
         Post post = postDao.getOne(id);
-        for (User user : userDoa.findAll()) {
-//            if (user.getFavorites().contains(post)) {
-//              user.removeFavorite(post);
-//               userDoa.save(user);
-//           }
-//            for( Post favorite: user.getFavorites()){
-//                if (favorite.getFavoritesPostId() == post.getId())
-//                    user.removeFavorite(post);
-//                    userDoa.save(user);
-//
-//            }
-
-        }
-        if (!post.getFavorites().isEmpty()) {
-            post.getFavorites().clear();
-        }
-        postDao.deleteById(id);
-        userDoa.save(user2);
+        postDao.delete(post);
+        System.out.println("before update user2");
         return "redirect:/profile";
     }
 
