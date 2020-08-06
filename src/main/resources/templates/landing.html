@@ -22,21 +22,21 @@
 
 </div>
 
-<div class="parallax">
-    <h4 class="text-light p-3" style="z-index: 100;position: absolute; width: 35%">
+<div class="parallax ">
+    <h4 class="text-light p-3" style="z-index: 100; width: 35%">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias corporis,
         cupiditate dolorum, eaque earum eos exercitationem,
         explicabo fuga ipsam itaque magni maiores molestiae perspiciatis
         quasi quo repellendus repudiandae tempora velit?Lorem ipsum dolor sit amet,
     </h4>
     <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-         style="width: 300px;" alt="landing image" class="rounded mx-auto">
+         style="width: 300px;" alt="landing image" class="rounded mx-auto align-right slide-in active">
 </div>
 
 
 <div class="parallax">
     <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-         style="width: 300px;" alt="landing image" class="mr-auto">
+         style="width: 300px;" alt="landing image" class="mr-auto align-left slide-in active">
     <h4 class="text-right">hello hello hello</h4>
 </div>
 
@@ -44,7 +44,7 @@
 <div class="parallax">
     <h4 class="text-left text-light">hello hello hello</h4>
     <img src="https://images.pexels.com/photos/2065695/pexels-photo-2065695.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-         style="width: 300px;" alt="landing image" class="ml-auto">
+         style="width: 300px;" alt="landing image" class="ml-auto align-right slide-in active">
 </div>
 
 
@@ -129,5 +129,40 @@
         // start the text animation
         StartTextAnimation(0);
     });
+
+    function debounce(func, wait = 20, immediate = true) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
+
+    const sliderImages = document.querySelectorAll('.slide-in');
+
+    function checkSlide() {
+        sliderImages.forEach(sliderImage => {
+// half way through the image
+            const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+// bottom of the image
+            const imageBottom = sliderImage.offsetTop + sliderImage.height;
+            const isHalfShown = slideInAt > sliderImage.offsetTop;
+            const isNotScrolledPast = window.scrollY < imageBottom;
+            if (isHalfShown && isNotScrolledPast) {
+                sliderImage.classList.add('active');
+            } else {
+                sliderImage.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', debounce(checkSlide));
 </script>
 </html>
