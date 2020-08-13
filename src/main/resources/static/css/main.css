@@ -6,10 +6,14 @@
 
 /*========================================typewriter animation=========================================*/
 
-/*.h1-titles {*/
-/*    text-shadow: 3px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;*/
-/*}*/
+.text-outline {
+    color: black;
+    -webkit-text-fill-color: #C59D34; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
 
+/*typewriter jumbotron text*/
 #h1 {
     position: absolute;
     top: 40%;
@@ -24,7 +28,6 @@
 
 #text-span {
     border-right: .05em solid;
-    /*animation: typewriter 6.5s steps(50) 2s 1 normal both, blinkTextCursor .5s 18 normal forwards;*/
     animation: caret 1s steps(1) infinite normal both, blinkTextCursor .5s normal forwards;
 }
 
@@ -85,7 +88,6 @@
 .img-container:hover .image {
     opacity: 0.7;
     /*backdrop-filter: contrast(.8) blur(2px);*/
-
 }
 
 .img-container:hover .overlay {
@@ -93,15 +95,16 @@
 }
 
 .text-div {
-    background: rgba(0,0,0,.2);
+    background: rgba(0, 0, 0, .2);
     /*backdrop-filter: contrast(.8) blur(2px);*/
     /*background-color: ;*/
     color: white;
     font-size: 16px;
     /*padding: auto;*/
 }
+
 /*=============================================Video for jumbotron==============================================*/
-.landing-background{
+.landing-background {
     height: 100%;
     z-index: -999;
     background: -webkit-linear-gradient(left, #621012 50%, white 50%);
@@ -111,10 +114,7 @@
 }
 
 
-
 .parallax {
-    /* The image used */
-    /*background-image: url("../images/aerial.jpg");*/
     z-index: -998;
     width: 100%;
     display: flex;
@@ -151,24 +151,10 @@
     position: relative;
 }
 
-/*=============================================Transitions for landing page==========================================*/
+/*=============================================Transitions for landing page images======================================*/
 
-html {
-    box-sizing: border-box;
-    /*background: #ffc600;*/
-    /*font-family: 'helvetica neue';*/
-    /*font-size: 20px;*/
-    /*font-weight: 200;*/
-}
-body {
-    margin: 0;
-}
 *, *:before, *:after {
     box-sizing: inherit;
-}
-
-h1 {
-    margin-top: 0;
 }
 
 .site-wrap {
@@ -197,6 +183,7 @@ h1 {
 .align-left.slide-in {
     transform: translateX(-30%) scale(0.95);
 }
+
 .align-right.slide-in {
     transform: translateX(30%) scale(0.95);
 }
@@ -226,14 +213,10 @@ nav a:hover {
 .profile-a {
     font-size: large;
     color: white;
-    /*transition-duration: 4s;*/
-    /*transition-delay: 2s;*/
-    /*font-family: 'Merienda One', cursive;*/
 }
 
 .profile-a:hover {
     color: #2096A4;
-    /*transform: scale(1.1);*/
 }
 
 .navbar-1 {
@@ -241,7 +224,6 @@ nav a:hover {
 }
 
 .card-hover {
-    /*border: black 2px solid;*/
     transition: transform 1s;
 }
 
