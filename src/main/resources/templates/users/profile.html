@@ -10,11 +10,10 @@
 <div class="profile-grid">
 
     <div class="profile-info pt-4" style="background: #621012">
-        <!--    ///////////////////////////////////////////////////////////////-->
 
         <div class="text-center">
 
-            <a th:href="@{/test}">Test</a>
+<!--            <a th:href="@{/test}">Test</a>-->
 
             <img alt="profile image" style="width: 10em; height: 10em;"
                  class="shadow-lg rounded-circle img-profile m-0-auto"
@@ -35,7 +34,7 @@
 
     </div>
 
-    <div class="posts-area pt-4">
+    <div class="posts-area pt-4" style="position: relative;">
 
 
         <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
@@ -48,62 +47,36 @@
                    aria-controls="favorites" aria-selected="false">Favorites</a>
             </li>
         </ul>
+
         <div class="tab-content" id="myTabContent">
 
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="row pt-4">
 
-                    <div class="col-md-12">
 
-                        <div class="card-columns">
-                            <!--    //////////////////////////////posts/////////////////////////////////-->
+                <div class="card-columns p-3">
+                    <!--    //////////////////////////////posts/////////////////////////////////-->
 
-                            <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
+                    <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
 
-                                <a th:href="@{|/post/${post.id}|}">
+                        <a th:href="@{|/post/${post.id}|}">
 
-                                    <div class="img-container m-4 card rounded card-hover">
+                            <div class="img-container card rounded card-hover">
 
-                                        <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
+                                <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
 
-                                        <div class="overlay">
+                                <div class="overlay">
 
-                                            <div class="text-div h-100 w-100">
-                                                <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
-                                                <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
-                                            </div>
-
-                                        </div>
+                                    <div class="text-div h-100 w-100">
+                                        <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
+                                        <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
                                     </div>
-                                </a>
 
-                                <!--                                <div class="card card-hover bg-white rounded">-->
-                                <!--                                    <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">-->
-                                <!--                                    <div class="card-body">-->
-                                <!--                                        <a th:href="@{|/post/${post.id}|}">-->
-                                <!--                                            <h2 class="card-title text-center" th:text="${post.title}"></h2>-->
-                                <!--                                        </a>-->
-
-                                <!--                                    </div>-->
-                                <!--                                    <div class="card-footer">-->
-                                <!--                                        <div th:if="${user.id} == ${post.getUser().id}">-->
-                                <!--                                            <a th:href="@{|/posts/${post.id}/edit|}">-->
-                                <!--                                                <button>Edit</button>-->
-                                <!--                                            </a>-->
-                                <!--                                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
-                                <!--                                                <button type="submit">Delete</button>-->
-                                <!--                                            </form>-->
-                                <!--                                        </div>-->
-                                <!--                                        <div th:if="${user.id} != ${post.getUser().id}">-->
-                                <!--                                            <h4 th:text="${post.user.username}"></h4>-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
-
+                                </div>
                             </div>
-                        </div>
+                        </a>
 
                     </div>
+
                 </div>
             </div>
             <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="profile-tab">

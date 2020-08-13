@@ -29,7 +29,7 @@
 <!--footer-->
 <div class="fixed-bottom">
     <div th:replace="fragments/scripts.html :: scripts"></div>
-    <footer th:replace="fragments/footer.html :: footer"></footer>
+<!--    <footer th:replace="fragments/footer.html :: footer"></footer>-->
 </div>
 
 <script>
@@ -46,7 +46,7 @@
             timeout = setTimeout(later, wait);
             if (callNow) func.apply(context, args);
         };
-    };
+    }
 
     const sliderImages = document.querySelectorAll('.slide-in');
 
