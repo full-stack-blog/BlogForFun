@@ -7,8 +7,6 @@
     background-color: #621012;
 }
 
-
-
 /*========================================typewriter animation=========================================*/
 
 .text-outline {
@@ -85,11 +83,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 50%;
-    height: auto;
+    width: 70%;
+    height: 70%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    text-align: center;
+}
+.text-div {
+    flex-direction: column;
+    background: rgba(0, 0, 0, .2);
+    /*backdrop-filter: contrast(.8) blur(2px);*/
+    color: white;
 }
 
 .img-container:hover .image {
@@ -101,14 +104,7 @@
     opacity: 1;
 }
 
-.text-div {
-    background: rgba(0, 0, 0, .2);
-    /*backdrop-filter: contrast(.8) blur(2px);*/
-    /*background-color: ;*/
-    color: white;
-    font-size: 16px;
-    /*padding: auto;*/
-}
+
 
 /*=============================================Video for jumbotron==============================================*/
 .landing-background {

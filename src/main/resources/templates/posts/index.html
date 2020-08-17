@@ -6,7 +6,7 @@
 
 <header class="container my-5"></header>
 <div class="jumbotron-show">
-    <h1 class="text-center text-dark display-1" id="h1-show">Posts</h1>
+<!--    <h1 class="text-center text-dark display-1" id="h1-show">Posts</h1>-->
 </div>
 
 <div class="container">
@@ -34,9 +34,9 @@
 
                         <div class="overlay">
 
-                            <div class="text-div h-100 w-100">
-                                <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
-                                <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
+                            <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center">
+                                <h1 class="align-self-center" th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
+                                <p class="align-self-center" th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
                             </div>
 
                         </div>
