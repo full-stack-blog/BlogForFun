@@ -32,7 +32,7 @@
 
                         <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
 
-                        <div class="overlay">
+                        <div class="overlay d-flex">
 
                             <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center">
                                 <h1 class="align-self-center" th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
