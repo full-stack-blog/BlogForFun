@@ -6,7 +6,8 @@
 
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center" style="background-color: black">
+<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center"
+     style="background-color: black">
 
     <video autoplay muted loop poster="">
         <source src="/videos/blogger.mp4" type="video/mp4">
@@ -23,29 +24,24 @@
 </div>
 <div>
 
-    <!--    <div class="text-center">-->
-        <h1 class="text-outline text-center temp-name"style="font-size: 3em">Share any of your favorite events</h1>
-<!--    </div>-->
-
-    <div class="parallax">
+    <div class="parallax d-flex justify-content-between">
+        <h1 class="text-offWhite text-center temp-name align-self-center" style="width: 50vw;">Share any of your favorite events</h1>
         <img src="https://images.pexels.com/photos/196652/pexels-photo-196652.jpeg?cs=srgb&dl=pexels-picjumbocom-196652.jpg&fm=jpg"
-                 style="width: 300px;" alt="landing image" class="bordered mx-auto rounded animatable bounceInRight">
+             style="width: 50vw;" alt="landing image" class="animatable bounceInLeft overflow-hidden">
     </div>
 
-
-    <h1 class="text-outline text-left temp-name" style="font-size: 3em">Find your inner foodie..</h1>
-
-    <div class="parallax">
+    <div class="parallax d-flex justify-content-between">
         <img src="https://images.pexels.com/photos/744780/pexels-photo-744780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-             style="width: 300px;" alt="landing image" class="mr-auto animatable bounceInRight">
+             style="width: 50vw;" alt="landing image" class="animatable bounceInRight overflow-hidden">
+        <h1 class="text-maroon text-center temp-name align-self-center" style="width: 50vw;">Find your inner foodie..</h1>
     </div>
 
-    <h1 class="text-outline text-right temp-name" style="font-size: 3em">Or follow someone else's adventure!</h1>
-
-    <div class="parallax">
+    <div class="parallax d-flex justify-content-between">
+        <h1 class="text-offWhite text-center temp-name align-self-center" style="width: 50vw;">Or follow someone else's adventure!</h1>
         <img src="https://images.pexels.com/photos/554609/pexels-photo-554609.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-             style="width: 300px;" alt="landing image" class="ml-auto animatable bounceInLeft">
+             style="width: 50vw;" alt="landing image" class="animatable bounceInLeft overflow-hidden">
     </div>
+
 </div>
 
 
@@ -138,9 +134,9 @@ align-right slide-in active
 
     function debounce(func, wait = 20, immediate = true) {
         var timeout;
-        return function() {
+        return function () {
             var context = this, args = arguments;
-            var later = function() {
+            var later = function () {
                 timeout = null;
                 if (!immediate) func.apply(context, args);
             };
@@ -178,10 +174,10 @@ align-right slide-in active
     // elements scroll below the fold again?
     // --> Check https://codepen.io/bramus/pen/vKpjNP
 
-    jQuery(function($) {
+    jQuery(function ($) {
 
         // Function which adds the 'animated' class to any '.animatable' in view
-        var doAnimations = function() {
+        var doAnimations = function () {
 
             // Calc current offset and get all animatables
             var offset = $(window).scrollTop() + $(window).height(),
@@ -193,7 +189,7 @@ align-right slide-in active
             }
 
             // Check all animatables and animate them if necessary
-            $animatables.each(function(i) {
+            $animatables.each(function (i) {
                 var $animatable = $(this);
                 if (($animatable.offset().top + $animatable.height() - 20) < offset) {
                     $animatable.removeClass('animatable').addClass('animated');

@@ -1,22 +1,43 @@
 /*========================================Theme colors===============================================*/
 
 /*.about-i {*/
-/*    #A59F97 #5f0f39 #2096A4 #431D31 #ded0d0 #621012 #631936*/
+/*    background-color: #A59F97;*/
+/*    background-color: #5f0f39;*/
+/*    background-color: #2096A4;*/
+/*    background-color: #431D31;*/
+/*    background-color: #ded0d0;*/
+/*    background-color: #621012;*/
+/*    background-color: #631936;*/
 /*}*/
 .background-maroon{
     background-color: #621012;
 }
-
-/*========================================typewriter animation=========================================*/
-
-.text-outline {
-    color: #331a00;
-    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #331a00;
+.landing-background {
+    height: 100%;
+    z-index: -999;
+    background: -webkit-linear-gradient(left, #621012 50%, #ded0d0 50%);
+    background: -moz-linear-gradient(left, #621012 50%, #ded0d0 50%);
+    background: -ms-linear-gradient(left, #621012 50%, #ded0d0 50%);
+    background: linear-gradient(left, #621012 50%, #ded0d0 50%);
+}
+/*========================================text decorations=========================================*/
+.temp-name {
+    font-family: 'Merienda One', cursive;
 }
 
-/*typewriter jumbotron text*/
+.text-outline {
+    /*color: #ded0d0;*/
+    /*-webkit-text-fill-color: #2096A4; !* Will override color (regardless of order) *!*/
+    /*-webkit-text-stroke-width: 1px;*/
+    /*-webkit-text-stroke-color: #ded0d0;*/
+}
+.text-maroon{
+    color: #621012;
+}
+.text-offWhite{
+    color: #ded0d0;
+}
+/*========================================typewriter animation=========================================*/
 #h1 {
     position: absolute;
     top: 40%;
@@ -107,14 +128,6 @@
 
 
 /*=============================================Video for jumbotron==============================================*/
-.landing-background {
-    height: 100%;
-    z-index: -999;
-    background: -webkit-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: -moz-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: -ms-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: linear-gradient(left, #621012 50%, #ded0d0 50%);
-}
 
 
 .parallax {
@@ -122,7 +135,7 @@
     width: 100%;
     display: flex;
     /* Set a specific height */
-    height: 35vh;
+    height: 50vh;
     /* Create the parallax scrolling effect */
     background-attachment: scroll;
     background-position: center;
@@ -210,11 +223,6 @@ nav a {
 nav a:hover {
     color: #2096A4;
 }
-
-.temp-name {
-    font-family: 'Merienda One', cursive;
-}
-
 
 .profile-name {
     color: white;
