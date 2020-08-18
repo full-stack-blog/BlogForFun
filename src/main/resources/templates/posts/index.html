@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: head('Posts')"></head>
-<body>
+
+
+<body class="background-maroon">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 <header class="container my-5"></header>
@@ -9,14 +11,14 @@
 <!--    <h1 class="text-center text-dark display-1" id="h1-show">Posts</h1>-->
 </div>
 
-<div class="container">
+<div class="container background-lavender pt-2">
     <form action="#" th:action="@{/posts}" method="get" class="input-group">
         <input class="form-control rounded" type="text" id="search"
                placeholder="Search: posts, title..."
                name="search" aria-label="Search"/>
         <div class="input-group-append">
             <label for="query-input"></label>
-            <button type="submit" class="btn" id="query-input" value="search">Search</button>
+            <button type="submit" class="btn background-maroon text-light" id="query-input" value="search">Search</button>
             <!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
         </div>
     </form>
