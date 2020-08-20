@@ -6,19 +6,16 @@
 <body class="background-maroon">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<header class="container my-5"></header>
-<div class="jumbotron-show">
-<!--    <h1 class="text-center text-dark display-1" id="h1-show">Posts</h1>-->
-</div>
 
-<div class="container background-lavender pt-2">
+<div class="container bg-white pt-2" style="height: 100vh">
     <form action="#" th:action="@{/posts}" method="get" class="input-group">
         <input class="form-control rounded" type="text" id="search"
                placeholder="Search: posts, title..."
                name="search" aria-label="Search"/>
         <div class="input-group-append">
             <label for="query-input"></label>
-            <button type="submit" class="btn background-maroon text-light" id="query-input" value="search">Search</button>
+            <button type="submit" class="btn background-maroon text-light" id="query-input" value="search">Search
+            </button>
             <!--                            <input class="button fas fa-search fa-lg" type="submit" id="ingredient-query-input"/>-->
         </div>
     </form>
@@ -45,29 +42,6 @@
                     </div>
                 </a>
 
-<!--                <div class="card card-hover shadow bg-white rounded">-->
-<!--                    <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">-->
-<!--                    <div class="card-body">-->
-<!--                        <a th:href="@{|/post/${post.id}|}">-->
-<!--                            <h2 class="card-title text-center" th:text="${post.title}"></h2>-->
-<!--                        </a>-->
-
-<!--                    </div>-->
-<!--                    <div class="card-footer">-->
-<!--                        <div th:if="${user.id} == ${post.getUser().id}">-->
-<!--                            <a th:href="@{|/posts/${post.id}/edit|}">-->
-<!--                                <button>Edit</button>-->
-<!--                            </a>-->
-<!--                            <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">-->
-<!--                                <button type="submit">Delete</button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                        <div th:if="${user.id} != ${post.getUser().id}">-->
-<!--                            <h4 th:text="${post.user.username}"></h4>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
             </div>
 
             <!-- explains if user is a visitor then access is the public posts only -->
@@ -80,9 +54,9 @@
 
                             <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
 
-                            <div class="overlay">
+                            <div class="overlay d-flex">
 
-                                <div class="text-div h-100 w-100">
+                                <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center">
                                     <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
                                     <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
                                 </div>
@@ -90,21 +64,6 @@
                             </div>
                         </div>
                     </a>
-
-<!--                    <div class="card card-hover shadow bg-white rounded">-->
-<!--                        <img class="card-img-top" th:attr="src=@{${post.postImageUrl}}" alt="Recipe image">-->
-<!--                        <div class="card-body">-->
-<!--                            <a th:href="@{|/post/${post.id}|}">-->
-<!--                                <h2 class="card-title text-center" th:text="${post.title}"></h2>-->
-<!--                            </a>-->
-
-<!--                        </div>-->
-<!--                        <div class="card-footer">-->
-<!--                            <h4 th:text="${post.user.username}"></h4>-->
-<!--                        </div>-->
-
-
-<!--                    </div>-->
                 </div>
             </div>
         </div>
