@@ -60,9 +60,10 @@ public class CommentController {
 
     @PostMapping("comments/post/{id}/delete") 
         public String deleteComment(@PathVariable long id) {
+            Post post = postDao.getOne(commentDao.getOne(id).getPost().getId());
             commentDao.deleteById(id);
 
-            return "redirect:/post/" + id;
+            return "redirect:/post/" + post.getId();
         }
 }
 
