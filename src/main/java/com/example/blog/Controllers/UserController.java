@@ -40,6 +40,7 @@ public class UserController {
         user.setPassword(hash);
         user.setUserRole("blogger");
         user.setProfileImage("https://picsum.photos/seed/picsum/200/300");
+        user.setCoverImg("https://picsum.photos/seed/picsum/200/300");
         userDoa.save(user);
         return "redirect:/login";
     }

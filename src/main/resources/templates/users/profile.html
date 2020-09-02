@@ -3,124 +3,115 @@
       class="h-100">
 <head th:replace="fragments/header :: head('Profile')"></head>
 
-
 <body class="h-100">
+
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<div class="profile-grid">
 
-    <div class="profile-info pt-4" style="background: #621012">
-
-        <div class="text-center">
-
-<!--            <a th:href="@{/test}">Test</a>-->
-
-            <img alt="profile image" style="width: 10em; height: 10em;"
-                 class="shadow-lg rounded-circle img-profile m-0-auto"
-                 th:attr="src=@{${user.profileImage}}">
-
-            <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center profile-name p-2 pt-2"></h2>
-            <h4 th:text="${user.username}" class="text-center text-muted profile-name p-2"></h4>
-
-            <a th:href="@{|/profile/edit|}" class="text-left m-1 profile-a">Profile Info</a>
-
-            <!-- //////////////////////Only for Admin//////////////////////////////////-->
-            <div th:if="${user.getUserRole()} == 'admin'">
-                <a th:href="@{|/admin-profile|}" class=" text-left m-1 profile-a">Admin Page</a>
-            </div>
-
-        </div>
+<div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 25%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
 
 
+</div>
+<img alt="profile image"
+     class="shadow-lg rounded-circle fixed-img"
+     th:attr="src=@{${user.profileImage}}">
+<div class="text-center pt-5">
+
+
+    <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center p-2 pt-5"></h2>
+    <h4 th:text="${user.username}" class="text-center text-muted profile-name p-2"></h4>
+
+    <a th:href="@{|/profile/edit|}" class="text-left m-1">Profile Info</a>
+
+    <!-- //////////////////////Only for Admin//////////////////////////////////-->
+    <div th:if="${user.getUserRole()} == 'admin'">
+        <a th:href="@{|/admin-profile|}" class=" text-left m-1 profile-a">Admin Page</a>
     </div>
 
-    <div class="posts-area pt-4" style="position: relative;">
+</div>
+
+<div class="container">
+
+    <ul class="nav nav-tabs " id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+               aria-selected="true">Posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab"
+               aria-controls="favorites" aria-selected="false">Favorites</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
 
-        <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                   aria-selected="true">Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab"
-                   aria-controls="favorites" aria-selected="false">Favorites</a>
-            </li>
-        </ul>
+            <div class="card-columns p-3">
+                <!--    //////////////////////////////posts/////////////////////////////////-->
 
-        <div class="tab-content" id="myTabContent">
+                <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
 
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <a th:href="@{|/post/${post.id}|}">
 
+                        <div class="img-container card rounded card-hover">
 
-                <div class="card-columns p-3">
-                    <!--    //////////////////////////////posts/////////////////////////////////-->
+                            <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
 
-                    <div th:each="post : ${posts}" th:if="${user.id} == ${post.user.id}">
+                            <div class="overlay d-flex">
 
-                        <a th:href="@{|/post/${post.id}|}">
-
-                            <div class="img-container card rounded card-hover">
-
-                                <img class="image" th:attr="src=@{${post.postImageUrl}}"/>
-
-                                <div class="overlay d-flex">
-
-                                    <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center ">
-                                        <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
-                                        <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
-                                    </div>
-
+                                <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center ">
+                                    <h1 th:text="|${#strings.abbreviate(post.title, 20)}|"></h1>
+                                    <p th:text="|${#strings.abbreviate(post.body, 30)}|"></p>
                                 </div>
-                            </div>
-                        </a>
 
-                    </div>
+                            </div>
+                        </div>
+                    </a>
 
                 </div>
+
             </div>
-            <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="profile-tab">
+        </div>
+        <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="profile-tab">
 
-                    <div class="col-md-12 p-0">
 
-                        <div class="card-columns p-3">
+            <div class="card-columns p-3">
 
-                            <div th:each="favorite : ${user.favorites}">
+                <div th:each="favorite : ${user.favorites}">
 
-                                <a th:href="@{|/post/${favorite.getFavoritesPostId()}|}">
-                                    <div class="img-container card rounded card-hover">
+                    <a th:href="@{|/post/${favorite.getFavoritesPostId()}|}">
+                        <div class="img-container card rounded card-hover">
 
-                                        <img class="image" th:attr="src=@{${favorite.postImageUrl}}"/>
+                            <img class="image" th:attr="src=@{${favorite.postImageUrl}}"/>
 
-                                        <div class="overlay d-flex">
+                            <div class="overlay d-flex">
 
-                                            <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center ">
-                                                <h1 th:text="${favorite.title}"></h1>
+                                <div class="text-div h-100 w-100 d-flex justify-content-center align-content-center text-center ">
+                                    <h1 th:text="${favorite.title}"></h1>
 
-                                                <p th:text="|${#strings.abbreviate(favorite.body,50)}|"></p>
-                                                <!--                                                <p th:text="${favorite.body.toString().toUpperCase()}"></p>-->
+                                    <p th:text="|${#strings.abbreviate(favorite.body,50)}|"></p>
 
-                                                <form th:action="@{|/favorites/${favorite.id}/delete|}"
-                                                      th:method="POST">
-                                                    <button type="submit">Remove Favorite</button>
-                                                </form>
-                                            </div>
+                                    <form th:action="@{|/favorites/${favorite.id}/delete|}"
+                                          th:method="POST">
+                                        <button type="submit">Remove Favorite</button>
+                                    </form>
+                                </div>
 
-                                        </div>
-
-                                    </div>
-                                </a>
                             </div>
 
                         </div>
-                    </div>
-            </div>
+                    </a>
+                </div>
 
+            </div>
         </div>
 
     </div>
-    <div th:replace="fragments/scripts.html :: scripts"></div>
+
 </div>
+<div th:replace="fragments/scripts.html :: scripts"></div>
 
 <!--<footer th:replace="fragments/footer.html :: footer"></footer>-->
 <script>
