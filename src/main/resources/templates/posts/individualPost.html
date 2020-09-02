@@ -79,33 +79,22 @@
         <h4 th:text="${post.body}"></h4>
         <div th:each="comment : ${post.comments}">
 
-    <!--*********** THIS IS WHERE THE ERROR IS STARTING **************-->
-            <div sec:authorize="isAuthenticated()">
-                <div th:if="${user.id} == ${comment.user.id}">
-                    <form th:action="@{|/comments/post/${comment.id}/delete|}" th:method="POST"
-                          style="display:inline">
-                        <!--                                                    <button class="mb-3">Delete Comment</button>-->
-                        <button class="button">Delete</button>
-                    </form>
-                    <!-- <a th:href="@{|/comment/${comment.id}/edit|}">
-                        <button class="button fas fa-edit fa-lg"></button> -->
-                        <!--                                                    <button>Edit Comment</button>-->
-                    <!-- </a> -->
-                </div>
-            </div>
-        </div>
-        
-            <!--<form th:action="@{|/recipe/${recipe.id}/delete|}" th:method="POST"
-      style="display:inline" class="d-inline mt-2 p-0 m-0">
-    <button class="button fas fa-trash fa-2x"></button>
-</form>-->
 
             <p th:text="${comment.comment_txt}"
                style="width: 40%;height: 100px;padding: 10px; background-color: lightgray;"></p>
             <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
+            <div sec:authorize="isAuthenticated()">
+                <div th:if="${user.id} == ${comment.user.id}">
+                    <form th:action="@{|/comments/post/${comment.comment_id}/delete|}" th:method="POST"
+                          style="display:inline">
+                        <button class="button">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
         </div>
     </div>
-</div>
 
 
 <div class="fixed-bottom">
