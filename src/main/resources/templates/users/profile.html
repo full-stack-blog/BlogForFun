@@ -3,17 +3,21 @@
       class="h-100">
 <head th:replace="fragments/header :: head('Profile')"></head>
 
-<body class="h-100">
+<body class="h-100 background-maroon">
+
 
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 
-<div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 25%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
+<div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 35%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
 
     <button><a th:href="@{|/profile/editCoverPhoto|}">Edit Cover</a>
     </button>
 
 </div>
+
+<!--Image and posts container-->
+<div class="container bg-white">
 <img alt="profile image"
      class="shadow-lg rounded-circle fixed-img"
      th:attr="src=@{${user.profileImage}}">
@@ -32,7 +36,6 @@
 
 </div>
 
-<div class="container">
 
     <ul class="nav nav-tabs " id="myTab" role="tablist">
         <li class="nav-item">
