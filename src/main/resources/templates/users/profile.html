@@ -10,6 +10,8 @@
 
 <div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 25%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
 
+    <button><a th:href="@{|/profile/editCoverPhoto|}">Edit Cover</a>
+    </button>
 
 </div>
 <img alt="profile image"

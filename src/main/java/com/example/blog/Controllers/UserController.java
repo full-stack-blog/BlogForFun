@@ -56,6 +56,7 @@ public class UserController {
         return "users/profile";
     }
 
+
     @GetMapping("/admin-profile")
     public String goToAdmin(Model model) {
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
@@ -78,6 +79,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "users/editProfile";
     }
+
     @PostMapping("/profile/edit")
     public String editProfile(@ModelAttribute User user, @RequestParam(name = "profileImage") String profileImage) {
         User tempUser = new User();
@@ -89,11 +91,49 @@ public class UserController {
         user.setPassword(tempUser.getPassword());
         user.setId(tempUser.getId());
         user.setProfileImage(profileImage);
+        user.setCoverImg(tempUser.getCoverImg());
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         userDoa.save(user);
         return "redirect:/profile-info-updated";
     }
+
+    @GetMapping("/profile/editCoverPhoto")
+    public String getEditCoverPhoto(Model model) {
+// creates an optional pathway to use security authentication for each method instead of the whole site //
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (obj == null || !(obj instanceof UserDetails)) {
+            return "redirect:/login";
+        }
+        User tempUser = (User) obj;
+        User user = userDoa.getOne(tempUser.getId());
+        model.addAttribute("user", user);
+        return "users/editCoverPhoto";
+    }
+
+    @PostMapping("/profile/editCoverPhoto")
+    public String editCoverPhoto(Model model, @ModelAttribute User user, @RequestParam(name = "coverImg") String coverImg) {
+        User tempUser = new User();
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+        user.setFirstName(tempUser.getFirstName());
+        user.setLastName(tempUser.getLastName());
+        user.setUsername(tempUser.getUsername());
+        user.setUserRole(tempUser.getUserRole());
+        user.setPosts(tempUser.getPosts());
+        user.setPassword(tempUser.getPassword());
+        user.setId(tempUser.getId());
+        user.setProfileImage(tempUser.getProfileImage());
+        user.setEmail(tempUser.getEmail());
+        user.setCoverImg(coverImg);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        userDoa.save(user);
+        model.addAttribute("user", user);
+        return "redirect:/profile";
+    }
+
 
     @RequestMapping("/profile/profile-edit-CCP")
 //  Change current password alert //

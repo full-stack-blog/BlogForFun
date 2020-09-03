@@ -18,6 +18,7 @@ const urlBox = document.getElementById('urlBox');
 btn.addEventListener('click', function (e) {
     e.preventDefault();
     picker.open();
+
 });
 
 function updateForm (result) {
@@ -26,3 +27,4 @@ function updateForm (result) {
     console.log(fileData.url);
     console.log(fileInput.value);
 }
+

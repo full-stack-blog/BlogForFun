@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="Eng"
+      class="h-100">
+<head th:replace="fragments/header :: head('Cover Photo')"></head>
+
+<body class="h-100">
+
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+
+
+<div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 25%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
+
+    <form class="form-signin" th:action="@{|/profile/editCoverPhoto|}" method="POST" th:object="${user}">
+        <div class="form-label-group d-flex create-photo-upload">
+            <label for="fileupload">Cover photo</label>
+            <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
+                Upload Cover Photo
+            </button>
+            <input class="ml-auto mt-2" id="fileupload" th:field="*{coverImg}"/>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
+            <i class="fas fa-check mr-2"></i>Save Changes
+        </button>
+    </form>
+
+</div>
+<div th:replace="fragments/scripts.html :: scripts"></div>
+
+</body>
+</html>
