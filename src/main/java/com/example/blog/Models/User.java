@@ -33,6 +33,9 @@ public class User {
     @Column(nullable = false)
     private String profileImage;
 
+    @Column(nullable = false)
+    private String coverImg;
+
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
@@ -59,18 +62,20 @@ public class User {
         profileImage = copy.profileImage;
         favorites = copy.favorites;
         comments = copy.comments;
+        coverImg = copy.coverImg;
     }
 
-    public User(long id,String userRole, String username, String password, String email, List<Post> posts, String firstName, String lastName, String profileImage, List<Post>favorites, List<Comment> comments) {
+    public User(long id, String userRole, String username, String firstName, String lastName, String password, String email, String profileImage, String coverImg, List<Post> posts, List<Post> favorites, List<Comment> comments) {
         this.id = id;
         this.userRole = userRole;
         this.username = username;
-        this.password = password;
-        this.email = email;
-        this.posts = posts;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
+        this.email = email;
         this.profileImage = profileImage;
+        this.coverImg = coverImg;
+        this.posts = posts;
         this.favorites = favorites;
         this.comments = comments;
     }
@@ -173,5 +178,13 @@ public class User {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getCoverImg() {
+        return coverImg;
+    }
+
+    public void setCoverImg(String coverImg) {
+        this.coverImg = coverImg;
     }
 }

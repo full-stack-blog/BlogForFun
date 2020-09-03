@@ -9,6 +9,15 @@
 /*    background-color: #621012;*/
 /*    background-color: #631936;*/
 /*}*/
+.fixed-img {
+    position: absolute;
+    bottom: 435px;
+    right: 45%;
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+}
+
 .background-maroon{
     background-color: #621012;
 }
