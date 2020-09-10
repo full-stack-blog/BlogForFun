@@ -232,6 +232,23 @@
 
 
 /*=============================================General styling classes===============================================*/
+.button{
+    background: transparent;
+    border: none;
+}
+
+.fas, .far{
+    transition: transform .2s;
+    color: #2BA4B9 !important;
+}
+
+.fas:hover, .far:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.2);
+    color: #860806;
+}
+
 
 nav a {
     color: white;

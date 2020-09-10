@@ -50,26 +50,33 @@
             <!--        </div>-->
             <div th:if="${user.id} == ${post.getUser().id} OR ${user.userRole} == 'admin'">
                 <a th:href="@{|/posts/${post.id}/edit|}">
-                    <button>Edit</button>
+<!--                    <button><i class="far fa-edit"></i>Edit</button>-->
+                    <button type="submit" class="button mx-auto far fa-edit"></button>
+
                 </a>
                 <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-                    <button type="submit">Delete</button>
+<!--                    <button type="submit"><i class="far fa-trash-alt"></i>Delete</button>-->
+                    <button type="submit" class="button mx-auto far fa-trash-alt fa-lg"></button>
                 </form>
             </div>
 
             <div th:if="|${!user.containsPost(post)}|">
                 <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
-                    <button type="submit">Add to Favorites</button>
+<!--                    <button type="submit"><i class="far fa-heart"></i>Add to Favorites</button>-->
+                    <button type="submit" class="button mx-auto far fa-heart fa-lg"></button>
+
                 </form>
             </div>
             <div th:if="|${user.containsPost(post)}|">
                 <form th:action="@{|/favorites/${post.id}/delete|}"
                       th:method="POST">
-                    <button type="submit">Remove Favorite</button>
+<!--                    <button type="submit">Remove Favorite</button>-->
+                    <button type="submit" class="button mx-auto fas fa-heart fa-lg"></button>
                 </form>
             </div>
             <a th:href="@{|/comments/post/${post.id}|}">
-                <button>Comment</button>
+                <button type="submit" class="button mx-auto far fa-comments fa-lg"></button>
+
             </a>
             <!--        <form th:action="@{|/comments/post/${post.id}|}"-->
             <!--              th:method="POST">-->
