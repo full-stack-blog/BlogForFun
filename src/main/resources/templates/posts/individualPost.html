@@ -77,25 +77,24 @@
             <!--        </form>-->
         </div>
         <h4 th:text="${post.body}"></h4>
-        <div th:each="comment : ${post.comments}">
+            <div th:each="comment : ${post.comments}" style="width: 40%;height: 100px;padding: 10px; background-color: lightgray";>
 
 
-            <p th:text="${comment.comment_txt}"
-               style="width: 40%;height: 100px;padding: 10px; background-color: lightgray;"></p>
-            <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
-            <div sec:authorize="isAuthenticated()">
-                <div th:if="${user.id} == ${comment.user.id}">
-                    <form th:action="@{|/comments/post/${comment.comment_id}/delete|}" th:method="POST"
-                          style="display:inline">
-                        <button class="button">Delete</button>
-                    </form>
+                <p th:text="${comment.comment_txt}"></p>
+                <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
 
+                <div sec:authorize="isAuthenticated()">
+                    <div th:if="${user.id} == ${comment.user.id}">
+                        <form th:action="@{|/comments/post/${comment.comment_id}/delete|}" th:method="POST"
+                              style="display:inline">
+                            <button class="button">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-
+</div>
 
 <div class="fixed-bottom">
     <div th:replace="fragments/scripts.html :: scripts"></div>
