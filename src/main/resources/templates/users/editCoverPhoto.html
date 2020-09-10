@@ -3,26 +3,32 @@
       class="h-100">
 <head th:replace="fragments/header :: head('Cover Photo')"></head>
 
-<body class="h-100">
+<body class="h-100" th:style="'background:url(' + ${user.coverImg} + '); background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
 
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
+<div class="container d-flex h-100">
 
-<div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 25%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
+<div class="row col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
 
-    <form class="form-signin" th:action="@{|/profile/editCoverPhoto|}" method="POST" th:object="${user}">
-        <div class="form-label-group d-flex create-photo-upload">
-            <label for="fileupload">Cover photo</label>
-            <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
-                Upload Cover Photo
+        <h1 class="text-center text-dark" id="h1-login">Edit Cover Photo</h1>
+
+        <form class="" th:action="@{|/profile/editCoverPhoto|}" method="POST" th:object="${user}">
+            <div class="form-label-group d-flex create-photo-upload">
+                <label for="fileupload"></label>
+                <button class="button photo-upload upload-photo photo1 mx-auto" type="button" id="picker">
+                    Upload Cover Photo
+                </button>
+                <br>
+                <input class="mx-auto mt-2" id="fileupload" th:field="*{coverImg}"/>
+                <br>
+            </div>
+            <button class="mx-auto btn-primary btn mt-3" type="submit">
+                <i class="fas fa-check mr-2"></i>Save Changes
             </button>
-            <input class="ml-auto mt-2" id="fileupload" th:field="*{coverImg}"/>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
-            <i class="fas fa-check mr-2"></i>Save Changes
-        </button>
-    </form>
+        </form>
 
+    </div>
 </div>
 <div th:replace="fragments/scripts.html :: scripts"></div>
 
