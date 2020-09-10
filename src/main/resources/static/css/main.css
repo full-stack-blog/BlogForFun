@@ -9,6 +9,13 @@
 /*    background-color: #621012;*/
 /*    background-color: #631936;*/
 /*}*/
+
+.z-index-behind{
+    z-index: -100;
+}
+.z-index-in-front{
+    z-index: 1;
+}
 .fixed-img {
     position: absolute;
     bottom: 435px;

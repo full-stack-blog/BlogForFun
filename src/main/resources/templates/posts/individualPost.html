@@ -25,7 +25,7 @@
 <div class="container bg-white p-0">
     <div class="p-2">
         <!--===========================================Start Of Icon Buttons & is authenticated==============================-->
-        <div sec:authorize="isAuthenticated()">
+        <div sec:authorize="isAuthenticated()" class="z-index-behind">
 
             <div th:if="${user.id} != ${post.user.id}">
                 <a th:href="@{|/contact-us/${post.id}|}">
@@ -72,10 +72,11 @@
 
         </div>
         <!--============================================End Of Icon Buttons & is authenticated===============================-->
-        <br/>
+<!--        <br/>-->
         <div>
-
-            <h1 th:text="${post.title} + '2'" class="text-center"></h1>
+            <div class="d-flex justify-content-center z-index-in-front w-100">
+                <h1 th:text="${post.title}" class="align-self-center"></h1>
+            </div>
 
             <h4 th:text="${post.body}" class="text-center"></h4>
 
