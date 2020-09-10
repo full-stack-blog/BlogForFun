@@ -32,38 +32,29 @@
                 </a>
             </div>
         </div>
-    <!--    <img th:attr="src=@{${post.postImageUrl}}" style="width: 15em; height: 10em;"/>-->
-        <h2 th:text="'User: ' + ${post.user.username}"></h2>
 
-        <div>
-            <h5>Categories</h5>
-        </div>
-        <div th:each="category : ${post.categories}">
-            <p th:text="${category.name}"></p>
-        </div>
-
-        <div sec:authorize="isAuthenticated()" class="d-flex">
+        <div sec:authorize="isAuthenticated()" class="">
             <!--        <div th:if="${user.id} != ${post.getUser().id}">-->
             <!--            <a href="/contact-us">-->
             <!--                <button>Report Issue</button>-->
             <!--            </a>-->
             <!--        </div>-->
 
-            <div th:if="${user.id} == ${post.getUser().id} OR ${user.userRole} == 'admin'" class="float-right">
+            <div th:if="${user.id} == ${post.getUser().id} OR ${user.userRole} == 'admin'" class="float-left">
                 <a th:href="@{|/posts/${post.id}/edit|}">
-<!--                    <button><i class="far fa-edit"></i>Edit</button>-->
+                    <!--                    <button><i class="far fa-edit"></i>Edit</button>-->
                     <button type="submit" class="button mx-auto far fa-edit"></button>
 
                 </a>
                 <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST">
-<!--                    <button type="submit"><i class="far fa-trash-alt"></i>Delete</button>-->
+                    <!--                    <button type="submit"><i class="far fa-trash-alt"></i>Delete</button>-->
                     <button type="submit" class="button far fa-trash-alt fa-lg"></button>
                 </form>
             </div>
 
             <div th:if="|${!user.containsPost(post)}|" class="float-left">
                 <form th:action="@{|/favorite/${post.id}|}" th:method="POST">
-<!--                    <button type="submit"><i class="far fa-heart"></i>Add to Favorites</button>-->
+                    <!--                    <button type="submit"><i class="far fa-heart"></i>Add to Favorites</button>-->
                     <button type="submit" class="button far fa-heart fa-lg"></button>
 
                 </form>
@@ -71,45 +62,55 @@
             <div th:if="|${user.containsPost(post)}|" class="float-left">
                 <form th:action="@{|/favorites/${post.id}/delete|}"
                       th:method="POST">
-<!--                    <button type="submit">Remove Favorite</button>-->
+                    <!--                    <button type="submit">Remove Favorite</button>-->
                     <button type="submit" class="button fas fa-heart fa-lg"></button>
                 </form>
             </div>
             <div class="float-left">
-            <a th:href="@{|/comments/post/${post.id}|}" >
-                <button type="submit" class="button mx-auto far fa-comments fa-lg"></button>
-
-            </a>
+                <a th:href="@{|/comments/post/${post.id}|}">
+                    <button type="submit" class="button mx-auto far fa-comments fa-lg"></button>
+                </a>
             </div>
-            <!--        <form th:action="@{|/comments/post/${post.id}|}"-->
-            <!--              th:method="POST">-->
-            <!--            <button type="submit">Comment</button>-->
-            <!--        </form>-->
+
         </div>
 
-        <h4 th:text="${post.body}"></h4>
-            <div th:each="comment : ${post.comments}">
+        <br/>
 
-                <div style="width: 40%;height: 100px;padding: 10px; background-color: lightgray">
-                    <p th:text="${comment.comment_txt}"></p>
-                    <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
-                </div>
+        <div>
+            <h2 th:text="'User: ' + ${post.user.username}"></h2>
 
-                <div sec:authorize="isAuthenticated()">
-                    <div th:if="${user.id} == ${comment.user.id}">
-                        <form th:action="@{|/comments/post/${comment.comment_id}/delete|}" th:method="POST"
-                              style="display:inline">
-                            <button class="mt-2">Delete comment</button>
-                        </form>
-                    </div>
+            <div th:if="${post.categories.size() < 1}">
+                <h5>Categories</h5>
+            </div>
+            <div th:each="category : ${post.categories}">
+                <p th:text="${category.name}"></p>
+            </div>
+            <h4 th:text="${post.body}"></h4>
+        </div>
+
+        <div th:each="comment : ${post.comments}">
+
+            <div style="width: 40%;height: 100px;padding: 10px; background-color: lightgray">
+                <p th:text="${comment.comment_txt}"></p>
+                <p th:text="${comment.prettyDate()}" style="font-size: x-small; text-shadow: lightgray"></p>
+            </div>
+
+            <div sec:authorize="isAuthenticated()">
+                <div th:if="${user.id} == ${comment.user.id}">
+                    <form th:action="@{|/comments/post/${comment.comment_id}/delete|}" th:method="POST"
+                          style="display:inline">
+                        <button class="mt-2">Delete comment</button>
+                    </form>
                 </div>
             </div>
         </div>
+
     </div>
+</div>
 
 <div class="fixed-bottom">
     <div th:replace="fragments/scripts.html :: scripts"></div>
-<!--    <footer th:replace="fragments/footer.html :: footer"></footer>-->
+    <!--    <footer th:replace="fragments/footer.html :: footer"></footer>-->
 </div>
 </body>
 </html>
