@@ -16,6 +16,9 @@
 .z-index-in-front{
     z-index: 1;
 }
+.postBody:first-line {
+    text-indent:35px;
+}
 .fixed-img {
     position: absolute;
     bottom: 435px;
