@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:replace="fragments/header :: head('Profile')"></head>
 
-<body>
+<body class="background-maroon">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 <header class="container my-5"></header>
 <div class="jumbotron-show">
-    <h1 class="text-center text-dark display-1" id="h1-profile">Profile</h1>
+    <h1 class="text-center text-light display-1" id="h1-profile">Profile</h1>
 </div>
 
 <!--//password confirmation stuff// -->
@@ -26,7 +26,7 @@
 <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
         <div class="card card-signin my-5">
-            <div class="card-body">
+            <div class="card-body background-lavender">
                 <h5 class="card-title text-center">Edit Profile</h5>
                 <form class="form-signin" th:action="@{|/profile/edit|}" method="POST"
                       th:object="${user}">
@@ -49,12 +49,10 @@
                     <div class="form-label-group d-flex create-photo-upload">
                         <label for="fileupload">Profile photo</label>
                             <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
-                                Upload Profile Image
                             </button>
                             <input class="ml-auto mt-2" id="fileupload" th:field="*{profileImage}"/>
                     </div>
-
-                    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
+                    <button class="btn btn-lg btn-primary btn-block mt-3 mr-3" type="submit">
                         <i class="fas fa-check mr-2"></i>Save Changes
                     </button>
                 </form>
@@ -64,9 +62,9 @@
                                     <!--  //////////////////////////////////// -->
 
     <!--//// password fields/////////////////-->
-    <div class="col-lg-6">
+    <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
         <div class="card card-signin my-5">
-            <div class="card-body">
+            <div class="card-body background-lavender">
                 <h5 class="card-title text-center">Change Password</h5>
                 <form class="form-signin" th:action="@{|/profile/password-edit|}" method="POST">
                     <div class="form-label-group d-flex">
