@@ -9,6 +9,21 @@
 /*    background-color: #621012;*/
 /*    background-color: #631936;*/
 /*}*/
+.ul-noStyle{
+    list-style: none;
+}
+hr{
+    width: 95%;
+}
+.prettyDate{
+    font-size: x-small;
+    text-shadow: lightgray
+}
+.comment-background{
+    width: 40%;
+    padding: 10px;
+    background-color: lightgray;
+}
 
 .z-index-behind{
     z-index: -100;
