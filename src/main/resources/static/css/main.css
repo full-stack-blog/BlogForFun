@@ -36,7 +36,7 @@ hr{
 }
 .fixed-img {
     position: absolute;
-    bottom: 435px;
+    bottom: calc(100% - 55%);
     right: 45%;
     width: 10em;
     height: 10em;
