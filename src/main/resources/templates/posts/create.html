@@ -9,16 +9,16 @@
         <div class="row bg-light text-dark col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
 
             <div class="text-center">
-                <h5 class="card-title landing-header " style="font-size: xx-large">Create a Post</h5>
+                <h3 class="card-title landing-header">Create a Post</h3>
                 <hr>
 
                 <!--  FORM -->
 
                 <form th:action="@{|/posts/create|}" th:method="POST" th:object="${post}" >
-                        <label for="title"> Title</label>
-                        <input type="text" th:field="*{title}" placeholder="Enter tile" class="form-control w-75 mx-auto"/>
+                        <label for="title"></label>
+                        <input type="text" th:field="*{title}" placeholder="Enter title" class="form-control w-75 mx-auto"/>
 
-                        <label for="body">body</label>
+                        <label for="body"></label>
                     <textarea rows="4" cols="50" type="text" th:field="*{body}" placeholder="Enter text" class="form-control w-75 mx-auto"></textarea>
                     <div>
                         <label for="access" class="m-1 font-weight-bold">Select Access</label><br>
@@ -39,7 +39,7 @@
                     <div class="col-xl-12">
 
                         <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden" class="form-control mx-auto">
-                        <label for="categories" class="m-1 font-weight-bold">Select Categories</label><br>
+                        <label for="categories" class="m-1 font-weight-bold">Categories</label><br>
                         <select class="selectpicker text-center text-dark" id="categories" name="categories" multiple data-live-search="true"
                                 data-flip="false">
                             <!--                    <option selected>Select Category</option>-->
