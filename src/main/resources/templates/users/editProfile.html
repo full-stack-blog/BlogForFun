@@ -6,7 +6,7 @@
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 <header class="container my-5"></header>
 <div class="jumbotron-show">
-    <h1 class="text-center text-light display-1" id="h1-profile">Profile</h1>
+    <h1 class="text-center text-light display-1" id="h1-profile"></h1>
 </div>
 
 <!--//password confirmation stuff// -->
@@ -27,7 +27,7 @@
     <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
         <div class="card card-signin my-5">
             <div class="card-body background-lavender">
-                <h5 class="card-title text-center">Edit Profile</h5>
+                <h5 class="card-title text-center landing-header">Edit Profile</h5>
                 <form class="form-signin" th:action="@{|/profile/edit|}" method="POST"
                       th:object="${user}">
                     <div class="form-label-group d-flex">
@@ -47,12 +47,12 @@
                         <input class="ml-auto mt-2" id="email" th:field="*{email}"/>
                     </div>
                     <div class="form-label-group d-flex create-photo-upload">
-                        <label for="fileupload">Profile photo</label>
-                            <button class="button photo-upload upload-photo photo1 move-right2" type="button" id="picker">
-                            </button>
+                        <button class=" photo-upload upload-photo photo1 move-right2" type="button" id="picker">
+                            <label for="fileupload">Upload Profile photo</label>
+                        </button>
                             <input class="ml-auto mt-2" id="fileupload" th:field="*{profileImage}"/>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block mt-3 mr-3" type="submit">
+                    <button class="btn btn-lg btn-primary btn-block mt-3 w-75 mx-auto" type="submit">
                         <i class="fas fa-check mr-2"></i>Save Changes
                     </button>
                 </form>
@@ -65,7 +65,7 @@
     <div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
         <div class="card card-signin my-5">
             <div class="card-body background-lavender">
-                <h5 class="card-title text-center">Change Password</h5>
+                <h5 class="card-title text-center landing-header">Change Password</h5>
                 <form class="form-signin" th:action="@{|/profile/password-edit|}" method="POST">
                     <div class="form-label-group d-flex">
                         <label for="currentPass">Current Password</label>
@@ -79,7 +79,7 @@
                         <label for="confirmNewPass">Confirm New Password</label>
                         <input class="ml-auto mt-2" type="password" id="confirmNewPass" name="confirmNewPass"/>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
+                    <button class="btn btn-lg btn-primary btn-block mt-3 w-75 mx-auto" type="submit">
                         <i class="fas fa-check mr-2"></i>Update
                         Password
                     </button>
