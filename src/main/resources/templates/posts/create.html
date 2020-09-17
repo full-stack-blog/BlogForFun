@@ -8,21 +8,19 @@
 
         <div class="row bg-light text-dark col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
 
-            <div class="card-body">
-                <h5 class="card-title landing-header ">Create a Post</h5>
+            <div class="text-center">
+                <h5 class="card-title landing-header " style="font-size: xx-large">Create a Post</h5>
                 <hr>
 
                 <!--  FORM -->
 
-                <form th:action="@{|/posts/create|}" th:method="POST" th:object="${post}">
-                    <div class="col-xl-12">
+                <form th:action="@{|/posts/create|}" th:method="POST" th:object="${post}" >
                         <label for="title"> Title</label>
-                        <input type="text" th:field="*{title}" placeholder="Enter tile"/>
-                    </div>
-                    <div class="col-xl-12">
-                        <label for="body">body</label>
-                        <input type="text" th:field="*{body}" placeholder="Enter text"/>
+                        <input type="text" th:field="*{title}" placeholder="Enter tile" class="form-control w-75 mx-auto"/>
 
+                        <label for="body">body</label>
+                    <textarea rows="4" cols="50" type="text" th:field="*{body}" placeholder="Enter text" class="form-control w-75 mx-auto"></textarea>
+                    <div>
                         <label for="access" class="m-1 font-weight-bold">Select Access</label><br>
                         <select class="selectpicker text-center" id="access" name="access" multiple data-live-search="false"
                                 data-flip="false">
@@ -32,11 +30,15 @@
                         </select>
                     </div>
 
-                    <div class="col-xl-12">
-                        <button class="button" type="button" id="picker">
-                            Upload Image
+                    <div>
+                        <button class=" w-75 mx-auto form-control" type="button" id="picker">
+                        Upload Image
                         </button>
-                        <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden">
+                    </div>
+
+                    <div class="col-xl-12">
+
+                        <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden" class="form-control mx-auto">
                         <label for="categories" class="m-1 font-weight-bold">Select Categories</label><br>
                         <select class="selectpicker text-center text-dark" id="categories" name="categories" multiple data-live-search="true"
                                 data-flip="false">
@@ -56,13 +58,10 @@
                             <option name="categories" id="Gaming" value="13">Gaming</option>
                             <option name="categories" id="Shows-Concerts" value="14">Shows/Concerts</option>
                         </select>
-
                     </div>
-                    <div class="col-xl-12">
+
                         <!--                            <button class="loginSign-btn" id="save">Save Post</button>-->
-                        <input id="save" class="" value="Create Post" type="submit"/>
-
-                    </div>
+                        <input id="save" value="Create Post" type="submit" class="form-control w-75 mx-auto"/>
                 </form>
             </div>
         </div>

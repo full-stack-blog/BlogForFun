@@ -41,6 +41,7 @@ hr{
     width: 10em;
     height: 10em;
     border-radius: 50%;
+    border: #621012 solid 4px;
 }
 
 .background-maroon{
@@ -292,7 +293,7 @@ nav a:hover {
 }
 
 .profile-name {
-    color: white;
+    color: black;
     font-family: 'Merienda One', cursive;
 }
 
