@@ -52,6 +52,7 @@ public class UserController {
             User user = userDoa.findUserById(loggedIn.getId());
             model.addAttribute("user", user);
             model.addAttribute("posts", postDao.findAll());
+            System.out.println(user.getUserRole().contains("admin"));
         }
         return "users/profile";
     }

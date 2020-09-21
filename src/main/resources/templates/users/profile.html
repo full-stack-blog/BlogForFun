@@ -9,33 +9,44 @@
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 
-<div class="pt-4" th:style="'background:url(' + ${user.coverImg} + '); height: 35%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'">
-
-    <button><a th:href="@{|/profile/editCoverPhoto|}">Edit Cover</a>
-    </button>
-
-</div>
+<div class="pt-4"
+     th:style="'background:url(' + ${user.coverImg} + '); height: 35%; background-position: center; background-repeat: no-repeat; background-size: cover; position: relative;'"></div>
 
 <!--Image and posts container-->
-<div class="container bg-white">
-<img alt="profile image"
-     class="shadow-lg rounded-circle fixed-img"
-     th:attr="src=@{${user.profileImage}}">
-<div class="text-center pt-5">
+<div class="container bg-white maroon-border">
+    <img alt="profile image" class="shadow-lg rounded-circle fixed-img" th:attr="src=@{${user.profileImage}}"/>
 
+    <div class="text-center pt-5">
 
-<!--    <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center p-2 pt-5"></h2>-->
-    <h4 th:text="${user.username}" class="text-center profile-name p-2 pt-5"></h4>
+        <!--    <h2 th:text="${user.firstName} + ' ' + ${user.lastName}" class="text-center p-2 pt-5"></h2>-->
 
-    <a th:href="@{|/profile/edit|}" class="text-left m-1">Profile Info</a>
+        <h4 th:text="${user.username}" class="text-center profile-name p-0 m-0 pt-5"></h4>
 
-    <!-- //////////////////////Only for Admin//////////////////////////////////-->
-    <div th:if="${user.getUserRole()} == 'admin'">
-        <a th:href="@{|/admin-profile|}" class=" text-left m-1 profile-a">Admin Page</a>
+        <div>
+            <nav class="navbar navbar-expand-xl">
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle settings " type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Settings
+                                </button>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a th:href="@{|/profile/editCoverPhoto|}" class="pl-4 text-maroon">Edit Cover Photo</a>
+                                    <a th:href="@{|/profile/edit|}" class="pl-4 text-maroon">User Info</a>
+                                    <a th:if="${user.userRole.contains('admin')}" th:href="@{|/admin-profile|}" class="pl-4 text-maroon">Admin Profile</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
     </div>
-
-</div>
-
 
     <ul class="nav nav-tabs " id="myTab" role="tablist">
         <li class="nav-item">
