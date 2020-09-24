@@ -2,9 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="fragments/header :: head('Create View')"></head>
 
-<body class="h-100" style="background-image: url('https://images.collegexpress.com/article/How-to-Create-Your-Own-College-Major22.jpg')">
+<body class="h-100">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+
+<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center"
+     style="background-color: black">
+
+    <video autoplay muted loop poster="">
+        <source src="/videos/create.mp4" type="video/mp4">
+    </video>
+
+    <div id="h1"></div>
+
+<!--    <div class="text-white mt-1">-->
+<!--        <div class="text-center mt-1">-->
+<!--            <h3 class="landing-header mt-1">for whatever your "ie" is...</h3>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
 <div class="container d-flex h-100">
+
 
         <div class="row bg-light text-dark col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
 
@@ -70,6 +88,7 @@
 <div th:replace="fragments/scripts.html :: scripts"></div>
 <div class="fixed-bottom">
     <footer th:replace="fragments/footer.html :: footer"></footer>
+</div>
 </div>
 </body>
 </html>
