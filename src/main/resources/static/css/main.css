@@ -173,6 +173,11 @@ hr{
     width: 50%;
 }
 
+.p-image{
+    height: 60vh;
+    width: 60vh;
+}
+
 .image {
     opacity: 1;
     display: block;
