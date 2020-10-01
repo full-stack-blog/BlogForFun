@@ -40,9 +40,8 @@
                     <textarea rows="4" cols="50" type="text" th:field="*{body}" placeholder="Enter text" class="form-control w-75 mx-auto"></textarea>
                     <div>
                         <label for="access" class="m-1 font-weight-bold">Select Access</label><br>
-                        <select class="selectpicker text-center" id="access" name="access" multiple data-live-search="false"
+                        <select class="selectpicker mb-3 m-1 select-me text-center" id="access" name="access" multiple data-live-search="false"
                                 data-flip="false">
-                            <!--                    <option selected>Select Category</option>-->
                             <option name="categories" id="public" value="public">Public</option>
                             <option name="categories" id="private" value="private">Private</option>
                         </select>
@@ -54,11 +53,11 @@
                         </button>
                     </div>
 
-                    <div class="col-xl-12">
+<!--                    <div class="col-xl-12">-->
 
                         <input name="fileupload" id="fileupload" th:field="*{postImageUrl}" type="hidden" class="form-control mx-auto">
                         <label for="categories" class="m-1 font-weight-bold">Categories</label><br>
-                        <select class="selectpicker text-center text-dark" id="categories" name="categories" multiple data-live-search="true"
+                        <select class="m-1 selectpicker mb-3 select-me text-center text-dark" id="categories" name="categories" multiple data-live-search="true"
                                 data-flip="false">
                             <!--                    <option selected>Select Category</option>-->
                             <option name="categories" id="Sports" value="1">Sports</option>
@@ -76,7 +75,7 @@
                             <option name="categories" id="Gaming" value="13">Gaming</option>
                             <option name="categories" id="Shows-Concerts" value="14">Shows/Concerts</option>
                         </select>
-                    </div>
+<!--                    </div>-->
 
                         <!--                            <button class="loginSign-btn" id="save">Save Post</button>-->
                         <input id="save" value="Create Post" type="submit" class="form-control w-75 mx-auto"/>

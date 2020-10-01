@@ -14,6 +14,31 @@
 /*    background-image: url("https://images.collegexpress.com/article/How-to-Create-Your-Own-College-Major22.jpg");*/
 /*}*/
 
+.bootstrap-select .dropdown-toggle .filter-option {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: inherit;
+    padding-right: inherit;
+    padding-bottom: inherit;
+    padding-left: inherit;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+.bootstrap-select > .dropdown-toggle {
+    border: slategrey solid 1px;!important;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+}
+/*.select-me{*/
+/*    border: slategrey solid 1px;!important;*/
+/*    border-radius: 5px;*/
+/*}*/
 .maroon-border{
     border-top: #621012 6px solid;
 }
