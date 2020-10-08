@@ -1,5 +1,6 @@
 package com.example.blog.Controllers;
 
+import com.example.blog.Models.Categories;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import com.example.blog.Models.Comment;
 import com.example.blog.Models.Post;
@@ -65,6 +67,31 @@ public class CommentController {
 
             return "redirect:/post/" + post.getId();
         }
+
+    @GetMapping("/comments/{id}/edit")
+    public String EditPost(@PathVariable long id, Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+        }
+        model.addAttribute("comment", commentDao.getOne(id));
+        return "comments/editComment";
+    }
+
+    @PostMapping("/comments/{id}/edit")
+    public String editPostFrom(Model model, @ModelAttribute Comment comment, @PathVariable long id, @RequestParam(name = "comment_txt") String comment_txt) {
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("user", loggedIn);
+            model.addAttribute("comment", commentDao.findAll());
+        }
+        Comment commentEdit = commentDao.getOne(id);
+        commentEdit.setComment_txt(comment_txt);
+//        commentEdit.setCreateDate(new Timestamp(System.currentTimeMillis())); not updating
+        commentDao.save(commentEdit);
+        return "redirect:/post/" + commentEdit.getPost().getId();
+    }
+
 }
 
 

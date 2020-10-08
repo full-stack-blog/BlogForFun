@@ -121,6 +121,9 @@
                           class="float-right">
                         <button type="submit" class="float-right button far fa-trash-alt fa-lg mt-1"></button>
                     </form>
+                    <a th:href="@{|/comments/${comment.comment_id}/edit|}" class="float-right">
+                        <button type="submit" class="button mx-auto far fa-edit fa-lg"></button>
+                    </a>
                 </div>
                 <p th:text="${comment.user.username + ': ' + comment.comment_txt}"></p>
                 <p th:text="${comment.prettyDate()}" class="prettyDate p-0 m-0"></p>

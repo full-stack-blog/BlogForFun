@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head th:replace="fragments/header :: head('Edit Comment')"></head>
+
+<body class="h-100">
+<nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+<div class="container d-flex h-100">
+
+    <div class="row bg-light text-dark col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
+        <div class="card-body">
+            <h5 class="">Edit Comment</h5>
+            <hr>
+
+            <form th:action="@{|/comments/${comment.comment_id}/edit|}" th:method="POST" th:object="${comment}">
+
+                <label for="comment_txt"></label><br>
+                        <textarea class="mx-auto w-100 shadow-sm form-control" id="comment_txt" th:field="*{comment_txt}" placeholder="Enter text"></textarea>
+                <br/>
+                    <input placeholder="Submit" type="Submit"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div th:replace="fragments/scripts.html :: scripts"></div>
+<div class="fixed-bottom">
+    <footer th:replace="fragments/footer.html :: footer"></footer>
+</div>
+</body>
+</html>
