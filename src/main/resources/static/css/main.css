@@ -10,6 +10,7 @@
 /*    background-color: #631936;*/
 /*}*/
 
+
 /*.create-image{*/
 /*    background-image: url("https://images.collegexpress.com/article/How-to-Create-Your-Own-College-Major22.jpg");*/
 /*}*/
@@ -90,11 +91,11 @@ hr{
 }
 .landing-background {
     height: 100%;
-    z-index: -999;
-    background: -webkit-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: -moz-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: -ms-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: linear-gradient(left, #621012 50%, #ded0d0 50%);
+    /*z-index: -999;*/
+    /*background: -webkit-linear-gradient(left, #621012 50%, #ded0d0 50%);*/
+    /*background: -moz-linear-gradient(left, #621012 50%, #ded0d0 50%);*/
+    /*background: -ms-linear-gradient(left, #621012 50%, #ded0d0 50%);*/
+    /*background: linear-gradient(left, #621012 50%, #ded0d0 50%);*/
 }
 /*========================================text decorations=========================================*/
 .temp-name {
@@ -124,14 +125,16 @@ hr{
     transform: translate(-50%, -50%);
     font-family: 'Special Elite', cursive;
     font-size: 5em;
-    color: white;
     white-space: nowrap;
     overflow: hidden;
+    z-index: 1;
+    color: white;
 }
 
 .landing-header{
     font-family: 'Special Elite', cursive;
     font-weight: bolder;
+    color: white;
 }
 
 #text-span {
@@ -235,19 +238,19 @@ hr{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 
 .jumbotron {
     position: relative;
     overflow: hidden;
-    /*background-color: black;*/
-    height: 100vh;
+    height: 93vh;
     width: 100%;
+    background-color: transparent;
 }
 
 .jumbotron video {
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
     position: absolute;
     z-index: 1;
     top: 0;
@@ -256,7 +259,7 @@ hr{
     background-color: black;
     /*  object-fit is not supported on IE  */
     object-fit: cover;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
 }
 
 .jumbotron .container {
