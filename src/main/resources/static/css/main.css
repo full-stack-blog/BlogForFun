@@ -101,8 +101,10 @@ hr{
     /*background: linear-gradient(left, #621012 50%, #ded0d0 50%);*/
 }
 /*========================================text decorations=========================================*/
-.temp-name {
+.bloggie {
     font-family: 'Special Elite', cursive;
+    font-size: 1.7em;
+    font-weight: bolder;
 }
 
 .text-outline {
@@ -243,25 +245,24 @@ hr{
 
 
 .jumbotron {
-    display: inline-block;
+    display:inline-block;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-    height: 93vh;
+    height: 92.5vh;
     width: 100%;
     background-color: #431D31;
     clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
 }
 
 .jumbotron video {
-
-    top: 0; /* equal to border thickness */
+    top: 0;
     left: 2px;
-    width: 100%; /* 100% - (2px * 2) */
+    width: 100%;
     clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
     position: absolute;
     z-index: 1;
-    height: 92vh;
+    height: 91.5vh;
     background-color: #431D31;
     /*  object-fit is not supported on IE  */
     object-fit: cover;
@@ -345,8 +346,9 @@ hr{
 }
 
 nav a {
-    color: white;
-    font-family: 'Open Sans', sans-serif;
+    color: #431D31;
+    font-family: "Andale Mono", serif;
+    font-weight: bolder;
 }
 
 nav a:hover {
@@ -375,7 +377,7 @@ nav a:hover {
 }
 
 .navbar-1 {
-    background-color: #431D31;
+    background-color: #F2F2F2;
 }
 
 .card-hover {
