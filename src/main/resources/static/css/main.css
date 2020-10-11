@@ -14,7 +14,10 @@
 /*.create-image{*/
 /*    background-image: url("https://images.collegexpress.com/article/How-to-Create-Your-Own-College-Major22.jpg");*/
 /*}*/
-
+.hr-maroon{
+    height: 2px;
+    background-color: #431D31;
+}
 .bootstrap-select .dropdown-toggle .filter-option {
     position: absolute;
     top: 0;
@@ -109,7 +112,7 @@ hr{
     /*-webkit-text-stroke-color: #ded0d0;*/
 }
 .text-maroon{
-    color: #621012;
+    color: #431D31;
 }
 .text-maroon:hover {
     text-decoration: none;
@@ -129,12 +132,14 @@ hr{
     overflow: hidden;
     z-index: 1;
     color: white;
+    opacity: .9;
 }
 
 .landing-header{
     font-family: 'Special Elite', cursive;
     font-weight: bolder;
     color: white;
+    opacity: .9;
 }
 
 #text-span {
@@ -179,11 +184,7 @@ hr{
 .p-image{
     height: 40vh;
     width: 40vh;
-}
-
-.p-image1{
-    height: 40vh;
-    width: 40vh;
+    border: 4px solid #431D31;
 }
 
 .image {
@@ -242,21 +243,26 @@ hr{
 
 
 .jumbotron {
+    display: inline-block;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
     height: 93vh;
     width: 100%;
-    background-color: transparent;
+    background-color: #431D31;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
 }
 
 .jumbotron video {
+
+    top: 0; /* equal to border thickness */
+    left: 2px;
+    width: 100%; /* 100% - (2px * 2) */
     clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
     position: absolute;
     z-index: 1;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
+    height: 92vh;
+    background-color: #431D31;
     /*  object-fit is not supported on IE  */
     object-fit: cover;
     /*opacity: 0.5;*/
@@ -369,7 +375,7 @@ nav a:hover {
 }
 
 .navbar-1 {
-    background-color: black;
+    background-color: #431D31;
 }
 
 .card-hover {
