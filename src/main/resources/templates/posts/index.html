@@ -12,10 +12,18 @@
     <div class="d-flex justify-content-center">
 
         <form action="#" th:action="@{/posts}" method="get" class="mt-2 input-group">
+            <input type="hidden" value="all" id="search1" name="search1"/>
+            <label for="query-input1"></label>
+            <button class="category travel-category" type="submit" value="search1" id="query-input1">All</button>
+        </form>
+
+        <form action="#" th:action="@{/posts}" method="get" class="mt-2 input-group">
             <input type="hidden" value="travel" id="search2" name="search2"/>
             <label for="query-input2"></label>
             <button class="category travel-category" type="submit" value="search2" id="query-input2">Travel</button>
         </form>
+
+
 
     </div>
 

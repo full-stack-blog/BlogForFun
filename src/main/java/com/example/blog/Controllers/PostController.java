@@ -38,16 +38,17 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String welcome(Model model, @RequestParam(required = false) String search, @RequestParam(required = false) String search2) {
+    public String welcome(Model model, @RequestParam(required = false) String search, @RequestParam(required = false) String search2, @RequestParam(required = false) String search1) {
         model.addAttribute("search", search);
         model.addAttribute("search2", search2);
-        System.out.println(search2);
+//        model.addAttribute("search2", search1);
+        System.out.println(search1);
 // This search code allows for searches that are not case sensitive, and can be searched by categories  //
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
         }
-        if (search == null || search2 == null) {
+        if (search == null || search2 == null || search1 == null || search1.equals("all")) {
             List<Post> posts = postDao.findAll();
             model.addAttribute("posts", posts);
         } else {
@@ -55,7 +56,6 @@ public class PostController {
             List<Post> searchedPosts = new ArrayList<>();
             for (Post post : posts) {
                 if (search.length() > 0) {
-//                    System.out.println(search.length());
                     if (post.getTitle().toLowerCase().contains(search.toLowerCase())) {
                         searchedPosts.add(post);
                         continue;
