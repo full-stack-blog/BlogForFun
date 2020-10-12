@@ -48,7 +48,8 @@ public class PostController {
         if (search == null || search2 == null || search1 == null || search3 == null || search4 == null || search1.equals("all")) {
             List<Post> posts = postDao.findAll();
             model.addAttribute("posts", posts);
-        } else {
+        }
+        if(search !=null){
             List<Post> posts = postDao.findAll();
             List<Post> searchedPosts = new ArrayList<>();
             for (Post post : posts) {
@@ -76,7 +77,6 @@ public class PostController {
                 }
             }
             model.addAttribute("posts", searchedPosts);
-
         }
 
         if(search2 != null){
