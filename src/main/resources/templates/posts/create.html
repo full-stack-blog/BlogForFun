@@ -2,23 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="fragments/header :: head('Create View')"></head>
 
-<body class="h-100">
+<body class="h-100 create-background" th:style="'background:url(' + ${user.coverImg}  + ')' + 'no-repeat center center fixed;' + '; '">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
-
-<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center"
-     style="background-color: black">
-
-    <video autoplay muted loop poster="">
-        <source src="/videos/create.mp4" type="video/mp4">
-    </video>
-
-    <div id="h1"></div>
-
-<!--    <div class="text-white mt-1">-->
-<!--        <div class="text-center mt-1">-->
-<!--            <h3 class="landing-header mt-1">for whatever your "ie" is...</h3>-->
-<!--        </div>-->
-<!--    </div>-->
 
 
 <div class="container d-flex h-100">
@@ -85,9 +70,8 @@
 
 </div>
 <div th:replace="fragments/scripts.html :: scripts"></div>
-<div class="fixed-bottom">
-    <footer th:replace="fragments/footer.html :: footer"></footer>
-</div>
-</div>
+<!--<div class="fixed-bottom">-->
+<!--    <footer th:replace="fragments/footer.html :: footer"></footer>-->
+<!--</div>-->
 </body>
 </html>

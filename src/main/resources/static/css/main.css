@@ -10,10 +10,49 @@
 /*    background-color: #631936;*/
 /*}*/
 
-/*.create-image{*/
-/*    background-image: url("https://images.collegexpress.com/article/How-to-Create-Your-Own-College-Major22.jpg");*/
-/*}*/
+.category{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    transition: .5s ease;
+    margin: .8em;
+    opacity: .8;
+    backdrop-filter: contrast(.6) blur(2px);
+}
+.category:hover{
+    transform: scale(1.1);
+    opacity: 1;
+    color: #2BA4B9;
+    border: 2px solid #2BA4B9;
+}
+.travel-category{
+    background-image: url("https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
+.food-category{
+    background-image: url("https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
 
+.events-category{
+    background-image: url("https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg?cs=srgb&dl=pexels-mark-angelo-1587927.jpg&fm=jpg");
+}
+.all-category{
+    background-image: url("https://images.pexels.com/photos/34123/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
+
+button, .category{
+    font-size: 28px;
+    letter-spacing: 3px;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+}
+.hr-maroon{
+    height: 2px;
+    background-color: #431D31;
+}
 .bootstrap-select .dropdown-toggle .filter-option {
     position: absolute;
     top: 0;
@@ -40,7 +79,7 @@
 /*    border-radius: 5px;*/
 /*}*/
 .maroon-border{
-    border-top: #621012 6px solid;
+    border-top: #431D31 4px solid;
 }
 .ul-noStyle{
     list-style: none;
@@ -75,14 +114,14 @@ hr{
     left: 0;
     right: 0;
     text-align: center;
-    width: 10em;
-    height: 10em;
+    width: 12em;
+    height: 12em;
     border-radius: 50%;
-    border: #621012 solid 6px;
+    border: #431D31 solid 8px;
 }
 
 .background-maroon{
-    background-color: #621012;
+    background-color: #431D31;
 }
 
 .background-lavender{
@@ -90,15 +129,17 @@ hr{
 }
 .landing-background {
     height: 100%;
-    z-index: -999;
-    background: -webkit-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: -moz-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: -ms-linear-gradient(left, #621012 50%, #ded0d0 50%);
-    background: linear-gradient(left, #621012 50%, #ded0d0 50%);
+    /*z-index: -999;*/
+    /*background: -webkit-linear-gradient(left, #621012 50%, #ded0d0 50%);*/
+    /*background: -moz-linear-gradient(left, #621012 50%, #ded0d0 50%);*/
+    /*background: -ms-linear-gradient(left, #621012 50%, #ded0d0 50%);*/
+    /*background: linear-gradient(left, #621012 50%, #ded0d0 50%);*/
 }
 /*========================================text decorations=========================================*/
-.temp-name {
+.bloggie {
     font-family: 'Special Elite', cursive;
+    font-size: 1.7em;
+    font-weight: bolder;
 }
 
 .text-outline {
@@ -108,7 +149,7 @@ hr{
     /*-webkit-text-stroke-color: #ded0d0;*/
 }
 .text-maroon{
-    color: #621012;
+    color: #431D31;
 }
 .text-maroon:hover {
     text-decoration: none;
@@ -124,14 +165,18 @@ hr{
     transform: translate(-50%, -50%);
     font-family: 'Special Elite', cursive;
     font-size: 5em;
-    color: white;
     white-space: nowrap;
     overflow: hidden;
+    z-index: 1;
+    color: white;
+    opacity: .9;
 }
 
 .landing-header{
     font-family: 'Special Elite', cursive;
     font-weight: bolder;
+    color: white;
+    opacity: .9;
 }
 
 #text-span {
@@ -176,11 +221,7 @@ hr{
 .p-image{
     height: 40vh;
     width: 40vh;
-}
-
-.p-image1{
-    height: 40vh;
-    width: 40vh;
+    border: 4px solid #431D31;
 }
 
 .image {
@@ -198,8 +239,8 @@ hr{
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 70%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
@@ -235,30 +276,86 @@ hr{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
+.landing-jumbotron{
+    height: 92.5vh;
+    width: 100%;
+    background-color: #431D31;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+}
 
 .jumbotron {
+    display:inline-block;
     position: relative;
     overflow: hidden;
-    /*background-color: black;*/
+    box-sizing: border-box;
+}
+.post-jumbotron{
+    background-color: #431D31;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    height: 60vh;
+    width: 100%;
+}
+.coverPhoto{
+    background-color: #431D31;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    height: 38vh;
+    width: 100%;
+}
+.create{
+    background-color: #431D31;
+    /*clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);*/
     height: 100vh;
     width: 100%;
 }
-
-.jumbotron video {
+.jumbotron .landingVideo {
+    top: 0;
+    /*left: 2px;*/
+    width: 100%;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
     position: absolute;
     z-index: 1;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
+    height: 91.5vh;
+    background-color: #431D31;
     /*  object-fit is not supported on IE  */
     object-fit: cover;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+}
+.jumbotron .postImgJumbotron {
+    top: 0;
+    /*left: 2px;*/
+    width: 100%;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    position: absolute;
+    z-index: 1;
+    height: 79vh;
+    background-color: #431D31;
+    /*  object-fit is not supported on IE  */
+    object-fit: cover;
+    /*opacity: 0.5;*/
 }
 
+.coverPhoto img {
+    top: 0;
+    /*left: 2px;*/
+    width: 100%;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    position: absolute;
+    z-index: 1;
+    height: 37vh;
+    background-color: #431D31;
+    /*  object-fit is not supported on IE  */
+    object-fit: cover;
+    /*opacity: 0.5;*/
+}
+
+.create-background{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
 .jumbotron .container {
     z-index: 2;
     position: relative;
@@ -325,7 +422,7 @@ hr{
     color: #860806;
 }
 .settings{
-    color: #621012;
+    /*color: #621012;*/
     font-family: 'Open Sans', sans-serif;
     transition: transform .2s;
 }
@@ -336,8 +433,9 @@ hr{
 }
 
 nav a {
-    color: white;
-    font-family: 'Open Sans', sans-serif;
+    color: #431D31;
+    font-family: "Andale Mono", serif;
+    font-weight: bolder;
 }
 
 nav a:hover {
@@ -366,7 +464,7 @@ nav a:hover {
 }
 
 .navbar-1 {
-    background-color: black;
+    background-color: #F2F2F2;
 }
 
 .card-hover {
@@ -378,7 +476,7 @@ nav a:hover {
 }
 
 .nav-hamburgerIcon {
-    color: #621012;
+    color: #431D31;
 }
 
 .about-i {

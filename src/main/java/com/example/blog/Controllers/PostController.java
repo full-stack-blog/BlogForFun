@@ -38,22 +38,22 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String welcome(Model model, @RequestParam(required = false) String search) {
-        model.addAttribute("search", search);
+    public String welcome(Model model, @RequestParam(required = false) String search, @RequestParam(required = false) String search2, @RequestParam(required = false) String search1, @RequestParam(required = false) String search3, @RequestParam(required = false) String search4) {
+
 // This search code allows for searches that are not case sensitive, and can be searched by categories  //
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
         }
-        if (search == null) {
+        if (search == null || search2 == null || search1 == null || search3 == null || search4 == null || search1.equals("all")) {
             List<Post> posts = postDao.findAll();
             model.addAttribute("posts", posts);
-        } else {
+        }
+        if(search !=null){
             List<Post> posts = postDao.findAll();
             List<Post> searchedPosts = new ArrayList<>();
             for (Post post : posts) {
                 if (search.length() > 0) {
-//                    System.out.println(search.length());
                     if (post.getTitle().toLowerCase().contains(search.toLowerCase())) {
                         searchedPosts.add(post);
                         continue;
@@ -67,12 +67,9 @@ public class PostController {
                         continue;
                     }
                     if (post.getCategories().toArray().length > 0) {
-//                        System.out.println("inside categories array length  :  " + post.getCategories().toArray().length);
                         for (Categories category : post.getCategories()) {
-//                            System.out.println(category.getName() + " : " + post.getId());
                             if (category.getName().toLowerCase().contains(search.toLowerCase())) {
                                 searchedPosts.add(post);
-//                                System.out.println("added " + post.getId());
                             }
                         }
                     }
@@ -80,8 +77,69 @@ public class PostController {
                 }
             }
             model.addAttribute("posts", searchedPosts);
-
         }
+
+        if(search2 != null){
+            if(search2.equals("travel")){
+                List<Post> posts = postDao.findAll();
+                List<Post> searchedPosts = new ArrayList<>();
+                for (Post post : posts) {
+                    if (post.getCategories().toArray().length > 0) {
+
+                        for (Categories category : post.getCategories()) {
+
+                            if (category.getName().toLowerCase().equals("travel")) {
+                                searchedPosts.add(post);
+                            }
+                        }
+                    }
+                }
+                model.addAttribute("posts", searchedPosts);
+
+            }
+        }
+
+        if(search3 != null){
+            if(search3.equals("food")){
+                List<Post> posts = postDao.findAll();
+                List<Post> searchedPosts = new ArrayList<>();
+                for (Post post : posts) {
+                    if (post.getCategories().toArray().length > 0) {
+
+                        for (Categories category : post.getCategories()) {
+
+                            if (category.getName().toLowerCase().equals("food")) {
+                                searchedPosts.add(post);
+                            }
+                        }
+                    }
+                }
+                model.addAttribute("posts", searchedPosts);
+
+            }
+        }
+
+        if(search4 != null){
+            if(search4.equals("events")){
+                List<Post> posts = postDao.findAll();
+                List<Post> searchedPosts = new ArrayList<>();
+                for (Post post : posts) {
+                    if (post.getCategories().toArray().length > 0) {
+
+                        for (Categories category : post.getCategories()) {
+
+                            if (category.getName().toLowerCase().equals("shows-concerts")) {
+                                searchedPosts.add(post);
+                            }
+                        }
+                    }
+                }
+                model.addAttribute("posts", searchedPosts);
+
+            }
+        }
+
+
         return "posts/index";
     }
 

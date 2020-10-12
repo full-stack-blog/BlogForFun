@@ -6,16 +6,16 @@
 
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
-<div class="jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center"
-     style="background-color: black">
+<div class="jumbotron landing-jumbotron jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center"
+>
 
-    <video autoplay muted loop poster="">
+    <video autoplay muted loop poster="" class="landingVideo">
         <source src="/videos/blogger.mp4" type="video/mp4">
     </video>
 
     <div id="h1"></div>
 
-    <div class="text-white mt-1">
+    <div class="mt-1 z-index-in-front">
         <div class="text-center mt-1">
             <h3 class="landing-header mt-1">for whatever your "ie" is...</h3>
         </div>
@@ -23,34 +23,37 @@
 
 </div>
 
-    <br>
+<div class="container mt-3">
     <div class="parallax d-flex justify-content-between">
-        <h1 class="text-offWhite text-center temp-name align-self-center" style="width: 50vw;">Share any of your favorite events..</h1>
+        <h1 class="text-maroon text-center temp-name align-self-center" style="width: 50vw;">Share your favorite
+            events..</h1>
         <img src="https://images.pexels.com/photos/196652/pexels-photo-196652.jpeg?cs=srgb&dl=pexels-picjumbocom-196652.jpg&fm=jpg"
              alt="landing image" class="animatable bounceInLeft overflow-hidden rounded-circle p-image">
     </div>
+    <hr class="hr-maroon"/>
+    <br/>
+    <br/>
 
     <div class="parallax d-flex justify-content-between">
         <img src="https://images.pexels.com/photos/744780/pexels-photo-744780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
              alt="landing image" class="animatable bounceInRight overflow-hidden rounded-circle p-image">
-        <h1 class="text-maroon text-center temp-name align-self-center" style="width: 50vw;">Find your inner foodie..</h1>
+        <h1 class="text-maroon text-center temp-name align-self-center" style="width: 50vw;">Find your inner
+            foodie..</h1>
     </div>
+    <hr class="hr-maroon"/>
+    <br/>
+    <br/>
 
     <div class="parallax d-flex justify-content-between">
-        <h1 class="text-offWhite text-center temp-name align-self-center" style="width: 50vw;">Or follow someone else's adventure!</h1>
-               <div class="d-flex flex-column flex-direction-end">
-                   <img src="https://images.pexels.com/photos/554609/pexels-photo-554609.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                        alt="landing image" class="animatable bounceInLeft overflow-hidden rounded-circle p-image1 mx-5">
-
-                    <br>
-                    <img src="https://images.pexels.com/photos/554609/pexels-photo-554609.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                         alt="landing image" class="animatable bounceInLeft overflow-hidden rounded-circle p-image1">
-                </div>
-
+        <h1 class="text-maroon text-center temp-name align-self-center" style="width: 50vw;">Or follow someone else's
+            adventure!</h1>
+        <div class="d-flex flex-column flex-direction-end">
+            <img src="https://images.pexels.com/photos/554609/pexels-photo-554609.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                 alt="landing image" class="animatable bounceInLeft overflow-hidden rounded-circle p-image">
+        </div>
     </div>
 
-
-
+</div>
 
 
 <!-- Modal -->
