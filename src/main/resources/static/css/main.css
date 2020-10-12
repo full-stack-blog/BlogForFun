@@ -10,10 +10,28 @@
 /*    background-color: #631936;*/
 /*}*/
 
+.category{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    transition: .5s ease;
+    margin: 1em;
+}
+.category:hover{
+    transform: scale(1.1);
+}
+.travel-category{
+    background-image: url("https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
 
-/*.create-image{*/
-/*    background-image: url("https://images.collegexpress.com/article/How-to-Create-Your-Own-College-Major22.jpg");*/
-/*}*/
+button, .category{
+    font-size: large;
+    border: none;
+    color: white;
+}
 .hr-maroon{
     height: 2px;
     background-color: #431D31;

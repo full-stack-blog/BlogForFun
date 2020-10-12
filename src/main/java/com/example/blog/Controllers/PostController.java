@@ -38,14 +38,16 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String welcome(Model model, @RequestParam(required = false) String search) {
+    public String welcome(Model model, @RequestParam(required = false) String search, @RequestParam(required = false) String search2) {
         model.addAttribute("search", search);
+        model.addAttribute("search2", search2);
+        System.out.println(search2);
 // This search code allows for searches that are not case sensitive, and can be searched by categories  //
         if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
             User loggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("user", loggedIn);
         }
-        if (search == null) {
+        if (search == null || search2 == null) {
             List<Post> posts = postDao.findAll();
             model.addAttribute("posts", posts);
         } else {
@@ -82,6 +84,28 @@ public class PostController {
             model.addAttribute("posts", searchedPosts);
 
         }
+
+        if(search2 != null){
+            if(search2.equals("travel")){
+                List<Post> posts = postDao.findAll();
+                List<Post> searchedPosts = new ArrayList<>();
+                for (Post post : posts) {
+                    if (post.getCategories().toArray().length > 0) {
+
+                        for (Categories category : post.getCategories()) {
+
+                            if (category.getName().toLowerCase().equals("travel")) {
+                                searchedPosts.add(post);
+                            }
+                        }
+                    }
+                }
+                model.addAttribute("posts", searchedPosts);
+
+            }
+        }
+
+
         return "posts/index";
     }
 
