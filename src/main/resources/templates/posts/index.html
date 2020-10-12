@@ -9,21 +9,31 @@
 
 <div class="container bg-white pt-2" style="min-height: 100vh">
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex">
 
-        <form action="#" th:action="@{/posts}" method="get" class="mt-2 input-group">
+        <form action="#" th:action="@{/posts}" method="get" class="input-group">
             <input type="hidden" value="all" id="search1" name="search1"/>
             <label for="query-input1"></label>
-            <button class="category travel-category" type="submit" value="search1" id="query-input1">All</button>
+            <button class="category all-category" type="submit" value="search1" id="query-input1">All</button>
         </form>
 
-        <form action="#" th:action="@{/posts}" method="get" class="mt-2 input-group">
+        <form action="#" th:action="@{/posts}" method="get" class="input-group">
             <input type="hidden" value="travel" id="search2" name="search2"/>
             <label for="query-input2"></label>
             <button class="category travel-category" type="submit" value="search2" id="query-input2">Travel</button>
         </form>
 
+        <form action="#" th:action="@{/posts}" method="get" class="input-group">
+            <input type="hidden" value="food" id="search3" name="search3"/>
+            <label for="query-input3"></label>
+            <button class="category food-category" type="submit" value="search3" id="query-input3">Food</button>
+        </form>
 
+        <form action="#" th:action="@{/posts}" method="get" class="input-group">
+            <input type="hidden" value="events" id="search4" name="search4"/>
+            <label for="query-input4"></label>
+            <button class="category events-category" type="submit" value="search4" id="query-input4">Events</button>
+        </form>
 
     </div>
 

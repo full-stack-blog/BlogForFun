@@ -18,19 +18,36 @@
     height: 8em;
     border-radius: 50%;
     transition: .5s ease;
-    margin: 1em;
+    margin: .8em;
+    opacity: .8;
+    backdrop-filter: contrast(.6) blur(2px);
 }
 .category:hover{
     transform: scale(1.1);
+    opacity: 1;
+    color: #2BA4B9;
+    border: 2px solid #2BA4B9;
 }
 .travel-category{
     background-image: url("https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 }
+.food-category{
+    background-image: url("https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
+
+.events-category{
+    background-image: url("https://images.pexels.com/photos/1587927/pexels-photo-1587927.jpeg?cs=srgb&dl=pexels-mark-angelo-1587927.jpg&fm=jpg");
+}
+.all-category{
+    background-image: url("https://images.pexels.com/photos/34123/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+}
 
 button, .category{
-    font-size: large;
-    border: none;
+    font-size: 28px;
+    letter-spacing: 3px;
+    border: 2px solid white;
     color: white;
+    font-weight: bold;
 }
 .hr-maroon{
     height: 2px;
