@@ -44,7 +44,7 @@
 /*    border-radius: 5px;*/
 /*}*/
 .maroon-border{
-    border-top: #621012 6px solid;
+    border-top: #431D31 4px solid;
 }
 .ul-noStyle{
     list-style: none;
@@ -79,14 +79,14 @@ hr{
     left: 0;
     right: 0;
     text-align: center;
-    width: 10em;
-    height: 10em;
+    width: 12em;
+    height: 12em;
     border-radius: 50%;
-    border: #621012 solid 6px;
+    border: #431D31 solid 8px;
 }
 
 .background-maroon{
-    background-color: #621012;
+    background-color: #431D31;
 }
 
 .background-lavender{
@@ -204,8 +204,8 @@ hr{
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 70%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
@@ -243,21 +243,40 @@ hr{
     background-size: cover;
 }
 
-
-.jumbotron {
-    display:inline-block;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
+.landing-jumbotron{
     height: 92.5vh;
     width: 100%;
     background-color: #431D31;
     clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
 }
 
-.jumbotron video {
+.jumbotron {
+    display:inline-block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.post-jumbotron{
+    background-color: #431D31;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    height: 60vh;
+    width: 100%;
+}
+.coverPhoto{
+    background-color: #431D31;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    height: 38vh;
+    width: 100%;
+}
+.create{
+    background-color: #431D31;
+    /*clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);*/
+    height: 100vh;
+    width: 100%;
+}
+.jumbotron .landingVideo {
     top: 0;
-    left: 2px;
+    /*left: 2px;*/
     width: 100%;
     clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
     position: absolute;
@@ -268,7 +287,40 @@ hr{
     object-fit: cover;
     /*opacity: 0.5;*/
 }
+.jumbotron .postImgJumbotron {
+    top: 0;
+    /*left: 2px;*/
+    width: 100%;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    position: absolute;
+    z-index: 1;
+    height: 79vh;
+    background-color: #431D31;
+    /*  object-fit is not supported on IE  */
+    object-fit: cover;
+    /*opacity: 0.5;*/
+}
 
+.coverPhoto img {
+    top: 0;
+    /*left: 2px;*/
+    width: 100%;
+    clip-path: polygon(100% 0%, 68% 0%, 31% 0%, 0% 0%, 0% 25%, 0% 43%, 0% 88%, 22% 94%, 48% 100%, 83% 91%, 100% 86%, 100% 74%, 100% 49%, 100% 25%);
+    position: absolute;
+    z-index: 1;
+    height: 37vh;
+    background-color: #431D31;
+    /*  object-fit is not supported on IE  */
+    object-fit: cover;
+    /*opacity: 0.5;*/
+}
+
+.create-background{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
 .jumbotron .container {
     z-index: 2;
     position: relative;
@@ -335,7 +387,7 @@ hr{
     color: #860806;
 }
 .settings{
-    color: #621012;
+    /*color: #621012;*/
     font-family: 'Open Sans', sans-serif;
     transition: transform .2s;
 }
@@ -389,7 +441,7 @@ nav a:hover {
 }
 
 .nav-hamburgerIcon {
-    color: #621012;
+    color: #431D31;
 }
 
 .about-i {
