@@ -352,7 +352,10 @@ hr{
 
 .create-background{
     background: url("/static/videos/create.mp4");
-    /*background-size: cover;*/
+    background-size: cover;
+    background: center;
+
+
 }
 .jumbotron .container {
     z-index: 2;
