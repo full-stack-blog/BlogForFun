@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
 <head th:replace="fragments/header :: head('Create View')"></head>
 
-<body class="h-100 create-background" th:style="'background:url(' + ${user.coverImg}  + ')' + 'no-repeat center center fixed;' + '; '">
+<body class="h-100 create-background" th:style="'background:url(../videos/create.mp4)' + 'no-repeat center center fixed;' + '; '">
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
 
 
@@ -12,7 +12,7 @@
         <div class="row bg-light text-dark col-sm-12 col-md-6 justify-content-center align-self-center mx-auto text-center p-3 card card-block shadow-lg login-box-image">
 
             <div class="text-center">
-                <h3 class="card-title landing-header">Create a Post</h3>
+                <h3 class="card-title text-dark landing-header">Create a Post</h3>
                 <hr>
 
                 <!--  FORM -->

@@ -6,8 +6,9 @@
 <body class="h-100 background-maroon">
 
 <nav th:replace="fragments/navbar.html :: user-navbar"></nav>
+<!--page container-->
 <div class="container bg-white p-0" style="min-height: 100vh">
-
+<!-- JumboTron -->
     <div class="jumbotron coverPhoto jumbotron-fluid m-0 p-0 d-flex align-items-center justify-content-center">
         <img th:src="|${user.coverImg}|" alt="jumbotron post image" class="img-fluid"/>
     </div>
@@ -19,6 +20,7 @@
         <h4 th:text="${user.username}" class="text-center profile-name p-0 m-0 pt-5"></h4>
 
         <div>
+<!--           drop down Nav Bar for Settings-->
             <nav class="navbar navbar-expand-xl">
 
                 <div class="collapse navbar-collapse">
@@ -30,8 +32,9 @@
                                     Settings
                                 </button>
 
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="font-size: small">
                                     <a th:href="@{|/profile/editCoverPhoto|}" class="pl-4 text-maroon">Edit Cover Photo</a>
+                                    <br>
                                     <a th:href="@{|/profile/edit|}" class="pl-4 text-maroon">User Info</a>
                                     <a th:if="${user.userRole.contains('admin')}" th:href="@{|/admin-profile|}" class="pl-4 text-maroon">Admin Profile</a>
                                 </div>
@@ -43,7 +46,7 @@
         </div>
 
     </div>
-
+<!-- Tabs for Posts and Favorites-->
     <ul class="nav nav-tabs " id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
