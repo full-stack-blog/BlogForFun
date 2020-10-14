@@ -351,15 +351,14 @@ hr{
 }
 
 .create-background{
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+    background: url("/static/videos/create.mp4");
+    /*background-size: cover;*/
 }
 .jumbotron .container {
     z-index: 2;
     position: relative;
 }
+
 
 /*=============================================Transitions for landing page images======================================*/
 
